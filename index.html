@@ -109,10 +109,22 @@
   .inside .in .tick{font-size:22px;line-height:1.2}
   .inside .in b{color:#fff}
   .inside .in p{margin:4px 0 0;color:#9ca3af;font-size:14px}
+  /* Offer countdown bar */
+  .offer-bar{position:sticky;top:0;z-index:70;background:linear-gradient(90deg,#b91c1c,#f59e0b);color:#fff;text-align:center;padding:10px 12px;font-size:15px;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+  .offer-bar .cd{display:inline-flex;gap:6px;margin-left:10px;vertical-align:middle}
+  .offer-bar .cd>span{background:rgba(0,0,0,.4);border-radius:8px;padding:3px 8px;min-width:56px;display:inline-block}
+  .offer-bar .cd b{font-size:18px;display:block;line-height:1.1}
+  .offer-bar .cd small{font-size:10px;opacity:.85}
+  @media(max-width:640px){.offer-bar{font-size:13px}.offer-bar .cd>span{min-width:46px;padding:3px 6px}}
   @media(max-width:640px){ header.hero h1{font-size:30px;} h2.sec{font-size:26px;} .price-card .now{font-size:42px;} }
 </style>
 </head>
 <body>
+
+<div class="offer-bar">
+  <span class="lang-bn">🔥 <b>৫০% ছাড়ের অফার</b> চলবে <b>১০ জানুয়ারি</b> পর্যন্ত — শেষ হতে বাকি:</span><span class="lang-en">🔥 <b>50% OFF offer</b> valid until <b>January 10</b> — ends in:</span>
+  <span class="cd" id="cd"><span><b id="cdD">–</b><small class="lang-bn">দিন</small><small class="lang-en">days</small></span><span><b id="cdH">–</b><small class="lang-bn">ঘণ্টা</small><small class="lang-en">hrs</small></span><span><b id="cdM">–</b><small class="lang-bn">মিনিট</small><small class="lang-en">min</small></span><span><b id="cdS">–</b><small class="lang-bn">সেকেন্ড</small><small class="lang-en">sec</small></span></span>
+</div>
 
 <nav>
   <div class="wrap">
@@ -230,7 +242,7 @@
         <div class="tag">🇧🇩 বাংলাদেশ থেকে — লাইভ কোর্স</div>
         <h3>CPA Advanced Master Course</h3>
         <div class="old">৳৪,৯৯৯</div><div class="now">৳২,৪৯৯</div>
-        <div class="per">৫০% ছাড় — এককালীন পেমেন্ট</div>
+        <div class="per">৫০% ছাড় — এককালীন পেমেন্ট<br>⏰ অফার চলবে <b>১০ জানুয়ারি</b> পর্যন্ত</div>
         <div class="pay-box"><h4>📱 বিকাশে Send Money করুন</h4>
           <div class="pay-num"><span id="bkashNum">8801842793958</span><button onclick="copyBkash()">Copy</button></div>
           <ul class="pay-steps"><li>উপরের নাম্বারে <b>৳২,৪৯９</b> Send Money করুন</li><li>TrxID টি WhatsApp-এ পাঠিয়ে দিন</li><li>ভর্তি কনফার্ম হয়ে যাবে ✅</li></ul>
@@ -388,7 +400,7 @@
         <div class="tag">🌍 International — PDF Format</div>
         <h3>CPA Advanced Master Course</h3>
         <div class="old">$40</div><div class="now">$20</div>
-        <div class="per">50% OFF — one-time payment</div>
+        <div class="per">50% OFF — one-time payment<br>⏰ Offer valid until <b>January 10</b></div>
         <div class="pay-box"><h4>💳 Pay with PayPal</h4>
           <ul class="pay-steps"><li>Click below to pay <b>$20</b> via PayPal</li><li>Message us on WhatsApp after payment</li><li>Get the complete PDF instantly ✅</li></ul>
         </div>
@@ -474,6 +486,28 @@ try{ var s = localStorage.getItem('cpaLang'); if(s==='en'){ setLang('en'); } }ca
       .catch(function(){});
   }catch(e){}
 })();
+/* Offer countdown — ends January 10 */
+var OFFER_END = new Date('2027-01-10T23:59:59');
+var currentLang = 'bn';
+try{ currentLang = localStorage.getItem('cpaLang') || document.documentElement.lang || 'bn'; }catch(e){}
+var _setLang = setLang;
+setLang = function(l){ currentLang = l; _setLang(l); };
+function tickOffer(){
+  var diff = OFFER_END - new Date();
+  var cd = document.getElementById('cd');
+  if(!cd){ return; }
+  if(diff <= 0){
+    cd.innerHTML = currentLang === 'en' ? '<b>Offer ended!</b>' : '<b>অফার শেষ!</b>';
+    return;
+  }
+  var d = Math.floor(diff/86400000), h = Math.floor(diff%86400000/3600000),
+      m = Math.floor(diff%3600000/60000), s = Math.floor(diff%60000/1000);
+  document.getElementById('cdD').textContent = d;
+  document.getElementById('cdH').textContent = h;
+  document.getElementById('cdM').textContent = m;
+  document.getElementById('cdS').textContent = s;
+}
+setInterval(tickOffer, 1000); tickOffer();
 </script>
 </body>
 </html>
