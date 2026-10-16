@@ -8,7 +8,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Hind Siliguri','Segoe UI',sans-serif;background:#0d1117;color:#e6edf3;padding:20px}
-.wrap{max-width:900px;margin:0 auto}
+.wrap{max-width:960px;margin:0 auto}
 h1{color:#ffd700;margin-bottom:6px;font-size:26px}
 .sub{color:#8b949e;margin-bottom:24px}
 .card{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:20px}
@@ -19,22 +19,24 @@ button{background:#ffd700;color:#111;border:none;border-radius:8px;padding:10px 
 button:hover{background:#ffdf40}
 .hint{color:#8b949e;font-size:13px;margin-top:10px}
 table{width:100%;border-collapse:collapse;margin-top:8px}
-th,td{padding:10px 8px;text-align:left;border-bottom:1px solid #30363d;font-size:14px}
+th,td{padding:10px 8px;text-align:left;border-bottom:1px solid #30363d;font-size:14px;vertical-align:top}
 th{color:#ffd700}
 a{color:#58a6ff;text-decoration:none;word-break:break-all}
 a:hover{text-decoration:underline}
-.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:bold}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:bold;white-space:nowrap}
 .badge.live{background:#1a7f37;color:#fff}
 .badge.work{background:#9e6a03;color:#fff}
 .badge.wait{background:#30363d;color:#8b949e}
-.code{font-family:monospace;font-size:20px;color:#ffd700;letter-spacing:2px}
+.badge.skip{background:#6e2b2b;color:#fff}
+.badge.rej{background:#7a4a00;color:#fff}
 .note{background:#161b22;border-left:4px solid #ffd700;padding:14px 18px;border-radius:0 8px 8px 0;font-size:14px;line-height:1.8}
+.small{font-size:12px;color:#8b949e}
 </style>
 </head>
 <body>
 <div class="wrap">
 <h1>🎛️ CPA কোর্স — পোস্টিং কন্ট্রোল প্যানেল</h1>
-<p class="sub">কোর্স প্রচারের সব সাইট, লিংক আর ট্রিগার কোড এক জায়গায়।</p>
+<p class="sub">কোর্স প্রচারের সব সাইট, লিংক আর ট্রিগার কোড এক জায়গায়। আপডেট: ১৬ অক্টোবর ২০২৬</p>
 
 <div class="card">
 <h2>🔗 কোর্স লিংক</h2>
@@ -47,28 +49,54 @@ a:hover{text-decoration:underline}
 <div class="card">
 <h2>⚡ ট্রিগার কোড</h2>
 <div class="row">
-<input type="text" id="trigCode" readonly value="CPA-POST" class="code">
+<input type="text" id="trigCode" readonly value="CPA-POST" style="font-family:monospace;font-size:20px;color:#ffd700;letter-spacing:2px">
 <button onclick="copy('trigCode')">কপি</button>
 </div>
 <p class="hint">👆 চ্যাটে শুধু এই কোডটা (<b>CPA-POST</b>) পাঠালেই আমি নিচের সব সাইটে তোমার কোর্স লিংকসহ নতুন পোস্ট করে দেবো।</p>
 </div>
 
 <div class="card">
-<h2>🌐 পোস্টিং সাইটসমূহ</h2>
+<h2>🌐 ব্যাচ ১ — ফলাফল</h2>
 <table>
-<tr><th>#</th><th>সাইট</th><th>অ্যাকাউন্ট</th><th>পোস্ট লিংক</th><th>স্ট্যাটাস</th></tr>
-<tr><td>1</td><td>Bikroy.com</td><td id="acc1">—</td><td id="post1">—</td><td><span class="badge work">চলছে</span></td></tr>
-<tr><td>2</td><td>ClickBD.com</td><td id="acc2">—</td><td id="post2">—</td><td><span class="badge wait">অপেক্ষা</span></td></tr>
-<tr><td>3</td><td>Techtunes.com.bd</td><td id="acc3">—</td><td id="post3">—</td><td><span class="badge wait">অপেক্ষা</span></td></tr>
-<tr><td>4</td><td>TrickBD.com</td><td id="acc4">—</td><td id="post4">—</td><td><span class="badge wait">অপেক্ষা</span></td></tr>
+<tr><th>#</th><th>সাইট</th><th>অ্যাকাউন্ট</th><th>পোস্ট</th><th>স্ট্যাটাস</th></tr>
+<tr>
+<td>1</td><td>Bikroy.com</td>
+<td><span class="small">Google দিয়ে তৈরি ✅<br>নাম: Khorshed Alam</span></td>
+<td><span class="small">বিজ্ঞাপন তৈরি, পাবলিশ বাকি</span></td>
+<td><span class="badge work">SMS কোড বাকি (কাল সকালে)</span></td>
+</tr>
+<tr>
+<td>2</td><td>ClickBD.com</td>
+<td><span class="small"><a href="https://www.clickbd.com/my-account">my-account</a> ✅</span></td>
+<td><span class="small">—</span></td>
+<td><span class="badge skip">স্কিপ — ফোন নম্বর বাধ্যতামূলক</span></td>
+</tr>
+<tr>
+<td>3</td><td>Techtunes.com.bd</td>
+<td><span class="small">—</span></td>
+<td><span class="small">—</span></td>
+<td><span class="badge skip">স্কিপ — সাইটে আর পোস্টিং নেই</span></td>
+</tr>
+<tr>
+<td>4</td><td>TrickBD.com</td>
+<td><span class="small">khorshed_alam ✅<br>বায়ো সেভ ✅</span></td>
+<td><span class="small">ড্রাফট (ID 3090962)</span></td>
+<td><span class="badge rej">মডারেশন রিজেক্ট</span></td>
+</tr>
 </table>
-<p class="hint">নতুন ব্যাচের সাইট যোগ হলে এই তালিকায় যুক্ত হবে। প্রতিটা পোস্ট লাইভ হলেই লিংক এখানে বসিয়ে দেওয়া হবে।</p>
+<p class="hint">📌 ৪টার মধ্যে ০টা পোস্ট পাবলিকলি লাইভ। Bikroy কাল SMS কোড পেলেই লাইভ হবে।</p>
+</div>
+
+<div class="card">
+<h2>🔜 ব্যাচ ২ — আসছে</h2>
+<p class="hint">পরের ব্যাচের ফ্রি সাইট যাচাই করা হচ্ছে (ফোন ভেরিফিকেশন ছাড়া যেগুলোতে পোস্ট করা যায়)। তালিকা চূড়ান্ত হলেই এখানে যোগ হবে।</p>
 </div>
 
 <div class="note">
 <b>📌 নিয়ম:</b><br>
 • প্রতিটা পোস্টে কোর্স লিংক থাকবে: <b>https://samratkhanov-tech.github.io/cpa-advanced-course/</b><br>
 • প্রতি সাইটে সর্বোচ্চ ১টা কোর্স পোস্ট — স্প্যাম নয়।<br>
+• ফোন ভেরিফিকেশন চাইলে সাইট স্কিপ করা হবে।<br>
 • "CPA-POST" লিখে পাঠালেই সব সাইটে পোস্ট করা হবে।
 </div>
 </div>
