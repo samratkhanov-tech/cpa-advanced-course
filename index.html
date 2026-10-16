@@ -82,6 +82,21 @@
   footer { background:#070b18; padding:40px 0; text-align:center; color:#6b7699; font-size:13px; }
   footer .disclaimer { max-width:700px; margin:14px auto 0; }
   .lang-en { display:none; }
+  .avatar-photo{width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);flex-shrink:0;background:#0f172a}
+  /* Results gallery */
+  .results{background:#0b0f1a;border-top:1px solid #1e293b;border-bottom:1px solid #1e293b}
+  .shot-row{display:grid;grid-template-columns:1.5fr .8fr 1.5fr;gap:18px;align-items:center;max-width:1100px;margin:0 auto}
+  .shot{margin:0;background:#111827;border:1px solid #1f2937;border-radius:14px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.45)}
+  .shot img{display:block;width:100%;height:auto}
+  .shot figcaption{padding:10px 14px;font-size:14px;color:#d1d5db;text-align:center}
+  .shot figcaption b{color:var(--gold)}
+  .mentor-shot{display:flex;flex-direction:column;align-items:center;text-align:center;background:none;border:none;box-shadow:none;padding:8px}
+  .mentor-photo{width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid var(--gold);box-shadow:0 0 30px rgba(245,158,11,.35);background:#0f172a}
+  .mentor-shot figcaption{padding:10px 0;font-size:15px}
+  .mentor-shot figcaption b{display:block;color:#fff;font-size:17px;letter-spacing:1px}
+  .mentor-shot figcaption span{color:#9ca3af;font-size:13px}
+  .results .note{text-align:center;color:#6b7280;font-size:13px;margin:16px auto 0;max-width:760px}
+  @media(max-width:820px){.shot-row{grid-template-columns:1fr}.mentor-shot{order:-1}}
   @media(max-width:640px){ header.hero h1{font-size:30px;} h2.sec{font-size:26px;} .price-card .now{font-size:42px;} }
 </style>
 </head>
@@ -118,6 +133,19 @@
   </div>
 </header>
 
+<section class="results">
+  <div class="wrap">
+    <h2 class="sec">📊 বাস্তব <span class="hl">ড্যাশবোর্ড রেজাল্ট</span></h2>
+    <p class="lead">কোর্সে যা শেখানো হয় — সেটাই বাস্তব campaign-এ প্র্যাক্টিস করা</p>
+    <div class="shot-row">
+      <figure class="shot"><img src="images/result-1.png" alt="CPA dashboard revenue screenshot"><figcaption>Revenue <b>$8,076.61</b> · 315 Conversions · 37,922 Clicks</figcaption></figure>
+      <figure class="shot mentor-shot"><img class="mentor-photo" src="images/mentor.png" alt="KHORSHED ALAM"><figcaption><b>KHORSHED ALAM</b><span>Marketing Manager</span></figcaption></figure>
+      <figure class="shot"><img src="images/result-2.png" alt="Analytics dashboard screenshot"><figcaption>Revenue <b>$11,437.93</b> · 459 Conversions · 74,672 Clicks</figcaption></figure>
+    </div>
+    <p class="note">* ড্যাশবোর্ড স্ক্রিনশট মেন্টরের নিজের campaign থেকে নেওয়া। ফলাফল সবার জন্য একই হবে না — কোনো income guarantee নেই।</p>
+  </div>
+</section>
+
 <section>
   <div class="wrap">
     <h2 class="sec">কেন এই <span class="hl">কোর্স?</span></h2>
@@ -153,7 +181,7 @@
     <h2 class="sec">আপনার <span class="hl">মেন্টর</span></h2>
     <p class="lead">যার কাছ থেকে সরাসরি লাইভে শিখবেন</p>
     <div class="mentor">
-      <div class="avatar">KA</div>
+      <img class="avatar-photo" src="images/mentor.png" alt="KHORSHED ALAM">
       <div><h3>KHORSHED ALAM</h3><div class="role">Marketing Manager</div>
       <p>Digital Marketing, SEO, SEM, Social Media, Content Marketing, Analytics ও Campaign Strategy-তে অভিজ্ঞ। Structured roadmap-এ ধাপে ধাপে শেখান — যাতে beginner-রাও practical কাজ শিখে এগোতে পারে।</p></div>
     </div>
@@ -228,6 +256,19 @@
   </div>
 </header>
 
+<section class="results">
+  <div class="wrap">
+    <h2 class="sec">📊 Real <span class="hl">Dashboard Results</span></h2>
+    <p class="lead">What this course teaches — practiced in real campaigns</p>
+    <div class="shot-row">
+      <figure class="shot"><img src="images/result-1.png" alt="CPA dashboard revenue screenshot"><figcaption>Revenue <b>$8,076.61</b> · 315 Conversions · 37,922 Clicks</figcaption></figure>
+      <figure class="shot mentor-shot"><img class="mentor-photo" src="images/mentor.png" alt="KHORSHED ALAM"><figcaption><b>KHORSHED ALAM</b><span>Marketing Manager</span></figcaption></figure>
+      <figure class="shot"><img src="images/result-2.png" alt="Analytics dashboard screenshot"><figcaption>Revenue <b>$11,437.93</b> · 459 Conversions · 74,672 Clicks</figcaption></figure>
+    </div>
+    <p class="note">* Dashboard screenshots are from the mentor's own campaigns. Results vary — no income guarantee.</p>
+  </div>
+</section>
+
 <section>
   <div class="wrap">
     <h2 class="sec">Why This <span class="hl">Course?</span></h2>
@@ -263,7 +304,7 @@
     <h2 class="sec">Your <span class="hl">Mentor</span></h2>
     <p class="lead">Learn from an experienced marketer</p>
     <div class="mentor">
-      <div class="avatar">KA</div>
+      <img class="avatar-photo" src="images/mentor.png" alt="KHORSHED ALAM">
       <div><h3>KHORSHED ALAM</h3><div class="role">Marketing Manager</div>
       <p>Experienced in Digital Marketing, SEO, SEM, Social Media, Content Marketing, Analytics and Campaign Strategy. Teaches step by step through a structured roadmap — so even complete beginners can learn practical skills and move forward.</p></div>
     </div>
