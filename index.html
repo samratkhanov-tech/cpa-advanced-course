@@ -375,7 +375,7 @@ function setLang(l){
   var bns = document.querySelectorAll('.lang-bn');
   var ens = document.querySelectorAll('.lang-en');
   for(var i=0;i<bns.length;i++){ bns[i].style.display = (l==='bn') ? '' : 'none'; }
-  for(var j=0;j<ens.length;j++){ ens[j].style.display = (l==='en') ? '' : 'none'; }
+  for(var j=0;j<ens.length;j++){ ens[j].style.display = (l==='en') ? 'block' : 'none'; }
   document.getElementById('btnBn').classList.toggle('active', l==='bn');
   document.getElementById('btnEn').classList.toggle('active', l==='en');
   document.documentElement.lang = l;
