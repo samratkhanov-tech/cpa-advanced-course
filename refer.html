@@ -132,7 +132,7 @@
 <a href="https://wa.me/8801842793958?text=%E0%A6%B8%E0%A6%BE%E0%A6%AA%E0%A7%8B%E0%A6%B0%E0%A7%8D%E0%A6%9F%20%E0%A6%A6%E0%A6%B0%E0%A6%95%E0%A6%BE%E0%A6%B0" target="_blank" class="wa-float" id="waFloat" title="WhatsApp Support">💬</a>
 <div class="wa-tip" id="waTip">💬 <span id="waTipText">সাপোর্টের জন্য WhatsApp-এ মেসেজ করো!</span></div>
 <script>
-var API = 'https://aiaffiliatelaunch.unaux.com/cpa-download/api.php';
+var API = 'https://script.google.com/macros/s/AKfycbwJMKOJN_TW6hT8pGudK_2tCfrO53mJ3kL71FGS1SR9NTk1bac8qOi-rcaSMdfWbDE__w/exec';
 var LANG = 'bn';
 var T = {
   bn: {
@@ -346,10 +346,9 @@ document.getElementById('signupBtn').addEventListener('click', function(){
   if(!bkash){ say(t.errBkash, false); return; }
   if(photo && photo.size > 2*1024*1024){ say(t.errPhoto, false); return; }
   say(t.making, true);
-  var fd=new FormData(); fd.append('action','refsignup');
+  var fd=new FormData();
   fd.append('name',name); fd.append('gmail',gmail); fd.append('contact',contact);
   fd.append('bkash',bkash); fd.append('paymethod',PAYM); fd.append('payinfo',pay);
-  if(photo) fd.append('photo', photo);
   fetch(API,{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(j){
     if(j && j.ok){
       document.getElementById('signupBox').style.display='none';
