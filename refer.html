@@ -38,11 +38,14 @@
   ol.steps b{color:var(--text)}
   .wanote{background:#0e2a18;border:1px solid #1f7a3d;border-radius:12px;padding:12px 16px;margin-top:14px;font-size:14px;color:var(--muted)}
   .wanote a{color:var(--green);font-weight:700;text-decoration:none}
-  .paylogos{display:flex;gap:10px;margin:2px 0 12px}
-  .paylogo{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 4px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;border:2px solid transparent;color:#fff;font-family:inherit}
+  .paylogos{display:flex;gap:10px;margin:2px 0 12px;flex-wrap:wrap}
+  .paylogo{flex:1;min-width:90px;display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 4px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;border:2px solid transparent;color:#fff;font-family:inherit}
   .paylogo.bkash{background:#d11069}
   .paylogo.nagad{background:#f26522}
   .paylogo.rocket{background:#7b2d8e}
+  .paylogo.binance{background:#b8860b}
+  .paylogo.paypal{background:#0070ba}
+  .paylogo.payoneer{background:#3d3d3d}
   .paylogo.sel{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold)}
   .paylogo img{width:22px;height:22px;object-fit:contain;background:#fff;border-radius:6px;padding:2px}
 </style>
@@ -88,6 +91,12 @@
       <button type="button" class="paylogo nagad" data-m="Nagad">🔥 Nagad</button>
       <button type="button" class="paylogo rocket" data-m="Rocket">🚀 Rocket</button>
     </div>
+    <label style="font-size:14px;color:var(--muted);margin:4px 0 8px" id="payMethodLabel2">💵 PDF রেফার ($৫) — পেমেন্ট মেথড</label>
+    <div class="paylogos">
+      <button type="button" class="paylogo binance" data-m="Binance">🟡 Binance</button>
+      <button type="button" class="paylogo paypal" data-m="PayPal">🅿️ PayPal</button>
+      <button type="button" class="paylogo payoneer" data-m="Payoneer">💼 Payoneer</button>
+    </div>
     <input type="text" id="refBkash" placeholder="বিকাশ নম্বর">
     <label style="font-size:14px;color:var(--muted);margin:4px 0 8px" id="photoLabel">📸 তোমার ছবি (ঐচ্ছিক)</label>
     <input type="file" id="refPhoto" accept="image/*" style="width:100%;padding:10px;border-radius:12px;border:1px dashed var(--line);background:var(--card2);color:var(--muted);font-size:14px;margin-bottom:12px;font-family:inherit">
@@ -131,9 +140,13 @@ var T = {
     photoLabel: '📸 তোমার ছবি (ঐচ্ছিক)',
     payPh: 'টাকা নেবে কোথায়? (যেমন: নগদ 01XXXXXXXXX)',
     payMethodLabel: '💳 পেমেন্ট মেথড বেছে নাও',
+    payMethodLabel2: '💵 PDF রেফার ($৫) — পেমেন্ট মেথড',
     numPh_bkash: 'বিকাশ নম্বর',
     numPh_nagad: 'নগদ নম্বর',
     numPh_rocket: 'রকেট নম্বর',
+    numPh_binance: 'Binance UID / ইমেইল',
+    numPh_paypal: 'PayPal ইমেইল',
+    numPh_payoneer: 'Payoneer ইমেইল',
     signupBtn: '🚀 আমার রেফার লিংক বানাও',
     doneTitle: '🎉 অভিনন্দন!',
     doneCodeLabel: 'তোমার রেফার কোড:',
@@ -163,8 +176,8 @@ var T = {
     step1: '<b>Sign up</b> below — get your <b>own referral link</b>',
     step2: '<b>Share</b> the link with <b>friends / groups</b>',
     step3: 'Earn commission when someone <b>enrolls</b> through your link',
-    step4: 'Get paid via <b>bKash / Nagad / Payoneer / PayPal</b>',
-    payNoteText: 'To receive your payment, contact us on WhatsApp:',
+    step4: 'Get paid via <b>bKash / Nagad / Rocket</b> (live course) or <b>Binance / PayPal / Payoneer</b> (PDF)',
+    payNoteText: 'To receive your payment, first contact us on WhatsApp and talk to us:',
     signupTitle: '📝 Free Sign Up',
     namePh: 'Your name',
     gmailPh: 'Gmail (e.g. name@gmail.com)',
@@ -173,9 +186,13 @@ var T = {
     photoLabel: '📸 Your photo (optional)',
     payPh: 'Where to receive money? (e.g. PayPal email)',
     payMethodLabel: '💳 Choose payment method',
+    payMethodLabel2: '💵 PDF referral ($5) — payment method',
     numPh_bkash: 'bKash number',
     numPh_nagad: 'Nagad number',
     numPh_rocket: 'Rocket number',
+    numPh_binance: 'Binance UID / email',
+    numPh_paypal: 'PayPal email',
+    numPh_payoneer: 'Payoneer email',
     signupBtn: '🚀 Create My Referral Link',
     doneTitle: '🎉 Congratulations!',
     doneCodeLabel: 'Your referral code:',
@@ -221,6 +238,7 @@ function setLang(l){
   document.getElementById('photoLabel').textContent = t.photoLabel;
   document.getElementById('refPay').placeholder = t.payPh;
   document.getElementById('payMethodLabel').textContent = t.payMethodLabel;
+  document.getElementById('payMethodLabel2').textContent = t.payMethodLabel2;
   updateNumPh();
   document.getElementById('signupBtn').textContent = t.signupBtn;
   document.getElementById('doneTitle').textContent = t.doneTitle;
@@ -240,6 +258,9 @@ function updateNumPh(){
   var ph = t.numPh_bkash;
   if(PAYM==='Nagad') ph = t.numPh_nagad;
   if(PAYM==='Rocket') ph = t.numPh_rocket;
+  if(PAYM==='Binance') ph = t.numPh_binance;
+  if(PAYM==='PayPal') ph = t.numPh_paypal;
+  if(PAYM==='Payoneer') ph = t.numPh_payoneer;
   document.getElementById('refBkash').placeholder = ph;
 }
 document.querySelectorAll('.paylogo').forEach(function(b){
