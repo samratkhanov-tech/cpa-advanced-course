@@ -11,7 +11,11 @@
   *{box-sizing:border-box}
   body{font-family:'Hind Siliguri','Segoe UI',system-ui,sans-serif;background:radial-gradient(1200px 600px at 50% -10%,#16204d 0%,var(--bg) 60%);color:var(--text);margin:0;min-height:100vh}
   .wrap{max-width:680px;margin:0 auto;padding:32px 18px 60px}
-  .topnav{margin-bottom:18px}.topnav a{color:var(--muted);text-decoration:none;font-size:14px}
+  .topnav{margin-bottom:18px;display:flex;justify-content:space-between;align-items:center}
+  .topnav a{color:var(--muted);text-decoration:none;font-size:14px}
+  .langtoggle{display:flex;gap:6px}
+  .langtoggle button{background:var(--card2);border:1px solid var(--line);color:var(--muted);padding:6px 14px;border-radius:20px;cursor:pointer;font-size:13px;font-family:inherit}
+  .langtoggle button.active{background:var(--gold);color:#141414;border-color:var(--gold);font-weight:700}
   .hero{text-align:center;margin-bottom:26px}
   .hero h1{font-size:28px;margin:8px 0;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
   .hero p{color:var(--muted)}
@@ -22,7 +26,7 @@
   .rate div{flex:1;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
   .rate b{font-size:24px;color:var(--gold);display:block}
   .rate span{font-size:13px;color:var(--muted)}
-  input[type=text]{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--text);font-size:15px;margin-bottom:12px;font-family:inherit}
+  input[type=text],input[type=email]{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--text);font-size:15px;margin-bottom:12px;font-family:inherit}
   .btn{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#141414;font-weight:800;font-size:16px;padding:13px 30px;border-radius:12px;border:none;cursor:pointer;font-family:inherit;text-decoration:none}
   .btn-green{background:linear-gradient(135deg,#25d366,#128c4b);color:#fff}
   .btn-block{display:block;text-align:center;width:100%}
@@ -32,38 +36,60 @@
   .copybtn{background:#1f7a3d;color:#fff;border:none;font-weight:700;font-size:14px;padding:10px 22px;border-radius:8px;cursor:pointer;margin-top:10px;font-family:inherit}
   ol.steps{color:var(--muted);line-height:2;font-size:15px;padding-left:20px}
   ol.steps b{color:var(--text)}
+  .wanote{background:#0e2a18;border:1px solid #1f7a3d;border-radius:12px;padding:12px 16px;margin-top:14px;font-size:14px;color:var(--muted)}
+  .wanote a{color:var(--green);font-weight:700;text-decoration:none}
+  .paylogos{display:flex;gap:10px;margin:2px 0 12px}
+  .paylogo{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 4px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;border:2px solid transparent;color:#fff;font-family:inherit}
+  .paylogo.bkash{background:#d11069}
+  .paylogo.nagad{background:#f26522}
+  .paylogo.rocket{background:#7b2d8e}
+  .paylogo.sel{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold)}
+  .paylogo img{width:22px;height:22px;object-fit:contain;background:#fff;border-radius:6px;padding:2px}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="topnav"><a href="./">← মূল পেজে ফিরে যাও</a></div>
+  <div class="topnav">
+    <a href="./" id="backLink">← মূল পেজে ফিরে যাও</a>
+    <div class="langtoggle">
+      <button id="langBn" class="active" onclick="setLang('bn')">বাংলা</button>
+      <button id="langEn" onclick="setLang('en')">English</button>
+    </div>
+  </div>
   <div class="hero">
     <div style="font-size:46px">🤝</div>
     <h1>Refer & Earn</h1>
-    <p>বন্ধুদের কোর্সে ভর্তি করাও, প্রতি ভর্তিতে কমিশন নাও!</p>
+    <p id="heroSub">বন্ধুদের কোর্সে ভর্তি করাও, প্রতি ভর্তিতে কমিশন নাও!</p>
   </div>
 
   <div class="box">
-    <h2>💰 কমিশন রেট</h2>
+    <h2 id="rateTitle">💰 কমিশন রেট</h2>
     <div class="rate">
-      <div><b>৳৫০০</b><span>প্রতি লাইভ কোর্স ভর্তি (৳২,৪৯৯)</span></div>
-      <div><b>$৫</b><span>প্রতি English PDF বিক্রি ($২০)</span></div>
+      <div><b>৳৫০০</b><span id="rateLive">প্রতি লাইভ কোর্স ভর্তি (৳২,৪৯৯)</span></div>
+      <div><b>$৫</b><span id="ratePdf">প্রতি English PDF বিক্রি ($২০)</span></div>
     </div>
     <ol class="steps">
-      <li>নিচে <b>সাইন আপ</b> করো — তোমার <b>আলাদা রেফার লিংক</b> পাবে</li>
-      <li>লিংকটা <b>বন্ধুদের / গ্রুপে</b> শেয়ার করো</li>
-      <li>তোমার লিংক থেকে কেউ <b>ভর্তি হলে</b> কমিশন জমা হবে</li>
-      <li>টাকা পাবে <b>বিকাশ / নগদ / Payoneer</b>-এ</li>
+      <li id="step1">নিচে <b>সাইন আপ</b> করো — তোমার <b>আলাদা রেফার লিংক</b> পাবে</li>
+      <li id="step2">লিংকটা <b>বন্ধুদের / গ্রুপে</b> শেয়ার করো</li>
+      <li id="step3">তোমার লিংক থেকে কেউ <b>ভর্তি হলে</b> কমিশন জমা হবে</li>
+      <li id="step4">টাকা পাবে <b>বিকাশ / নগদ / Payoneer</b>-এ</li>
     </ol>
+    <div class="wanote" id="payNote">💬 <span id="payNoteText">পেমেন্ট নিতে WhatsApp-এ যোগাযোগ করো:</span> <a href="https://wa.me/8801842793958" target="_blank">8801842793958</a></div>
   </div>
 
   <div class="box" id="signupBox">
-    <h2>📝 ফ্রি সাইন আপ</h2>
+    <h2 id="signupTitle">📝 ফ্রি সাইন আপ</h2>
     <input type="text" id="refName" placeholder="তোমার নাম">
-    <input type="email" id="refGmail" placeholder="Gmail (যেমন: name@gmail.com)" style="width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--text);font-size:15px;margin-bottom:12px;font-family:inherit">
+    <input type="email" id="refGmail" placeholder="Gmail (যেমন: name@gmail.com)">
     <input type="text" id="refContact" placeholder="WhatsApp নম্বর">
+    <label style="font-size:14px;color:var(--muted);margin:4px 0 8px" id="payMethodLabel">💳 পেমেন্ট মেথড বেছে নাও</label>
+    <div class="paylogos">
+      <button type="button" class="paylogo bkash sel" data-m="bKash">🕊️ bKash</button>
+      <button type="button" class="paylogo nagad" data-m="Nagad">🔥 Nagad</button>
+      <button type="button" class="paylogo rocket" data-m="Rocket">🚀 Rocket</button>
+    </div>
     <input type="text" id="refBkash" placeholder="বিকাশ নম্বর">
-    <label style="font-size:14px;color:var(--muted);margin:4px 0 8px">📸 তোমার ছবি (ঐচ্ছিক)</label>
+    <label style="font-size:14px;color:var(--muted);margin:4px 0 8px" id="photoLabel">📸 তোমার ছবি (ঐচ্ছিক)</label>
     <input type="file" id="refPhoto" accept="image/*" style="width:100%;padding:10px;border-radius:12px;border:1px dashed var(--line);background:var(--card2);color:var(--muted);font-size:14px;margin-bottom:12px;font-family:inherit">
     <img id="photoPreview" style="display:none;max-width:120px;border-radius:12px;margin-bottom:12px;border:1px solid var(--line)">
     <input type="text" id="refPay" placeholder="টাকা নেবে কোথায়? (যেমন: নগদ 01XXXXXXXXX)">
@@ -72,18 +98,158 @@
   </div>
 
   <div class="box" id="doneBox" style="display:none">
-    <h2>🎉 অভিনন্দন!</h2>
-    <p>তোমার রেফার কোড: <b id="myCode" style="color:var(--gold);font-size:20px;letter-spacing:2px"></b></p>
+    <h2 id="doneTitle">🎉 অভিনন্দন!</h2>
+    <p><span id="doneCodeLabel">তোমার রেফার কোড:</span> <b id="myCode" style="color:var(--gold);font-size:20px;letter-spacing:2px"></b></p>
     <div class="linkbox">🔗 <a id="myLink" href="#" target="_blank"></a><br>
       <button class="copybtn" id="copyLinkBtn">📋 লিংক কপি করো</button>
       <button class="copybtn" id="waShareBtn" style="background:#128c4b">💬 WhatsApp-এ শেয়ার করো</button>
     </div>
-    <p>📊 আয় দেখতে: <a href="./partner.html" style="color:var(--green)">পার্টনার ড্যাশবোর্ড →</a> (কোড দিয়ে লগইন)</p>
-    <p style="font-size:13px">⚠️ এই কোডটা সেভ করে রাখো — এটা দিয়েই ড্যাশবোর্ডে ঢুকবে।</p>
+    <p><span id="dashLabel">📊 আয় দেখতে:</span> <a href="./partner.html" style="color:var(--green)" id="dashLink">পার্টনার ড্যাশবোর্ড →</a> <span id="dashHint">(কোড দিয়ে লগইন)</span></p>
+    <p style="font-size:13px" id="saveWarn">⚠️ এই কোডটা সেভ করে রাখো — এটা দিয়েই ড্যাশবোর্ডে ঢুকবে।</p>
   </div>
 </div>
 <script>
 var API = 'https://aiaffiliatelaunch.unaux.com/cpa-download/api.php';
+var LANG = 'bn';
+var T = {
+  bn: {
+    back: '← মূল পেজে ফিরে যাও',
+    heroSub: 'বন্ধুদের কোর্সে ভর্তি করাও, প্রতি ভর্তিতে কমিশন নাও!',
+    rateTitle: '💰 কমিশন রেট',
+    rateLive: 'প্রতি লাইভ কোর্স ভর্তি (৳২,৪৯৯)',
+    ratePdf: 'প্রতি English PDF বিক্রি ($২০)',
+    step1: 'নিচে <b>সাইন আপ</b> করো — তোমার <b>আলাদা রেফার লিংক</b> পাবে',
+    step2: 'লিংকটা <b>বন্ধুদের / গ্রুপে</b> শেয়ার করো',
+    step3: 'তোমার লিংক থেকে কেউ <b>ভর্তি হলে</b> কমিশন জমা হবে',
+    step4: 'টাকা পাবে <b>বিকাশ / নগদ / Payoneer</b>-এ',
+    payNoteText: 'পেমেন্ট নিতে WhatsApp-এ যোগাযোগ করো:',
+    signupTitle: '📝 ফ্রি সাইন আপ',
+    namePh: 'তোমার নাম',
+    gmailPh: 'Gmail (যেমন: name@gmail.com)',
+    contactPh: 'WhatsApp নম্বর',
+    bkashPh: 'বিকাশ নম্বর',
+    photoLabel: '📸 তোমার ছবি (ঐচ্ছিক)',
+    payPh: 'টাকা নেবে কোথায়? (যেমন: নগদ 01XXXXXXXXX)',
+    payMethodLabel: '💳 পেমেন্ট মেথড বেছে নাও',
+    numPh_bkash: 'বিকাশ নম্বর',
+    numPh_nagad: 'নগদ নম্বর',
+    numPh_rocket: 'রকেট নম্বর',
+    signupBtn: '🚀 আমার রেফার লিংক বানাও',
+    doneTitle: '🎉 অভিনন্দন!',
+    doneCodeLabel: 'তোমার রেফার কোড:',
+    copyBtn: '📋 লিংক কপি করো',
+    waShareBtn: '💬 WhatsApp-এ শেয়ার করো',
+    dashLabel: '📊 আয় দেখতে:',
+    dashLink: 'পার্টনার ড্যাশবোর্ড →',
+    dashHint: '(কোড দিয়ে লগইন)',
+    saveWarn: '⚠️ এই কোডটা সেভ করে রাখো — এটা দিয়েই ড্যাশবোর্ডে ঢুকবে।',
+    waShareText: '🎓 CPA Advanced Master Course-এ ভর্তি হও! আমার লিংক থেকে ভর্তি হলে স্পেশাল গাইডলাইন পাবে 👉 ',
+    errName: '⚠️ তোমার নাম লেখো',
+    errGmail: '⚠️ সঠিক Gmail লেখো',
+    errContact: '⚠️ WhatsApp নম্বর লেখো',
+    errBkash: '⚠️ বিকাশ নম্বর লেখো',
+    errPhoto: '⚠️ ছবি ২MB-এর কম হতে হবে',
+    errServer: '⚠️ সার্ভারে পৌঁছানো যাচ্ছে না, একটু পরে চেষ্টা করো।',
+    errSignup: '⚠️ সাইন আপ হয়নি, আবার চেষ্টা করো।',
+    making: '⏳ বানানো হচ্ছে...',
+    copied: '✅ কপি হয়েছে'
+  },
+  en: {
+    back: '← Back to main page',
+    heroSub: 'Refer friends to the course and earn commission on every enrollment!',
+    rateTitle: '💰 Commission Rates',
+    rateLive: 'per live course enrollment (৳2,499)',
+    ratePdf: 'per English PDF sale ($20)',
+    step1: '<b>Sign up</b> below — get your <b>own referral link</b>',
+    step2: '<b>Share</b> the link with <b>friends / groups</b>',
+    step3: 'Earn commission when someone <b>enrolls</b> through your link',
+    step4: 'Get paid via <b>bKash / Nagad / Payoneer / PayPal</b>',
+    payNoteText: 'To receive your payment, contact us on WhatsApp:',
+    signupTitle: '📝 Free Sign Up',
+    namePh: 'Your name',
+    gmailPh: 'Gmail (e.g. name@gmail.com)',
+    contactPh: 'WhatsApp number',
+    bkashPh: 'bKash number',
+    photoLabel: '📸 Your photo (optional)',
+    payPh: 'Where to receive money? (e.g. PayPal email)',
+    payMethodLabel: '💳 Choose payment method',
+    numPh_bkash: 'bKash number',
+    numPh_nagad: 'Nagad number',
+    numPh_rocket: 'Rocket number',
+    signupBtn: '🚀 Create My Referral Link',
+    doneTitle: '🎉 Congratulations!',
+    doneCodeLabel: 'Your referral code:',
+    copyBtn: '📋 Copy Link',
+    waShareBtn: '💬 Share on WhatsApp',
+    dashLabel: '📊 View earnings:',
+    dashLink: 'Partner Dashboard →',
+    dashHint: '(login with your code)',
+    saveWarn: '⚠️ Save this code — you will use it to log in to the dashboard.',
+    waShareText: '🎓 Enroll in CPA Advanced Master Course! Enroll through my link and get special guidance 👉 ',
+    errName: '⚠️ Please enter your name',
+    errGmail: '⚠️ Please enter a valid Gmail',
+    errContact: '⚠️ Please enter your WhatsApp number',
+    errBkash: '⚠️ Please enter your bKash number',
+    errPhoto: '⚠️ Photo must be under 2MB',
+    errServer: '⚠️ Cannot reach server, please try again later.',
+    errSignup: '⚠️ Sign up failed, please try again.',
+    making: '⏳ Creating...',
+    copied: '✅ Copied'
+  }
+};
+function setLang(l){
+  LANG = l;
+  document.documentElement.lang = l;
+  document.getElementById('langBn').className = l==='bn' ? 'active' : '';
+  document.getElementById('langEn').className = l==='en' ? 'active' : '';
+  var t = T[l];
+  document.getElementById('backLink').textContent = t.back;
+  document.getElementById('heroSub').textContent = t.heroSub;
+  document.getElementById('rateTitle').textContent = t.rateTitle;
+  document.getElementById('rateLive').textContent = t.rateLive;
+  document.getElementById('ratePdf').textContent = t.ratePdf;
+  document.getElementById('step1').innerHTML = t.step1;
+  document.getElementById('step2').innerHTML = t.step2;
+  document.getElementById('step3').innerHTML = t.step3;
+  document.getElementById('step4').innerHTML = t.step4;
+  document.getElementById('payNoteText').textContent = t.payNoteText;
+  document.getElementById('signupTitle').textContent = t.signupTitle;
+  document.getElementById('refName').placeholder = t.namePh;
+  document.getElementById('refGmail').placeholder = t.gmailPh;
+  document.getElementById('refContact').placeholder = t.contactPh;
+  document.getElementById('refBkash').placeholder = t.bkashPh;
+  document.getElementById('photoLabel').textContent = t.photoLabel;
+  document.getElementById('refPay').placeholder = t.payPh;
+  document.getElementById('payMethodLabel').textContent = t.payMethodLabel;
+  updateNumPh();
+  document.getElementById('signupBtn').textContent = t.signupBtn;
+  document.getElementById('doneTitle').textContent = t.doneTitle;
+  document.getElementById('doneCodeLabel').textContent = t.doneCodeLabel;
+  document.getElementById('copyLinkBtn').textContent = t.copyBtn;
+  document.getElementById('waShareBtn').textContent = t.waShareBtn;
+  document.getElementById('dashLabel').textContent = t.dashLabel;
+  document.getElementById('dashLink').textContent = t.dashLink;
+  document.getElementById('dashHint').textContent = t.dashHint;
+  document.getElementById('saveWarn').textContent = t.saveWarn;
+  try{ localStorage.setItem('cpaRefLang', l); }catch(e){}
+}
+try{ var sl = localStorage.getItem('cpaRefLang'); if(sl==='en') setLang('en'); }catch(e){}
+var PAYM = 'bKash';
+function updateNumPh(){
+  var t = T[LANG];
+  var ph = t.numPh_bkash;
+  if(PAYM==='Nagad') ph = t.numPh_nagad;
+  if(PAYM==='Rocket') ph = t.numPh_rocket;
+  document.getElementById('refBkash').placeholder = ph;
+}
+document.querySelectorAll('.paylogo').forEach(function(b){
+  b.addEventListener('click', function(){
+    document.querySelectorAll('.paylogo').forEach(function(x){ x.classList.remove('sel'); });
+    b.classList.add('sel');
+    PAYM = b.getAttribute('data-m');
+    updateNumPh();
+  });
+});
 function say(t, ok){ var m=document.getElementById('signupMsg'); m.style.display='block'; m.style.color=ok?'#25d366':'#ff7b7b'; m.textContent=t; }
 document.getElementById('refPhoto').addEventListener('change', function(){
   var f=this.files[0]; var pv=document.getElementById('photoPreview');
@@ -91,21 +257,22 @@ document.getElementById('refPhoto').addEventListener('change', function(){
   else { pv.style.display='none'; }
 });
 document.getElementById('signupBtn').addEventListener('click', function(){
+  var t = T[LANG];
   var name=document.getElementById('refName').value.trim();
   var gmail=document.getElementById('refGmail').value.trim();
   var contact=document.getElementById('refContact').value.trim();
   var bkash=document.getElementById('refBkash').value.trim();
   var pay=document.getElementById('refPay').value.trim();
   var photo=document.getElementById('refPhoto').files[0];
-  if(!name){ say('⚠️ তোমার নাম লেখো', false); return; }
-  if(!gmail || gmail.indexOf('@')<0){ say('⚠️ সঠিক Gmail লেখো', false); return; }
-  if(!contact){ say('⚠️ WhatsApp নম্বর লেখো', false); return; }
-  if(!bkash){ say('⚠️ বিকাশ নম্বর লেখো', false); return; }
-  if(photo && photo.size > 2*1024*1024){ say('⚠️ ছবি ২MB-এর কম হতে হবে', false); return; }
-  say('⏳ বানানো হচ্ছে...', true);
+  if(!name){ say(t.errName, false); return; }
+  if(!gmail || gmail.indexOf('@')<0){ say(t.errGmail, false); return; }
+  if(!contact){ say(t.errContact, false); return; }
+  if(!bkash){ say(t.errBkash, false); return; }
+  if(photo && photo.size > 2*1024*1024){ say(t.errPhoto, false); return; }
+  say(t.making, true);
   var fd=new FormData(); fd.append('action','refsignup');
   fd.append('name',name); fd.append('gmail',gmail); fd.append('contact',contact);
-  fd.append('bkash',bkash); fd.append('payinfo',pay);
+  fd.append('bkash',bkash); fd.append('paymethod',PAYM); fd.append('payinfo',pay);
   if(photo) fd.append('photo', photo);
   fetch(API,{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(j){
     if(j && j.ok){
@@ -115,15 +282,14 @@ document.getElementById('signupBtn').addEventListener('click', function(){
       var a=document.getElementById('myLink'); a.href=j.link; a.textContent=j.link;
       try{ localStorage.setItem('cpaRefCode', j.code); }catch(e){}
       document.getElementById('copyLinkBtn').addEventListener('click', function(){
-        (navigator.clipboard?navigator.clipboard.writeText(j.link):Promise.reject()).then(function(){say('✅ কপি হয়েছে',true);},function(){say('লিংক: '+j.link,true);});
+        (navigator.clipboard?navigator.clipboard.writeText(j.link):Promise.reject()).then(function(){say(t.copied,true);},function(){say('🔗 '+j.link,true);});
       });
       document.getElementById('waShareBtn').addEventListener('click', function(){
-        var t='🎓 CPA Advanced Master Course-এ ভর্তি হও! আমার লিংক থেকে ভর্তি হলে স্পেশাল গাইডলাইন পাবে 👉 '+j.link;
-        window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');
+        window.open('https://wa.me/?text='+encodeURIComponent(t.waShareText+j.link),'_blank');
       });
       say('', true);
-    } else { say('⚠️ সাইন আপ হয়নি, আবার চেষ্টা করো।', false); }
-  }).catch(function(){ say('⚠️ সার্ভারে পৌঁছানো যাচ্ছে না, একটু পরে চেষ্টা করো।', false); });
+    } else { say(t.errSignup, false); }
+  }).catch(function(){ say(t.errServer, false); });
 });
 </script>
 </body>
