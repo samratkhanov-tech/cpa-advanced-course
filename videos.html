@@ -16,12 +16,20 @@
   .langtoggle{display:flex;gap:6px}
   .langtoggle button{background:var(--card2);border:1px solid var(--line);color:var(--muted);padding:6px 14px;border-radius:20px;cursor:pointer;font-size:13px;font-family:inherit}
   .langtoggle button.active{background:var(--gold);color:#141414;border-color:var(--gold);font-weight:700}
-  .hero{text-align:center;margin-bottom:26px}
+  .hero{text-align:center;margin-bottom:20px}
   .hero h1{font-size:28px;margin:8px 0;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
   .hero p{color:var(--muted)}
+  .codebox{background:var(--card);border:1px solid var(--gold);border-radius:18px;padding:26px;max-width:520px;margin:0 auto 28px;text-align:center}
+  .codebox h3{margin:0 0 6px}
+  .codebox p{color:var(--muted);font-size:14px;margin:6px 0 14px}
+  .codebox input{width:100%;padding:14px 18px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--text);font-size:18px;margin:6px 0 12px;font-family:inherit;text-align:center;letter-spacing:3px;text-transform:uppercase;font-weight:700}
+  .btn{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#141414;font-weight:800;font-size:15px;padding:13px 30px;border-radius:12px;border:none;cursor:pointer;font-family:inherit}
+  .btn-green{background:linear-gradient(135deg,#25d366,#128c4b);color:#fff}
+  .cmsg{margin-top:12px;font-size:14px;font-weight:600;min-height:20px}
   .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
-  .vcard{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .2s}
-  .vcard:hover{transform:translateY(-3px)}
+  .vcard{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .vcard.playable{cursor:pointer;transition:transform .2s}
+  .vcard.playable:hover{transform:translateY(-3px)}
   .vthumb{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}
   .vthumb img{width:100%;height:100%;object-fit:cover}
   .vthumb .noimg{display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;background:linear-gradient(135deg,#1a2350,#0e1430)}
@@ -33,16 +41,10 @@
   .vbody .vnum{font-size:12px;color:var(--muted)}
   .vplayer{display:none;padding:0}
   .vplayer iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
-  .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;align-items:center;justify-content:center;padding:20px}
-  .modal.open{display:flex}
-  .mbox{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;max-width:400px;width:100%;text-align:center}
-  .mbox h3{margin:0 0 8px}
-  .mbox p{color:var(--muted);font-size:14px}
-  .mbox input{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--text);font-size:15px;margin:12px 0;font-family:inherit;text-align:center;letter-spacing:1px}
-  .btn{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#141414;font-weight:800;font-size:15px;padding:12px 28px;border-radius:12px;border:none;cursor:pointer;font-family:inherit}
-  .btn-green{background:linear-gradient(135deg,#25d366,#128c4b);color:#fff}
-  .mmsg{margin-top:10px;font-size:14px;font-weight:600;min-height:20px}
-  .loading{text-align:center;padding:60px;color:var(--muted)}
+  .loading{text-align:center;padding:40px;color:var(--muted)}
+  .whoami{text-align:center;margin-bottom:18px;display:none}
+  .whoami b{color:var(--green)}
+  .whoami a{color:var(--muted);font-size:13px;margin-left:10px}
 </style>
 </head>
 <body>
@@ -57,22 +59,23 @@
   <div class="hero">
     <div style="font-size:46px">🎬</div>
     <h1 id="pageTitle">ভিডিও ক্লাস</h1>
-    <p id="pageSub">২৮টি ক্লাস — পাসওয়ার্ড দিয়ে আনলক করো, একটার পর একটা দেখো</p>
+    <p id="pageSub">২৮টি ক্লাস — তোমার এক্সেস কোড দিয়ে আনলক করো</p>
   </div>
+
+  <div class="codebox" id="codeBox">
+    <h3 id="cbTitle">🔑 তোমার এক্সেস কোড দাও</h3>
+    <p id="cbText">পেমেন্টের পর মেন্টর তোমাকে যে কোড পাঠিয়েছে, সেটা এখানে লেখো। কোডটা শুধু তোমার ডিভাইসেই চলবে।</p>
+    <input type="text" id="codeInput" placeholder="XXXXXXXX" maxlength="12" autocomplete="off">
+    <div><button class="btn" id="codeGo">🔓 ভিডিও আনলক করো</button></div>
+    <div class="cmsg" id="codeMsg"></div>
+  </div>
+
+  <div class="whoami" id="whoami">
+    <span id="whoText"></span><a href="#" id="logoutLink"></a>
+  </div>
+
   <div class="vgrid" id="vgrid">
     <div class="loading" id="vloading">⏳ লোড হচ্ছে...</div>
-  </div>
-</div>
-
-<div class="modal" id="pwModal">
-  <div class="mbox">
-    <div style="font-size:44px">🔒</div>
-    <h3 id="mTitle">ভিডিও আনলক করো</h3>
-    <p id="mText">এই ভিডিও দেখতে পাসওয়ার্ড দাও</p>
-    <input type="password" id="mPw" placeholder="পাসওয়ার্ড">
-    <div><button class="btn" id="mGo">🔓 আনলক করো</button></div>
-    <div class="mmsg" id="mMsg"></div>
-    <div style="margin-top:12px"><a href="#" id="mClose" style="color:var(--muted);font-size:13px">বন্ধ করো</a></div>
   </div>
 </div>
 
@@ -80,39 +83,59 @@
 var API = 'https://aiaffiliatelaunch.unaux.com/cpa-download/api.php';
 var LANG = 'bn';
 var VIDEOS = [];
-var curNum = 0;
+var EMBEDS = {};
+var UNLOCKED = false;
 var T = {
   bn: {
     back: '← মূল পেজে ফিরে যাও',
     pageTitle: 'ভিডিও ক্লাস',
-    pageSub: '২৮টি ক্লাস — পাসওয়ার্ড দিয়ে আনলক করো, একটার পর একটা দেখো',
+    pageSub: '২৮টি ক্লাস — তোমার এক্সেস কোড দিয়ে আনলক করো',
+    cbTitle: '🔑 তোমার এক্সেস কোড দাও',
+    cbText: 'পেমেন্টের পর মেন্টর তোমাকে যে কোড পাঠিয়েছে, সেটা এখানে লেখো। কোডটা শুধু তোমার ডিভাইসেই চলবে।',
+    cbGo: '🔓 ভিডিও আনলক করো',
     loading: '⏳ লোড হচ্ছে...',
     noVideo: 'শীঘ্রই আসছে',
-    tapToUnlock: '🔒 তালা — চাপ দাও',
-    mTitle: 'ভিডিও আনলক করো',
-    mText: 'এই ভিডিও দেখতে পাসওয়ার্ড দাও',
-    mPh: 'পাসওয়ার্ড',
-    mGo: '🔓 আনলক করো',
-    mClose: 'বন্ধ করো',
-    wrong: '❌ ভুল পাসওয়ার্ড! WhatsApp-এ মেসেজ করে পাসওয়ার্ড নাও: 8801842793958',
-    classLabel: 'ক্লাস'
+    locked: '🔒 তালা — কোড দিয়ে আনলক করো',
+    tapToPlay: '▶️ দেখো',
+    classLabel: 'ক্লাস',
+    checking: '⏳ যাচাই হচ্ছে...',
+    invalid: '❌ ভুল কোড! মেন্টরের পাঠানো কোডটা ঠিকমতো লেখো।',
+    mismatch: '❌ এই কোড অন্য ডিভাইসে ব্যবহার হয়েছে। নতুন কোডের জন্য WhatsApp-এ মেসেজ করো: 8801842793958',
+    revoked: '❌ এই কোড বাতিল করা হয়েছে।',
+    err: '❌ সার্ভারে সমস্যা, একটু পরে চেষ্টা করো।',
+    welcome: 'স্বাগতম',
+    logout: 'লগআউট',
+    unlockedMsg: '✅ আনলক হয়েছে! নিচের ভিডিওগুলোতে চাপ দিয়ে দেখো।'
   },
   en: {
     back: '← Back to main page',
     pageTitle: 'Video Classes',
-    pageSub: '28 classes — unlock with password, watch one after another',
+    pageSub: '28 classes — unlock with your access code',
+    cbTitle: '🔑 Enter your access code',
+    cbText: 'Enter the code your mentor sent you after payment. The code works only on your device.',
+    cbGo: '🔓 Unlock videos',
     loading: '⏳ Loading...',
     noVideo: 'Coming soon',
-    tapToUnlock: '🔒 Locked — tap to unlock',
-    mTitle: 'Unlock Video',
-    mText: 'Enter password to watch this video',
-    mPh: 'Password',
-    mGo: '🔓 Unlock',
-    mClose: 'Close',
-    wrong: '❌ Wrong password! Message on WhatsApp for password: 8801842793958',
-    classLabel: 'Class'
+    locked: '🔒 Locked — unlock with code',
+    tapToPlay: '▶️ Watch',
+    classLabel: 'Class',
+    checking: '⏳ Verifying...',
+    invalid: '❌ Wrong code! Enter the code your mentor sent you.',
+    mismatch: '❌ This code was used on another device. Message on WhatsApp for a new code: 8801842793958',
+    revoked: '❌ This code has been revoked.',
+    err: '❌ Server error, try again later.',
+    welcome: 'Welcome',
+    logout: 'Logout',
+    unlockedMsg: '✅ Unlocked! Tap the videos below to watch.'
   }
 };
+function getDevice(){
+  try{
+    var d = localStorage.getItem('cpaVidDev');
+    if(!d){ d = 'd' + Math.random().toString(36).slice(2,14) + Date.now().toString(36); localStorage.setItem('cpaVidDev', d); }
+    return d;
+  }catch(e){ return 'nodev'; }
+}
 function setLang(l){
   LANG = l;
   document.documentElement.lang = l;
@@ -122,15 +145,14 @@ function setLang(l){
   document.getElementById('backLink').textContent = t.back;
   document.getElementById('pageTitle').textContent = t.pageTitle;
   document.getElementById('pageSub').textContent = t.pageSub;
-  document.getElementById('mTitle').textContent = t.mTitle;
-  document.getElementById('mText').textContent = t.mText;
-  document.getElementById('mPw').placeholder = t.mPh;
-  document.getElementById('mGo').textContent = t.mGo;
-  document.getElementById('mClose').textContent = t.mClose;
+  document.getElementById('cbTitle').textContent = t.cbTitle;
+  document.getElementById('cbText').textContent = t.cbText;
+  document.getElementById('codeGo').textContent = t.cbGo;
+  document.getElementById('logoutLink').textContent = t.logout;
   render();
   try{ localStorage.setItem('cpaVidLang', l); }catch(e){}
 }
-try{ var sl = localStorage.getItem('cpaVidLang'); if(sl==='en') LANG='en'; }catch(e){}
+function escapeH(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
 function render(){
   var t = T[LANG];
@@ -138,16 +160,17 @@ function render(){
   if(!VIDEOS.length){ g.innerHTML = '<div class="loading">'+t.loading+'</div>'; return; }
   var h = '';
   VIDEOS.forEach(function(v){
-    var unlocked = false;
-    try{ unlocked = localStorage.getItem('cpaVid_'+v.num)==='1'; }catch(e){}
-    h += '<div class="vcard" data-num="'+v.num+'">';
+    var hasEmbed = !!EMBEDS[v.num];
+    h += '<div class="vcard'+(hasEmbed?' playable':'')+'" data-num="'+v.num+'">';
     h += '<div class="vthumb">';
     if(v.thumb){ h += '<img src="'+v.thumb+'" alt="" loading="lazy">'; }
     else { h += '<div class="noimg">🎬</div>'; }
-    if(v.has_video && !unlocked){
-      h += '<div class="vlock"><div class="lockicon">🔒</div><span>'+t.tapToUnlock+'</span></div>';
+    if(v.has_video && !hasEmbed){
+      h += '<div class="vlock"><div class="lockicon">🔒</div><span>'+t.locked+'</span></div>';
     } else if(!v.has_video){
       h += '<div class="vlock"><div class="lockicon">⏳</div><span>'+t.noVideo+'</span></div>';
+    } else {
+      h += '<div class="vlock" style="background:rgba(5,8,25,.45)"><div class="lockicon">▶️</div><span>'+t.tapToPlay+'</span></div>';
     }
     h += '</div>';
     h += '<div class="vplayer" id="vp'+v.num+'"></div>';
@@ -155,76 +178,73 @@ function render(){
     h += '</div>';
   });
   g.innerHTML = h;
-  g.querySelectorAll('.vcard').forEach(function(c){
-    c.addEventListener('click', function(){ onCard(+c.getAttribute('data-num')); });
+  g.querySelectorAll('.vcard.playable').forEach(function(c){
+    c.addEventListener('click', function(){ playVid(+c.getAttribute('data-num')); });
   });
 }
-function escapeH(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
-
-function onCard(num){
-  var v = VIDEOS.find(function(x){ return x.num===num; });
-  if(!v || !v.has_video) return;
-  var unlocked = false;
-  try{ unlocked = localStorage.getItem('cpaVid_'+num)==='1'; }catch(e){}
-  if(unlocked){ playVideo(num); return; }
-  curNum = num;
-  document.getElementById('mPw').value = '';
-  document.getElementById('mMsg').textContent = '';
-  document.getElementById('mMsg').style.color = '#ff7b7b';
-  document.getElementById('pwModal').classList.add('open');
-  setTimeout(function(){ document.getElementById('mPw').focus(); }, 100);
+function playVid(num){
+  var em = EMBEDS[num];
+  if(!em) return;
+  var vp = document.getElementById('vp'+num);
+  if(vp.style.display === 'block'){ vp.style.display='none'; vp.innerHTML=''; return; }
+  vp.style.display = 'block';
+  vp.innerHTML = '<iframe src="'+em+'" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>';
+  vp.scrollIntoView({behavior:'smooth', block:'center'});
 }
-function playVideo(num){
+function doAccess(code, silent){
   var t = T[LANG];
-  var pw = document.getElementById('mPw').value;
-  // If already unlocked in this session, play directly
+  var msg = document.getElementById('codeMsg');
+  if(!silent){ msg.textContent = t.checking; msg.style.color = '#a8b3d8'; }
   var fd = new FormData();
-  fd.append('action', 'unlock_video');
-  fd.append('num', num);
-  fd.append('password', pw);
-  var msg = document.getElementById('mMsg');
-  // check local unlock first
-  var unlocked = false;
-  try{ unlocked = localStorage.getItem('cpaVid_'+num)==='1'; }catch(e){}
-  function doPlay(embed){
-    document.getElementById('pwModal').classList.remove('open');
-    var vp = document.getElementById('vp'+num);
-    vp.style.display = 'block';
-    vp.innerHTML = '<iframe src="'+embed+'" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>';
-    vp.scrollIntoView({behavior:'smooth', block:'center'});
-    // remove lock overlay
-    var card = vp.closest('.vcard');
-    var lock = card.querySelector('.vlock');
-    if(lock) lock.style.display = 'none';
-    try{ localStorage.setItem('cpaVid_'+num, '1'); }catch(e){}
-  }
-  if(unlocked && !pw){
-    // re-fetch embed without password using stored unlock
-    fetch(API, {method:'POST', body: (function(){ var f=new FormData(); f.append('action','unlock_video'); f.append('num',num); f.append('password','__unlocked__'); return f; })()})
-      .then(function(r){ return r.json(); }).then(function(j){
-        if(j && j.ok){ doPlay(j.embed); }
-        else { try{localStorage.removeItem('cpaVid_'+num);}catch(e){} render(); }
-      }).catch(function(){ render(); });
-    return;
-  }
-  msg.textContent = '⏳...'; msg.style.color = '#a8b3d8';
+  fd.append('action', 'video_access');
+  fd.append('code', code);
+  fd.append('device', getDevice());
   fetch(API, {method:'POST', body: fd}).then(function(r){ return r.json(); }).then(function(j){
-    if(j && j.ok){ doPlay(j.embed); }
-    else { msg.textContent = t.wrong; msg.style.color = '#ff7b7b'; }
-  }).catch(function(){ msg.textContent = t.wrong; msg.style.color = '#ff7b7b'; });
+    if(j && j.ok){
+      UNLOCKED = true;
+      EMBEDS = {};
+      (j.videos||[]).forEach(function(v){ EMBEDS[v.num] = v.embed; });
+      try{ localStorage.setItem('cpaVidCode', code); }catch(e){}
+      document.getElementById('codeBox').style.display = 'none';
+      var w = document.getElementById('whoami');
+      w.style.display = 'block';
+      document.getElementById('whoText').innerHTML = '👋 <b>'+escapeH(j.name||'')+'</b> — ' + t.unlockedMsg;
+      render();
+    } else {
+      try{ localStorage.removeItem('cpaVidCode'); }catch(e){}
+      var e2 = (j && j.error) || 'err';
+      msg.textContent = t[e2] || t.err;
+      msg.style.color = '#ff7b7b';
+    }
+  }).catch(function(){
+    msg.textContent = t.err; msg.style.color = '#ff7b7b';
+  });
 }
-document.getElementById('mGo').addEventListener('click', function(){ playVideo(curNum); });
-document.getElementById('mPw').addEventListener('keypress', function(e){ if(e.key==='Enter') playVideo(curNum); });
-document.getElementById('mClose').addEventListener('click', function(e){ e.preventDefault(); document.getElementById('pwModal').classList.remove('open'); });
-document.getElementById('pwModal').addEventListener('click', function(e){ if(e.target===this) this.classList.remove('open'); });
+document.getElementById('codeGo').addEventListener('click', function(){
+  var c = document.getElementById('codeInput').value.trim().toUpperCase();
+  if(c) doAccess(c, false);
+});
+document.getElementById('codeInput').addEventListener('keypress', function(e){
+  if(e.key==='Enter'){ var c = this.value.trim().toUpperCase(); if(c) doAccess(c, false); }
+});
+document.getElementById('logoutLink').addEventListener('click', function(e){
+  e.preventDefault();
+  try{ localStorage.removeItem('cpaVidCode'); }catch(e2){}
+  location.reload();
+});
 
-// Load videos
+// init
+try{ var sl = localStorage.getItem('cpaVidLang'); if(sl==='en') LANG='en'; }catch(e){}
 fetch(API+'?action=videos').then(function(r){ return r.json(); }).then(function(j){
   if(j && j.ok){ VIDEOS = j.videos; }
   render();
-  // apply saved lang
-  if(LANG==='en') setLang('en'); else setLang('bn');
-}).catch(function(){ render(); });
+  setLang(LANG);
+  // auto-login with saved code
+  try{
+    var sc = localStorage.getItem('cpaVidCode');
+    if(sc) doAccess(sc, true);
+  }catch(e){}
+}).catch(function(){ render(); setLang(LANG); });
 setLang(LANG);
 </script>
 </body>
