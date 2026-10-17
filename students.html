@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>🎓 Student Portal — CPA Advanced Master Course</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+<style>
+  :root{ --bg:#0a0f24; --card:#131a3a; --card2:#0e1430; --line:#2a3a75; --text:#eef1ff; --muted:#a8b3d8; --gold:#f5b301; --gold2:#ff8a00; --green:#25d366; --red:#ff4d4d; }
+  *{box-sizing:border-box}
+  body{font-family:'Hind Siliguri','Segoe UI',system-ui,sans-serif;background:radial-gradient(1200px 600px at 50% -10%,#16204d 0%,var(--bg) 60%);color:var(--text);margin:0;padding:0;min-height:100vh}
+  .wrap{max-width:760px;margin:0 auto;padding:32px 18px 60px}
+  .topnav{margin-bottom:18px}
+  .topnav a{color:var(--muted);text-decoration:none;font-size:14px}
+  .hero{text-align:center;margin-bottom:28px}
+  .hero h1{font-size:30px;margin:8px 0;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--muted);margin:4px 0 0}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;margin-bottom:18px}
+  .box h2{margin:0 0 10px;font-size:19px}
+  .box p{color:var(--muted);font-size:14px;line-height:1.8}
+  input[type=text]{width:100%;padding:14px 18px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--text);font-size:17px;letter-spacing:3px;text-align:center;font-weight:700;margin:8px 0 14px;font-family:inherit;text-transform:uppercase}
+  .btn{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#141414;font-weight:800;font-size:16px;padding:13px 30px;border-radius:12px;text-decoration:none;border:none;cursor:pointer;font-family:inherit}
+  .btn-green{background:linear-gradient(135deg,#25d366,#128c4b);color:#fff}
+  .btn-block{display:block;text-align:center;width:100%}
+  .msg{display:none;margin-top:12px;font-size:14px;font-weight:600}
+  .live-card{border:2px solid var(--red);background:linear-gradient(135deg,#2a0f14,#160a10);animation:glow 2s ease-in-out infinite}
+  @keyframes glow{0%,100%{box-shadow:0 0 0 rgba(255,77,77,0)}50%{box-shadow:0 0 28px rgba(255,77,77,.35)}}
+  .live-badge{display:inline-block;background:var(--red);color:#fff;font-weight:800;font-size:13px;padding:5px 14px;border-radius:20px;margin-bottom:10px;animation:blink 1.4s infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.55}}
+  .cls{border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px;background:var(--card2)}
+  .cls .t{font-weight:700;font-size:16px;margin-bottom:4px}
+  .cls .d{color:var(--muted);font-size:13px;margin-bottom:10px}
+  .cls .btn{font-size:14px;padding:10px 22px}
+  .empty{color:var(--muted);text-align:center;padding:18px;font-size:14px}
+  .logout{background:none;border:1px solid var(--line);color:var(--muted);border-radius:10px;padding:9px 20px;cursor:pointer;font-size:13px;font-family:inherit}
+  .hello{text-align:center;color:var(--muted);margin-bottom:20px}
+  .hello b{color:var(--gold)}
+  .sec-title{font-size:18px;margin:26px 0 12px;display:flex;align-items:center;gap:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topnav"><a href="./">← মূল পেজে ফিরে যাও</a></div>
+  <div class="hero">
+    <div style="font-size:46px">🎓</div>
+    <h1>Student Portal</h1>
+    <p>CPA Advanced Master Course — লাইভ ক্লাস এক্সেস</p>
+  </div>
+  <div class="box" id="loginBox">
+    <h2>🔑 স্টুডেন্ট কোড দাও</h2>
+    <p>ভর্তির পর WhatsApp-এ যে কোড পেয়েছো, সেটা এখানে লেখো। কোড শুধু তোমার জন্য — কাউকে দিও না।</p>
+    <input type="text" id="codeInput" placeholder="XXXXXXXX" maxlength="32" autocomplete="off">
+    <button class="btn btn-block" id="loginBtn">🚪 ক্লাসরুমে ঢুকো</button>
+    <div class="msg" id="loginMsg"></div>
+    <p style="margin-top:16px">কোড পাওনি? বিকাশে <b>৳২,৪৯৯</b> পেমেন্ট করে <a href="https://wa.me/8801842793958?text=আমি%20CPA%20কোর্সে%20ভর্তি%20হতে%20চাই" target="_blank" style="color:var(--green)">WhatsApp-এ মেসেজ করো</a>।</p>
+  </div>
+  <div id="dash" style="display:none">
+    <div class="hello" id="hello"></div>
+    <div id="liveArea"></div>
+    <div class="sec-title">📅 পরের ক্লাসগুলো</div>
+    <div id="upArea"></div>
+    <div class="sec-title">🎬 রেকর্ডিং</div>
+    <div id="recArea"></div>
+    <div style="text-align:center;margin-top:28px"><button class="logout" id="logoutBtn">🚪 লগআউট</button></div>
+  </div>
+</div>
+<script>
+var API = 'https://aiaffiliatelaunch.unaux.com/cpa-download/api.php';
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+function say(t, ok){
+  var m = document.getElementById('loginMsg');
+  m.style.display = 'block'; m.style.color = ok ? '#25d366' : '#ff7b7b'; m.textContent = t;
+}
+function verify(code, silent){
+  var fd = new FormData();
+  fd.append('action','student'); fd.append('code', code);
+  return fetch(API, {method:'POST', body:fd}).then(function(r){ return r.json(); }).then(function(j){
+    if(j && j.ok){
+      try{ sessionStorage.setItem('cpaStudentCode', code); }catch(e){}
+      showDash(j);
+      return true;
+    }
+    if(!silent) say('⚠️ কোডটি সঠিক নয়। WhatsApp-এ পাওয়া কোডটা আবার দেখে লেখো।', false);
+    try{ sessionStorage.removeItem('cpaStudentCode'); }catch(e){}
+    return false;
+  }).catch(function(){
+    if(!silent) say('⚠️ সার্ভারে পৌঁছানো যাচ্ছে না, একটু পরে আবার চেষ্টা করো।', false);
+    return false;
+  });
+}
+function showDash(j){
+  document.getElementById('loginBox').style.display = 'none';
+  document.getElementById('dash').style.display = 'block';
+  document.getElementById('hello').innerHTML = 'স্বাগতম' + (j.name ? ', <b>' + esc(j.name) + '</b>' : '') + '! 👋';
+  var c = j.classes || {}, html = '';
+  if(c.live && c.live.link){
+    html = '<div class="box live-card"><span class="live-badge">🔴 LIVE NOW</span><h2>' + esc(c.live.title) + '</h2>' +
+      '<a class="btn btn-green btn-block" href="' + esc(c.live.link) + '" target="_blank" rel="noopener">▶️ এখনই ক্লাসে যোগ দাও</a></div>';
+  }
+  document.getElementById('liveArea').innerHTML = html;
+  var up = c.upcoming || [];
+  document.getElementById('upArea').innerHTML = up.length ? up.map(function(u){
+    return '<div class="cls"><div class="t">' + esc(u.title) + '</div><div class="d">🕘 ' + esc(u.dt||'') + '</div>' +
+      (u.link ? '<a class="btn btn-green" href="' + esc(u.link) + '" target="_blank" rel="noopener">🔗 জয়েন লিংক</a>' : '<div class="d">লিংক শিগগির দেওয়া হবে</div>') + '</div>';
+  }).join('') : '<div class="empty">পরের ক্লাসের সময় শিগগির জানানো হবে 📢</div>';
+  var rc = c.recordings || [];
+  document.getElementById('recArea').innerHTML = rc.length ? rc.map(function(r){
+    return '<div class="cls"><div class="t">' + esc(r.title) + '</div><div class="d">📅 ' + esc(r.date||'') + '</div>' +
+      '<a class="btn" href="' + esc(r.link) + '" target="_blank" rel="noopener">▶️ দেখো</a></div>';
+  }).join('') : '<div class="empty">এখনো কোনো রেকর্ডিং নেই</div>';
+}
+document.getElementById('loginBtn').addEventListener('click', function(){
+  var code = document.getElementById('codeInput').value.trim();
+  if(!code){ say('⚠️ আগে কোডটা লেখো', false); return; }
+  say('⏳ যাচাই করা হচ্ছে...', true);
+  verify(code, false);
+});
+document.getElementById('codeInput').addEventListener('keydown', function(e){
+  if(e.key === 'Enter'){ document.getElementById('loginBtn').click(); }
+});
+document.getElementById('logoutBtn').addEventListener('click', function(){
+  try{ sessionStorage.removeItem('cpaStudentCode'); }catch(e){}
+  location.reload();
+});
+(function(){
+  var saved = null;
+  try{ saved = sessionStorage.getItem('cpaStudentCode'); }catch(e){}
+  if(saved){ verify(saved, true); }
+})();
+</script>
+</body>
+</html>
