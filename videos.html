@@ -212,9 +212,14 @@ function doAccess(code, silent){
       render();
     } else {
       try{ localStorage.removeItem('cpaVidCode'); }catch(e){}
+      // পুরনো কোড বাতিল হলে কোড বক্স আবার দেখাও
+      document.getElementById('codeBox').style.display = 'block';
+      document.getElementById('whoami').style.display = 'none';
+      UNLOCKED = false; EMBEDS = {};
       var e2 = (j && j.error) || 'err';
       msg.textContent = t[e2] || t.err;
       msg.style.color = '#ff7b7b';
+      render();
     }
   }).catch(function(){
     msg.textContent = t.err; msg.style.color = '#ff7b7b';
