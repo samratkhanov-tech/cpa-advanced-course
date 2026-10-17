@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>📊 Partner Dashboard — CPA Refer & Earn</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+<style>
+  :root{ --bg:#0a0f24; --card:#131a3a; --card2:#0e1430; --line:#2a3a75; --text:#eef1ff; --muted:#a8b3d8; --gold:#f5b301; --gold2:#ff8a00; --green:#25d366; }
+  *{box-sizing:border-box}
+  body{font-family:'Hind Siliguri','Segoe UI',system-ui,sans-serif;background:radial-gradient(1200px 600px at 50% -10%,#16204d 0%,var(--bg) 60%);color:var(--text);margin:0;min-height:100vh}
+  .wrap{max-width:720px;margin:0 auto;padding:32px 18px 60px}
+  .topnav{margin-bottom:18px}.topnav a{color:var(--muted);text-decoration:none;font-size:14px}
+  .hero{text-align:center;margin-bottom:26px}
+  .hero h1{font-size:26px;margin:8px 0;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;margin-bottom:18px}
+  .box h2{margin:0 0 8px;font-size:18px}
+  .box p{color:var(--muted);font-size:14px;line-height:1.7}
+  input[type=text]{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--text);font-size:17px;letter-spacing:3px;text-align:center;font-weight:700;margin-bottom:12px;font-family:inherit;text-transform:uppercase}
+  .btn{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#141414;font-weight:800;font-size:16px;padding:13px 30px;border-radius:12px;border:none;cursor:pointer;font-family:inherit}
+  .btn-block{display:block;text-align:center;width:100%}
+  .msg{display:none;margin-top:12px;font-size:14px;font-weight:600}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+  .stat{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+  .stat b{font-size:26px;color:var(--gold);display:block}
+  .stat span{font-size:12px;color:var(--muted)}
+  .linkbox{background:#0e2a18;border:1px solid #1f7a3d;border-radius:12px;padding:14px;margin:12px 0;word-break:break-all;font-size:14px}
+  .linkbox a{color:var(--green)}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+  th,td{padding:10px 6px;border-bottom:1px solid var(--line);text-align:left}
+  th{color:var(--muted);font-weight:600;font-size:12px}
+  .empty{color:var(--muted);text-align:center;padding:18px;font-size:14px}
+  .logout{background:none;border:1px solid var(--line);color:var(--muted);border-radius:10px;padding:9px 20px;cursor:pointer;font-size:13px;font-family:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topnav"><a href="./">← মূল পেজ</a> · <a href="./refer.html">🤝 Refer & Earn</a></div>
+  <div class="hero">
+    <div style="font-size:42px">📊</div>
+    <h1>Partner Dashboard</h1>
+  </div>
+  <div class="box" id="loginBox">
+    <h2>🔑 রেফার কোড দাও</h2>
+    <p>সাইন আপের সময় যে কোড পেয়েছো সেটা লেখো।</p>
+    <input type="text" id="codeInput" placeholder="XXXXXX" maxlength="12" autocomplete="off">
+    <button class="btn btn-block" id="loginBtn">📊 ড্যাশবোর্ড দেখো</button>
+    <div class="msg" id="loginMsg"></div>
+  </div>
+  <div id="dash" style="display:none">
+    <div class="box">
+      <h2 id="hello"></h2>
+      <div class="linkbox">🔗 তোমার লিংক:<br><a id="myLink" href="#" target="_blank"></a></div>
+      <div class="stats">
+        <div class="stat"><b id="stClicks">0</b><span>👆 লিংক ক্লিক</span></div>
+        <div class="stat"><b id="stEnr">0</b><span>🧑‍🎓 ভর্তি</span></div>
+        <div class="stat"><b id="stEarn">৳0</b><span>💰 মোট আয়</span></div>
+        <div class="stat"><b id="stPaid">৳0</b><span>✅ পেমেন্ট পেয়েছো</span></div>
+      </div>
+      <p style="font-size:13px">💡 ভর্তি কনফার্ম হলে কমিশন জমা হয়। টাকা বিকাশ/নগদ/Payoneer-এ পাঠানো হলে "পেমেন্ট পেয়েছো" বাড়বে।</p>
+    </div>
+    <div class="box">
+      <h2>🧑‍🎓 তোমার রেফারে ভর্তি</h2>
+      <div id="enrList"></div>
+    </div>
+    <div style="text-align:center"><button class="logout" id="logoutBtn">🚪 লগআউট</button></div>
+  </div>
+</div>
+<script>
+var API = 'https://aiaffiliatelaunch.unaux.com/cpa-download/api.php';
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+function say(t, ok){ var m=document.getElementById('loginMsg'); m.style.display='block'; m.style.color=ok?'#25d366':'#ff7b7b'; m.textContent=t; }
+function money(bdt, usd){
+  var p=[]; if(bdt) p.push('৳'+bdt); if(usd) p.push('$'+usd);
+  return p.length?p.join(' + '):'৳0';
+}
+function load(code, silent){
+  var fd=new FormData(); fd.append('action','refdash'); fd.append('code',code);
+  return fetch(API,{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(j){
+    if(j && j.ok){
+      try{ sessionStorage.setItem('cpaRefCode', code); }catch(e){}
+      showDash(j); return true;
+    }
+    if(!silent) say('⚠️ কোডটি সঠিক নয়।', false);
+    return false;
+  }).catch(function(){ if(!silent) say('⚠️ সার্ভারে পৌঁছানো যাচ্ছে না।', false); return false; });
+}
+function showDash(j){
+  document.getElementById('loginBox').style.display='none';
+  document.getElementById('dash').style.display='block';
+  document.getElementById('hello').textContent='স্বাগতম, '+j.name+'! 👋';
+  var a=document.getElementById('myLink'); a.href=j.link; a.textContent=j.link;
+  document.getElementById('stClicks').textContent=j.clicks;
+  document.getElementById('stEnr').textContent=j.enrollments.length;
+  document.getElementById('stEarn').textContent=money(j.earned.BDT, j.earned.USD);
+  document.getElementById('stPaid').textContent=money(j.paid.BDT, j.paid.USD);
+  var el=document.getElementById('enrList');
+  if(!j.enrollments.length){ el.innerHTML='<div class="empty">এখনো কেউ ভর্তি হয়নি — লিংকটা বেশি বেশি শেয়ার করো! 🚀</div>'; return; }
+  var h='<table><tr><th>নাম</th><th>কোর্স</th><th>তারিখ</th><th>কমিশন</th><th>স্ট্যাটাস</th></tr>';
+  j.enrollments.forEach(function(e){
+    var st=e.status==='paid'?'<span style="color:#25d366;font-weight:700">💰 Paid</span>':(e.status==='confirmed'?'<span style="color:#f5b301;font-weight:700">🟢 Confirmed</span>':'<span style="color:#ffd166">🟡 Pending</span>');
+    var d=new Date(e.ts*1000); var ds=d.getDate()+'/'+(d.getMonth()+1);
+    h+='<tr><td>'+esc(e.name)+'</td><td>'+(e.type==='pdf'?'📕 PDF':'🎓 লাইভ')+'</td><td>'+ds+'</td><td>'+(e.cur==='BDT'?'৳':'$')+e.commission+'</td><td>'+st+'</td></tr>';
+  });
+  el.innerHTML=h+'</table>';
+}
+document.getElementById('loginBtn').addEventListener('click', function(){
+  var c=document.getElementById('codeInput').value.trim().toUpperCase();
+  if(!c){ say('⚠️ আগে কোডটা লেখো', false); return; }
+  say('⏳ লোড হচ্ছে...', true); load(c, false);
+});
+document.getElementById('codeInput').addEventListener('keydown', function(e){ if(e.key==='Enter') document.getElementById('loginBtn').click(); });
+document.getElementById('logoutBtn').addEventListener('click', function(){ try{sessionStorage.removeItem('cpaRefCode');}catch(e){} location.reload(); });
+(function(){ var s=null; try{ s=sessionStorage.getItem('cpaRefCode'); }catch(e){} if(s) load(s, true); })();
+</script>
+</body>
+</html>
