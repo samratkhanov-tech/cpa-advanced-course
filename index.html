@@ -474,9 +474,8 @@
       <input id="revNameBn" placeholder="তোমার নাম">
       <div class="star-pick" id="starPickBn"><span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span></div>
       <textarea id="revTextBn" placeholder="কোর্সটা কেমন লেগেছে? সংক্ষেপে লেখো..."></textarea>
-      <input id="revCodeBn" placeholder="পারচেজ কোড (ডাউনলোড লিংকের ?t= এর পরের কোড)">
       <a class="btn btn-green" id="revSendBn" href="https://wa.me/8801842793958" target="_blank">⭐ রিভিউ পোস্ট করো</a>
-      <p class="rev-note">শুধু যারা English PDF কিনেছো বা কোর্স শেষ করেছো তারা রিভিউ দিতে পারো।<br>English PDF ক্রেতারা ডাউনলোড লিংকের <b>?t=</b> এর পরের কোডটা দাও; লাইভ কোর্সের শিক্ষার্থীরা মেন্টরের পাঠানো রিভিউ কোড দাও।<br>⭐ পোস্ট করলেই তোমার রিভিউ নিচে সবার জন্য প্রকাশ হবে।</p>
+      <p class="rev-note">⭐ পোস্ট করলেই তোমার রিভিউ নিচে সবার জন্য প্রকাশ হবে।</p>
       <p class="rev-note" id="revMsgBn" style="display:none"></p>
     </div>
   </div>
@@ -709,9 +708,8 @@
       <input id="revNameEn" placeholder="Your name">
       <div class="star-pick" id="starPickEn"><span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span></div>
       <textarea id="revTextEn" placeholder="How did you like the course? Write briefly..."></textarea>
-      <input id="revCodeEn" placeholder="Purchase code (the code after ?t= in your download link)">
       <a class="btn btn-green" id="revSendEn" href="https://wa.me/8801842793958" target="_blank">⭐ Post review</a>
-      <p class="rev-note">Only English PDF buyers and course completers can review.<br>PDF buyers: enter the code after <b>?t=</b> in your one-time download link; course students: use the review code your mentor sent you.<br>⭐ Your review goes live below instantly for everyone.</p>
+      <p class="rev-note">⭐ Your review goes live below instantly for everyone.</p>
       <p class="rev-note" id="revMsgEn" style="display:none"></p>
     </div>
   </div>
@@ -900,7 +898,7 @@ function saveLocalReview(r){
   try{ localStorage.setItem('cpaReviews', JSON.stringify(arr)); }catch(e){}
 }
 function renderReviews(){
-  fetch(REVIEWS_API + '?action=reviews', {cache:'no-store'})
+  fetch(REVIEWS_API + '?get=reviews', {cache:'no-store'})
     .then(function(r){ return r.json(); })
     .then(function(j){ paintReviews(j && j.ok && j.reviews ? j.reviews : REVIEWS); })
     .catch(function(){ paintReviews(REVIEWS); });
@@ -930,7 +928,7 @@ function paintReviews(base){
       : (S==='Bn' ? 'রিভিউ আসছে...' : 'Reviews coming soon...');
   });
 }
-var REVIEWS_API = 'https://aiaffiliatelaunch.unaux.com/cpa-download/api.php';
+var REVIEWS_API = 'https://script.google.com/macros/s/AKfycbwJMKOJN_TW6hT8pGudK_2tCfrO53mJ3kL71FGS1SR9NTk1bac8qOi-rcaSMdfWbDE__w/exec';
 function wireReview(L){
   var pick = document.getElementById('starPick' + L);
   if(!pick){ return; }
@@ -953,20 +951,17 @@ function wireReview(L){
     ev.preventDefault();
     var nameEl = document.getElementById('revName' + L);
     var textEl = document.getElementById('revText' + L);
-    var codeEl = document.getElementById('revCode' + L);
     var name = nameEl.value.trim();
     var text = textEl.value.trim();
-    var code = codeEl.value.trim();
     if(val === 0){ say(L==='Bn' ? '⚠️ স্টার রেটিং দাও (১-৫)' : '⚠️ Please pick a star rating (1-5)', false); return; }
     if(!name){ say(L==='Bn' ? '⚠️ তোমার নাম লেখো' : '⚠️ Please enter your name', false); return; }
     if(!text){ say(L==='Bn' ? '⚠️ মতামত লেখো' : '⚠️ Please write your review', false); return; }
-    if(!code){ say(L==='Bn' ? '⚠️ পারচেজ কোড দাও' : '⚠️ Please enter your purchase code', false); return; }
     var postedStars = val;
     btn.style.opacity = '.6'; btn.style.pointerEvents = 'none';
     say(L==='Bn' ? '⏳ পাঠানো হচ্ছে...' : '⏳ Sending...', true);
     var fd = new FormData();
-    fd.append('action', 'submit');
-    fd.append('code', code); fd.append('name', name);
+    fd.append('type', 'review');
+    fd.append('name', name);
     fd.append('stars', postedStars); fd.append('text', text);
     fetch(REVIEWS_API, {method:'POST', body:fd})
       .then(function(r){ return r.json(); })
@@ -975,12 +970,10 @@ function wireReview(L){
         if(j && j.ok){
           saveLocalReview({name:name, stars:postedStars, text:text});
           renderReviews();
-          nameEl.value=''; textEl.value=''; codeEl.value=''; val=0; paint();
+          nameEl.value=''; textEl.value=''; val=0; paint();
           say(L==='Bn' ? '✅ ধন্যবাদ! তোমার রিভিউ প্রকাশ হয়েছে।' : '✅ Thank you! Your review is now live.', true);
           var cards = document.getElementById('revCards' + L);
           if(cards){ setTimeout(function(){ cards.scrollIntoView({behavior:'smooth', block:'center'}); }, 60); }
-        } else if(j && j.error === 'invalid_code'){
-          say(L==='Bn' ? '⚠️ কোডটি সঠিক নয় বা ইতিমধ্যে ব্যবহার হয়েছে। ডাউনলোড লিংকের ?t= এর পরের কোডটা দাও।' : '⚠️ Invalid or already-used code. Enter the code after ?t= in your download link.', false);
         } else {
           say(L==='Bn' ? '⚠️ পাঠানো যায়নি, আবার চেষ্টা করো।' : '⚠️ Could not send, please try again.', false);
         }
