@@ -157,12 +157,12 @@
 
   /* ---------- pricing ---------- */
   .price-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:24px; max-width:880px; margin:0 auto; }
-  .price-card { background:linear-gradient(165deg,#131e4a,#0c1330); border:2px solid #2a3a75; border-radius:24px; padding:40px 32px; text-align:center; position:relative; overflow:hidden; transition:transform .2s; }
+  .price-card { background:linear-gradient(165deg,#131e4a,#0c1330); border:2px solid #2a3a75; border-radius:24px; padding:58px 32px 40px; text-align:center; position:relative; overflow:hidden; transition:transform .2s; }
   .price-card:hover { transform:translateY(-4px); }
   .price-card.hot { border-color:var(--gold); box-shadow:0 0 60px rgba(245,179,1,.18), 0 24px 60px rgba(0,0,0,.5); }
   .price-card.hot::before { content:''; position:absolute; top:-60%; left:-30%; width:40%; height:220%; background:linear-gradient(100deg,transparent,rgba(255,255,255,.09),transparent); transform:rotate(18deg); animation:shine 4.5s ease-in-out infinite; }
   @keyframes shine { 0%,55%{left:-30%} 100%{left:130%} }
-  .price-card .tag { position:absolute; top:-1px; left:50%; transform:translate(-50%,-50%); background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#141414; font-weight:800; font-size:13px; padding:8px 24px; border-radius:20px; white-space:nowrap; box-shadow:0 6px 18px rgba(245,179,1,.4); }
+  .price-card .tag { position:absolute; top:14px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#141414; font-weight:800; font-size:13px; padding:8px 24px; border-radius:20px; white-space:nowrap; box-shadow:0 6px 18px rgba(245,179,1,.4); }
   .price-card h3 { font-size:23px; margin:14px 0 6px; }
   .price-card .old { text-decoration:line-through; color:var(--muted); font-size:19px; }
   .price-card .now { font-size:58px; font-weight:800; margin:6px 0; font-family:'Sora','Hind Siliguri',sans-serif; background:linear-gradient(135deg,#ffd166,var(--gold2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
