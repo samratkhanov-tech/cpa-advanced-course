@@ -80,7 +80,7 @@
 </div>
 
 <script>
-var API = 'https://aiaffiliatelaunch.unaux.com/cpa-download/api.php';
+var API = 'https://script.google.com/macros/s/AKfycbwJMKOJN_TW6hT8pGudK_2tCfrO53mJ3kL71FGS1SR9NTk1bac8qOi-rcaSMdfWbDE__w/exec';
 var LANG = 'bn';
 var VIDEOS = [];
 var EMBEDS = {};
@@ -196,7 +196,7 @@ function doAccess(code, silent){
   var msg = document.getElementById('codeMsg');
   if(!silent){ msg.textContent = t.checking; msg.style.color = '#a8b3d8'; }
   var fd = new FormData();
-  fd.append('action', 'video_access');
+  fd.append('type', 'videocode_verify');
   fd.append('code', code);
   fd.append('device', getDevice());
   fetch(API, {method:'POST', body: fd}).then(function(r){ return r.json(); }).then(function(j){
@@ -240,7 +240,7 @@ document.getElementById('logoutLink').addEventListener('click', function(e){
 
 // init
 try{ var sl = localStorage.getItem('cpaVidLang'); if(sl==='en') LANG='en'; }catch(e){}
-fetch(API+'?action=videos').then(function(r){ return r.json(); }).then(function(j){
+fetch(API+'?get=videos').then(function(r){ return r.json(); }).then(function(j){
   if(j && j.ok){ VIDEOS = j.videos; }
   render();
   setLang(LANG);
