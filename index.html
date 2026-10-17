@@ -5,127 +5,204 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CPA Advanced Master Course — Zero থেকে Advanced CPA Marketing</title>
 <meta name="description" content="CPA Advanced Master Course: ২৮টি মডিউলে CPA Marketing — বাংলায় লাইভ কোর্স অথবা English PDF।">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   :root {
-    --bg:#0b1020; --bg2:#111832; --card:#162044; --gold:#f5b301; --green:#25d366;
-    --blue:#229ed9; --text:#eef1ff; --muted:#a8b3d8;
+    --bg:#070b1a; --bg2:#0c1230; --card:#101a3d; --card2:#0d1533;
+    --gold:#f5b301; --gold2:#ff8a00; --green:#25d366; --blue:#229ed9;
+    --text:#f2f4ff; --muted:#a9b4dc; --line:#22306b;
   }
-  body { font-family:'Hind Siliguri','Noto Sans Bengali','Segoe UI',system-ui,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
-  .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
-  nav { position:sticky; top:0; z-index:50; background:rgba(11,16,32,.92); backdrop-filter:blur(10px); border-bottom:1px solid #1e2a55; }
-  nav .wrap { display:flex; align-items:center; justify-content:space-between; padding:14px 20px; gap:12px; flex-wrap:wrap; }
-  .logo { font-weight:800; font-size:19px; color:#fff; text-decoration:none; }
-  .logo span { color:var(--gold); }
-  .lang-toggle { display:flex; background:#0e1530; border:1px solid #2a3a75; border-radius:30px; overflow:hidden; }
-  .lang-toggle button { border:none; background:transparent; color:var(--muted); font-weight:700; font-size:14px; padding:10px 22px; cursor:pointer; }
-  .lang-toggle button.active { background:var(--gold); color:#111; }
-  .nav-cta { background:var(--gold); color:#111; font-weight:700; padding:10px 26px; border-radius:30px; text-decoration:none; font-size:15px; }
-  header.hero { background:radial-gradient(1000px 500px at 50% -10%, #24336b 0%, var(--bg) 60%); text-align:center; padding:70px 0 60px; }
-  .badge { display:inline-block; background:rgba(245,179,1,.14); color:var(--gold); border:1px solid rgba(245,179,1,.4); padding:8px 22px; border-radius:30px; font-size:14px; font-weight:600; margin-bottom:22px; }
-  header.hero h1 { font-size:44px; line-height:1.35; margin-bottom:16px; }
-  header.hero h1 .hl { color:var(--gold); }
-  header.hero .sub { font-size:19px; color:var(--muted); max-width:700px; margin:0 auto 30px; }
-  .hero-stats { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin:34px 0; }
-  .stat { background:var(--card); border:1px solid #24336b; border-radius:14px; padding:18px 30px; min-width:150px; }
-  .stat b { display:block; font-size:30px; color:var(--gold); }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Hind Siliguri','Noto Sans Bengali','Segoe UI',system-ui,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.7; overflow-x:hidden; }
+  h1,h2,h3,.sora { font-family:'Sora','Hind Siliguri',sans-serif; }
+  .wrap { max-width:1100px; margin:0 auto; padding:0 20px; }
+
+  /* ---------- top stack: offer bar + nav ---------- */
+  .top-stack { position:sticky; top:0; z-index:100; }
+  .offer-bar { background:linear-gradient(90deg,#a31212,#d97706 55%,#a31212); background-size:200% 100%; animation:barShift 8s linear infinite; color:#fff; text-align:center; padding:10px 12px; font-size:15px; box-shadow:0 2px 14px rgba(0,0,0,.45); }
+  @keyframes barShift { 0%{background-position:0% 0} 100%{background-position:200% 0} }
+  .offer-bar .cd { display:inline-flex; gap:6px; margin-left:10px; vertical-align:middle; }
+  .offer-bar .cd>span { background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.25); border-radius:8px; padding:3px 8px; min-width:58px; display:inline-block; }
+  .offer-bar .cd b { font-size:18px; display:block; line-height:1.1; }
+  .offer-bar .cd small { font-size:10px; opacity:.85; }
+  nav { background:rgba(7,11,26,.88); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  nav .wrap { display:flex; align-items:center; justify-content:space-between; padding:13px 20px; gap:12px; flex-wrap:wrap; }
+  .logo { font-weight:800; font-size:19px; color:#fff; text-decoration:none; font-family:'Sora','Hind Siliguri',sans-serif; letter-spacing:.3px; }
+  .logo span { background:linear-gradient(135deg,var(--gold),var(--gold2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .lang-toggle { display:flex; background:#0b1330; border:1px solid var(--line); border-radius:30px; overflow:hidden; }
+  .lang-toggle button { border:none; background:transparent; color:var(--muted); font-weight:700; font-size:14px; padding:10px 22px; cursor:pointer; transition:.2s; }
+  .lang-toggle button.active { background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#141414; }
+  .nav-cta { background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#141414; font-weight:700; padding:10px 26px; border-radius:30px; text-decoration:none; font-size:15px; box-shadow:0 6px 20px rgba(245,179,1,.35); transition:transform .15s; }
+  .nav-cta:hover { transform:translateY(-2px); }
+
+  /* ---------- hero ---------- */
+  header.hero { position:relative; text-align:center; padding:84px 0 70px; overflow:hidden;
+    background:radial-gradient(900px 480px at 50% -8%, #2a3a7d 0%, rgba(42,58,125,0) 60%), var(--bg); }
+  .orb { position:absolute; border-radius:50%; filter:blur(90px); opacity:.35; pointer-events:none; animation:float 12s ease-in-out infinite; }
+  .orb.o1 { width:420px; height:420px; background:#3b2f8f; top:-120px; left:-100px; }
+  .orb.o2 { width:360px; height:360px; background:#8f4a12; bottom:-140px; right:-80px; animation-delay:-6s; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(36px)} }
+  .hero-grid { position:absolute; inset:0; pointer-events:none; opacity:.5;
+    background-image:linear-gradient(rgba(120,140,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(120,140,255,.05) 1px,transparent 1px);
+    background-size:44px 44px;
+    mask-image:radial-gradient(700px 420px at 50% 0%, #000 30%, transparent 75%);
+    -webkit-mask-image:radial-gradient(700px 420px at 50% 0%, #000 30%, transparent 75%); }
+  header.hero .wrap { position:relative; z-index:2; }
+  .badge { display:inline-flex; align-items:center; gap:9px; background:rgba(245,179,1,.1); color:var(--gold); border:1px solid rgba(245,179,1,.45); padding:9px 24px; border-radius:30px; font-size:14px; font-weight:700; margin-bottom:24px; letter-spacing:.4px; }
+  .badge .dot { width:9px; height:9px; border-radius:50%; background:#ff4d4d; box-shadow:0 0 0 0 rgba(255,77,77,.7); animation:pulse 1.8s infinite; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(255,77,77,.7)} 70%{box-shadow:0 0 0 10px rgba(255,77,77,0)} 100%{box-shadow:0 0 0 0 rgba(255,77,77,0)} }
+  header.hero h1 { font-size:52px; line-height:1.28; margin-bottom:18px; font-weight:800; letter-spacing:-.5px; }
+  header.hero h1 .hl { background:linear-gradient(120deg,#ffd166,var(--gold) 40%,var(--gold2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  header.hero .sub { font-size:19px; color:var(--muted); max-width:720px; margin:0 auto 32px; }
+  .hero-stats { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin:36px 0 8px; }
+  .stat { background:rgba(16,26,61,.75); border:1px solid var(--line); border-radius:16px; padding:20px 32px; min-width:158px; backdrop-filter:blur(6px); transition:transform .2s,border-color .2s; }
+  .stat:hover { transform:translateY(-4px); border-color:var(--gold); }
+  .stat b { display:block; font-size:32px; background:linear-gradient(135deg,#ffd166,var(--gold2)); -webkit-background-clip:text; background-clip:text; color:transparent; font-family:'Sora','Hind Siliguri',sans-serif; }
   .stat span { font-size:14px; color:var(--muted); }
-  .btn { display:inline-block; padding:16px 44px; border-radius:12px; font-size:18px; font-weight:700; text-decoration:none; margin:8px; transition:transform .15s; }
-  .btn:hover { transform:translateY(-2px); }
-  .btn-gold { background:linear-gradient(135deg,#f5b301,#ff8a00); color:#141414; box-shadow:0 10px 30px rgba(245,179,1,.35); }
-  .btn-green { background:var(--green); color:#fff; box-shadow:0 10px 30px rgba(37,211,102,.35); }
-  .btn-blue { background:var(--blue); color:#fff; box-shadow:0 10px 30px rgba(34,158,217,.35); }
-  section { padding:64px 0; }
-  section.alt { background:var(--bg2); }
-  h2.sec { font-size:34px; text-align:center; margin-bottom:12px; }
-  h2.sec .hl { color:var(--gold); }
-  p.lead { text-align:center; color:var(--muted); max-width:700px; margin:0 auto 40px; font-size:17px; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
-  .card { background:var(--card); border:1px solid #24336b; border-radius:16px; padding:26px 22px; }
-  .card .ico { font-size:34px; margin-bottom:12px; }
+  .devices { display:flex; gap:34px; justify-content:center; flex-wrap:wrap; margin:26px 0 6px; }
+  .devices>div { display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .devices .dico { font-size:42px; filter:drop-shadow(0 6px 14px rgba(0,0,0,.5)); }
+  .devices>div span:last-child { font-size:14px; color:#dbe2ff; font-weight:600; }
+  .dev-note { text-align:center; color:var(--muted); font-size:14px; margin:2px 0 26px; }
+  .cta-row { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+  .btn { position:relative; display:inline-block; padding:17px 46px; border-radius:14px; font-size:18px; font-weight:700; text-decoration:none; margin:8px; transition:transform .15s, box-shadow .2s; overflow:hidden; }
+  .btn:hover { transform:translateY(-3px); }
+  .btn::after { content:''; position:absolute; top:0; left:-80%; width:50%; height:100%; background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent); transform:skewX(-20deg); transition:left .5s; }
+  .btn:hover::after { left:130%; }
+  .btn-gold { background:linear-gradient(135deg,#ffd166,var(--gold) 45%,var(--gold2)); color:#161616; box-shadow:0 12px 34px rgba(245,179,1,.4); animation:ctaPulse 2.6s infinite; }
+  @keyframes ctaPulse { 0%,100%{box-shadow:0 12px 34px rgba(245,179,1,.4)} 50%{box-shadow:0 12px 44px rgba(245,179,1,.62)} }
+  .btn-green { background:linear-gradient(135deg,#2fe07a,#1eb85a); color:#fff; box-shadow:0 12px 30px rgba(37,211,102,.35); }
+  .btn-blue { background:linear-gradient(135deg,#3fb6f0,#1b7fc4); color:#fff; box-shadow:0 12px 30px rgba(34,158,217,.35); }
+
+  /* ---------- sections ---------- */
+  section { padding:76px 0; position:relative; }
+  section.alt { background:linear-gradient(180deg,var(--bg2),#0a0f28); }
+  .eyebrow { text-align:center; color:var(--gold); font-weight:700; font-size:13px; letter-spacing:3px; text-transform:uppercase; margin-bottom:12px; }
+  h2.sec { font-size:38px; text-align:center; margin-bottom:12px; font-weight:800; letter-spacing:-.4px; }
+  h2.sec .hl { background:linear-gradient(120deg,#ffd166,var(--gold2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  p.lead { text-align:center; color:var(--muted); max-width:720px; margin:0 auto 44px; font-size:17px; }
+  .sec-div { width:72px; height:4px; border-radius:4px; margin:0 auto 44px; background:linear-gradient(90deg,var(--gold),var(--gold2)); }
+
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+  .card { position:relative; background:linear-gradient(160deg,var(--card),var(--card2)); border:1px solid var(--line); border-radius:18px; padding:30px 24px; transition:transform .22s, box-shadow .22s, border-color .22s; overflow:hidden; }
+  .card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--gold),var(--gold2)); opacity:0; transition:opacity .22s; }
+  .card:hover { transform:translateY(-6px); border-color:rgba(245,179,1,.55); box-shadow:0 18px 44px rgba(0,0,0,.45), 0 0 0 1px rgba(245,179,1,.15); }
+  .card:hover::before { opacity:1; }
+  .card .ico { font-size:38px; margin-bottom:14px; display:inline-block; background:rgba(245,179,1,.1); border:1px solid rgba(245,179,1,.3); width:68px; height:68px; line-height:68px; text-align:center; border-radius:18px; }
   .card h3 { font-size:19px; margin-bottom:8px; color:#fff; }
   .card p { font-size:15px; color:var(--muted); }
-  .phase { background:var(--card); border:1px solid #24336b; border-radius:18px; padding:30px; margin-bottom:20px; }
-  .phase .pnum { display:inline-block; background:var(--gold); color:#111; font-weight:800; font-size:13px; padding:6px 16px; border-radius:20px; margin-bottom:12px; }
-  .phase h3 { font-size:24px; margin-bottom:10px; }
-  .phase ul { list-style:none; display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
-  .phase ul li { background:#0e1530; border:1px solid #2a3a75; padding:8px 16px; border-radius:20px; font-size:14px; color:var(--muted); }
-  .mentor { display:flex; gap:30px; align-items:center; background:var(--card); border:1px solid #24336b; border-radius:20px; padding:36px; flex-wrap:wrap; }
-  .avatar { width:110px; height:110px; border-radius:50%; background:linear-gradient(135deg,var(--gold),#ff8a00); display:flex; align-items:center; justify-content:center; font-size:44px; font-weight:800; color:#111; flex-shrink:0; }
-  .mentor h3 { font-size:26px; }
-  .mentor .role { color:var(--gold); font-weight:600; margin-bottom:10px; }
+
+  .phase { background:linear-gradient(160deg,var(--card),var(--card2)); border:1px solid var(--line); border-radius:20px; padding:32px; margin-bottom:22px; position:relative; overflow:hidden; transition:border-color .2s, transform .2s; }
+  .phase:hover { border-color:rgba(245,179,1,.45); transform:translateX(4px); }
+  .phase .pnum { display:inline-block; background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#141414; font-weight:800; font-size:13px; padding:7px 18px; border-radius:20px; margin-bottom:14px; letter-spacing:1px; }
+  .phase h3 { font-size:25px; margin-bottom:8px; }
+  .phase p.pdesc { color:var(--muted); font-size:15px; }
+  .phase ul { list-style:none; display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+  .phase ul li { background:#0b1330; border:1px solid var(--line); padding:9px 18px; border-radius:20px; font-size:14px; color:#cdd6f7; transition:.18s; }
+  .phase ul li:hover { border-color:var(--gold); color:#fff; transform:translateY(-2px); }
+
+  .mentor { display:flex; gap:32px; align-items:center; background:linear-gradient(160deg,var(--card),var(--card2)); border:1px solid var(--line); border-radius:22px; padding:40px; flex-wrap:wrap; position:relative; overflow:hidden; }
+  .mentor::after { content:'“'; position:absolute; right:26px; top:6px; font-size:110px; color:rgba(245,179,1,.08); font-family:serif; }
+  .mentor h3 { font-size:27px; letter-spacing:.5px; }
+  .mentor .role { background:linear-gradient(135deg,var(--gold),var(--gold2)); -webkit-background-clip:text; background-clip:text; color:transparent; font-weight:700; margin-bottom:10px; font-size:17px; }
   .mentor p { color:var(--muted); font-size:15px; }
-  .price-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:22px; max-width:860px; margin:0 auto; }
-  .price-card { background:var(--card); border:2px solid #24336b; border-radius:20px; padding:36px 30px; text-align:center; position:relative; }
-  .price-card.hot { border-color:var(--gold); box-shadow:0 0 40px rgba(245,179,1,.15); }
-  .price-card .tag { position:absolute; top:-16px; left:50%; transform:translateX(-50%); background:var(--gold); color:#111; font-weight:700; font-size:13px; padding:6px 20px; border-radius:20px; white-space:nowrap; }
-  .price-card h3 { font-size:22px; margin-bottom:6px; }
-  .price-card .old { text-decoration:line-through; color:var(--muted); font-size:18px; }
-  .price-card .now { font-size:52px; font-weight:800; color:var(--gold); margin:4px 0; }
-  .price-card .per { color:var(--muted); font-size:14px; margin-bottom:18px; }
-  .pay-box { background:#0e1530; border:1px dashed #3a4d8f; border-radius:14px; padding:20px; margin:18px 0; text-align:left; }
+  .avatar-photo { width:120px; height:120px; border-radius:50%; object-fit:cover; border:4px solid transparent; background:linear-gradient(var(--card),var(--card)) padding-box, linear-gradient(135deg,var(--gold),var(--gold2)) border-box; flex-shrink:0; box-shadow:0 0 34px rgba(245,179,1,.3); }
+
+  /* ---------- results gallery ---------- */
+  .results { background:#080c1c; border-top:1px solid #1a2447; border-bottom:1px solid #1a2447; }
+  .shot-row { display:grid; grid-template-columns:1.5fr .8fr 1.5fr; gap:20px; align-items:center; max-width:1120px; margin:0 auto; }
+  .shot { margin:0; background:#0d142e; border:1px solid #22306b; border-radius:16px; overflow:hidden; box-shadow:0 16px 40px rgba(0,0,0,.5); transition:transform .22s; }
+  .shot:hover { transform:scale(1.02); }
+  .shot:not(.mentor-shot) img { display:block; width:100%; height:auto; filter:invert(1) hue-rotate(180deg); }
+  .shot figcaption { padding:12px 14px; font-size:14px; color:#cdd6f7; text-align:center; border-top:1px solid #1a2447; }
+  .shot figcaption b { background:linear-gradient(135deg,#ffd166,var(--gold2)); -webkit-background-clip:text; background-clip:text; color:transparent; font-size:16px; }
+  .mentor-shot { display:flex; flex-direction:column; align-items:center; text-align:center; background:none; border:none; box-shadow:none; padding:8px; }
+  .mentor-photo { width:160px; height:160px; border-radius:50%; object-fit:cover; border:4px solid transparent; background:linear-gradient(#0d142e,#0d142e) padding-box, linear-gradient(135deg,var(--gold),var(--gold2)) border-box; box-shadow:0 0 36px rgba(245,179,1,.4); }
+  .mentor-shot figcaption { border:none; padding:12px 0; font-size:15px; }
+  .mentor-shot figcaption b { display:block; color:#fff; font-size:18px; letter-spacing:1px; -webkit-text-fill-color:#fff; background:none; }
+  .mentor-shot figcaption span { color:#8f9ccb; font-size:13px; }
+  .results .note { text-align:center; color:#7c88b3; font-size:13px; margin:18px auto 0; max-width:780px; }
+  @media(max-width:820px){ .shot-row{grid-template-columns:1fr} .mentor-shot{order:-1} }
+
+  /* ---------- networks ---------- */
+  .net-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:16px; max-width:1020px; margin:0 auto; }
+  .net-card { display:flex; flex-direction:column; align-items:center; gap:12px; background:linear-gradient(160deg,#0e1734,#0b1229); border:1px solid #22306b; border-radius:16px; padding:24px 12px; text-decoration:none; transition:transform .2s, border-color .2s, box-shadow .2s; }
+  .net-card:hover { transform:translateY(-6px) scale(1.03); border-color:var(--gold); box-shadow:0 14px 34px rgba(0,0,0,.45); }
+  .net-card img { width:56px; height:56px; object-fit:contain; border-radius:14px; background:#fff; padding:7px; }
+  .net-card span { color:#e8ecff; font-weight:600; font-size:14px; text-align:center; }
+
+  /* ---------- inside list ---------- */
+  .inside { max-width:880px; margin:0 auto; display:grid; gap:14px; }
+  .inside .in { display:flex; gap:16px; background:linear-gradient(160deg,#0e1734,#0b1229); border:1px solid #22306b; border-radius:14px; padding:20px 22px; align-items:flex-start; transition:transform .18s, border-color .18s; }
+  .inside .in:hover { transform:translateX(6px); border-color:rgba(245,179,1,.5); }
+  .inside .in .tick { font-size:24px; line-height:1.2; }
+  .inside .in b { color:#fff; font-size:16px; }
+  .inside .in p { margin:4px 0 0; color:#9aa6d4; font-size:14px; }
+
+  /* ---------- pricing ---------- */
+  .price-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:24px; max-width:880px; margin:0 auto; }
+  .price-card { background:linear-gradient(165deg,#131e4a,#0c1330); border:2px solid #2a3a75; border-radius:24px; padding:40px 32px; text-align:center; position:relative; overflow:hidden; transition:transform .2s; }
+  .price-card:hover { transform:translateY(-4px); }
+  .price-card.hot { border-color:var(--gold); box-shadow:0 0 60px rgba(245,179,1,.18), 0 24px 60px rgba(0,0,0,.5); }
+  .price-card.hot::before { content:''; position:absolute; top:-60%; left:-30%; width:40%; height:220%; background:linear-gradient(100deg,transparent,rgba(255,255,255,.09),transparent); transform:rotate(18deg); animation:shine 4.5s ease-in-out infinite; }
+  @keyframes shine { 0%,55%{left:-30%} 100%{left:130%} }
+  .price-card .tag { position:absolute; top:-1px; left:50%; transform:translate(-50%,-50%); background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#141414; font-weight:800; font-size:13px; padding:8px 24px; border-radius:20px; white-space:nowrap; box-shadow:0 6px 18px rgba(245,179,1,.4); }
+  .price-card h3 { font-size:23px; margin:14px 0 6px; }
+  .price-card .old { text-decoration:line-through; color:var(--muted); font-size:19px; }
+  .price-card .now { font-size:58px; font-weight:800; margin:6px 0; font-family:'Sora','Hind Siliguri',sans-serif; background:linear-gradient(135deg,#ffd166,var(--gold2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .price-card .per { color:var(--muted); font-size:14px; margin-bottom:20px; }
+  .pay-box { background:rgba(7,11,26,.6); border:1px dashed #41549b; border-radius:16px; padding:22px; margin:20px 0; text-align:left; }
   .pay-box h4 { font-size:16px; margin-bottom:10px; color:#fff; }
-  .pay-num { display:flex; align-items:center; justify-content:space-between; background:#1a2547; border-radius:10px; padding:12px 16px; margin-top:10px; font-size:20px; font-weight:700; letter-spacing:1px; gap:10px; }
-  .pay-num button { background:var(--gold); border:none; color:#111; font-weight:700; padding:8px 18px; border-radius:8px; cursor:pointer; font-size:14px; }
+  .pay-num { display:flex; align-items:center; justify-content:space-between; background:#182350; border:1px solid #2a3a75; border-radius:12px; padding:13px 16px; margin-top:10px; font-size:20px; font-weight:700; letter-spacing:1px; gap:10px; }
+  .pay-num button { background:linear-gradient(135deg,var(--gold),var(--gold2)); border:none; color:#141414; font-weight:700; padding:9px 20px; border-radius:9px; cursor:pointer; font-size:14px; }
   .pay-steps { font-size:14px; color:var(--muted); margin-top:12px; }
   .pay-steps li { margin:6px 0 6px 18px; }
-  .contact-row { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-top:30px; }
-  .soc { display:flex; align-items:center; gap:14px; background:var(--card); border:1px solid #24336b; border-radius:16px; padding:18px 28px; text-decoration:none; color:#fff; min-width:260px; transition:transform .15s; }
-  .soc:hover { transform:translateY(-3px); }
-  .soc .sic { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+
+  /* ---------- contact ---------- */
+  .contact-row { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-top:34px; }
+  .soc { display:flex; align-items:center; gap:16px; background:linear-gradient(160deg,var(--card),var(--card2)); border:1px solid var(--line); border-radius:18px; padding:20px 30px; text-decoration:none; color:#fff; min-width:280px; transition:transform .18s, border-color .18s, box-shadow .18s; }
+  .soc:hover { transform:translateY(-4px); border-color:rgba(245,179,1,.5); box-shadow:0 14px 36px rgba(0,0,0,.45); }
+  .soc .sic { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 8px 20px rgba(0,0,0,.35); }
   .soc .sic svg { width:30px; height:30px; fill:#fff; }
-  .soc b { display:block; font-size:17px; }
-  .soc span { font-size:13px; color:var(--muted); }
-  details.faq { background:var(--card); border:1px solid #24336b; border-radius:12px; padding:18px 22px; margin-bottom:12px; }
-  details.faq summary { font-weight:700; cursor:pointer; font-size:17px; }
-  details.faq p { margin-top:10px; color:var(--muted); font-size:15px; }
-  footer { background:#070b18; padding:40px 0; text-align:center; color:#6b7699; font-size:13px; }
-  footer .disclaimer { max-width:700px; margin:14px auto 0; }
+  .soc b { display:block; font-size:18px; }
+  .soc span span { font-size:13px; color:var(--muted); }
+
+  /* ---------- faq ---------- */
+  details.faq { background:linear-gradient(160deg,var(--card),var(--card2)); border:1px solid var(--line); border-radius:14px; padding:20px 24px; margin-bottom:14px; transition:border-color .2s; }
+  details.faq[open] { border-color:rgba(245,179,1,.5); }
+  details.faq summary { font-weight:700; cursor:pointer; font-size:17px; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  details.faq summary::-webkit-details-marker { display:none; }
+  details.faq summary::after { content:'+'; font-size:24px; color:var(--gold); font-weight:400; transition:transform .2s; flex-shrink:0; }
+  details.faq[open] summary::after { transform:rotate(45deg); }
+  details.faq p { margin-top:12px; color:var(--muted); font-size:15px; }
+
+  footer { background:#05081a; padding:46px 0 110px; text-align:center; color:#6f7aa5; font-size:13px; border-top:1px solid #141c3d; }
+  footer .disclaimer { max-width:720px; margin:14px auto 0; }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity:1; transform:none; }
+
+  /* ---------- sticky mobile CTA ---------- */
+  .sticky-cta { position:fixed; bottom:0; left:0; right:0; z-index:90; display:none; padding:12px 16px calc(12px + env(safe-area-inset-bottom)); background:rgba(7,11,26,.94); backdrop-filter:blur(12px); border-top:1px solid var(--line); }
+  .sticky-cta a { display:block; text-align:center; background:linear-gradient(135deg,#ffd166,var(--gold) 45%,var(--gold2)); color:#161616; font-weight:800; font-size:17px; padding:14px; border-radius:12px; text-decoration:none; box-shadow:0 8px 26px rgba(245,179,1,.4); }
+  @media(max-width:720px){ .sticky-cta{display:block} }
+
   .lang-en { display:none; }
-  .avatar-photo{width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);flex-shrink:0;background:#0f172a}
-  /* Results gallery */
-  .results{background:#0b0f1a;border-top:1px solid #1e293b;border-bottom:1px solid #1e293b}
-  .shot-row{display:grid;grid-template-columns:1.5fr .8fr 1.5fr;gap:18px;align-items:center;max-width:1100px;margin:0 auto}
-  .shot{margin:0;background:#111827;border:1px solid #1f2937;border-radius:14px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.45)}
-  .shot:not(.mentor-shot) img{display:block;width:100%;height:auto;filter:invert(1) hue-rotate(180deg)}
-  .shot figcaption{padding:10px 14px;font-size:14px;color:#d1d5db;text-align:center}
-  .shot figcaption b{color:var(--gold)}
-  .mentor-shot{display:flex;flex-direction:column;align-items:center;text-align:center;background:none;border:none;box-shadow:none;padding:8px}
-  .mentor-photo{width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid var(--gold);box-shadow:0 0 30px rgba(245,158,11,.35);background:#0f172a}
-  .mentor-shot figcaption{padding:10px 0;font-size:15px}
-  .mentor-shot figcaption b{display:block;color:#fff;font-size:17px;letter-spacing:1px}
-  .mentor-shot figcaption span{color:#9ca3af;font-size:13px}
-  .results .note{text-align:center;color:#6b7280;font-size:13px;margin:16px auto 0;max-width:760px}
-  @media(max-width:820px){.shot-row{grid-template-columns:1fr}.mentor-shot{order:-1}}
-  /* Networks */
-  .net-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;max-width:1000px;margin:0 auto}
-  .net-card{display:flex;flex-direction:column;align-items:center;gap:10px;background:#0f172a;border:1px solid #1f2937;border-radius:14px;padding:20px 12px;text-decoration:none;transition:transform .2s,border-color .2s}
-  .net-card:hover{transform:translateY(-4px);border-color:var(--gold)}
-  .net-card img{width:52px;height:52px;object-fit:contain;border-radius:12px;background:#fff;padding:6px}
-  .net-card span{color:#e5e7eb;font-weight:600;font-size:14px;text-align:center}
-  /* Inside list */
-  .inside{max-width:860px;margin:0 auto;display:grid;gap:12px}
-  .inside .in{display:flex;gap:14px;background:#0f172a;border:1px solid #1f2937;border-radius:12px;padding:16px 18px;align-items:flex-start}
-  .inside .in .tick{font-size:22px;line-height:1.2}
-  .inside .in b{color:#fff}
-  .inside .in p{margin:4px 0 0;color:#9ca3af;font-size:14px}
-  /* Offer countdown bar */
-  .offer-bar{position:sticky;top:0;z-index:70;background:linear-gradient(90deg,#b91c1c,#f59e0b);color:#fff;text-align:center;padding:10px 12px;font-size:15px;box-shadow:0 2px 12px rgba(0,0,0,.4)}
-  .offer-bar .cd{display:inline-flex;gap:6px;margin-left:10px;vertical-align:middle}
-  .offer-bar .cd>span{background:rgba(0,0,0,.4);border-radius:8px;padding:3px 8px;min-width:56px;display:inline-block}
-  .offer-bar .cd b{font-size:18px;display:block;line-height:1.1}
-  .offer-bar .cd small{font-size:10px;opacity:.85}
-  .devices{display:flex;gap:30px;justify-content:center;flex-wrap:wrap;margin:6px 0 8px}
-  .devices>div{display:flex;flex-direction:column;align-items:center;gap:6px}
-  .devices .dico{font-size:40px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.45))}
-  .devices>div span:last-child{font-size:14px;color:#e5e7eb;font-weight:600}
-  .dev-note{text-align:center;color:#9ca3af;font-size:14px;margin:0 0 20px}
-  @media(max-width:640px){.offer-bar{font-size:13px}.offer-bar .cd>span{min-width:46px;padding:3px 6px}}
-  @media(max-width:640px){ header.hero h1{font-size:30px;} h2.sec{font-size:26px;} .price-card .now{font-size:42px;} }
+  @media(max-width:640px){
+    .offer-bar{font-size:13px} .offer-bar .cd>span{min-width:46px; padding:3px 6px}
+    header.hero h1{font-size:32px} h2.sec{font-size:27px} .price-card .now{font-size:46px}
+    section{padding:56px 0} .btn{padding:15px 34px; font-size:16px}
+  }
 </style>
 </head>
 <body>
 
+<div class="top-stack">
 <div class="offer-bar">
   <span class="lang-bn">🔥 <b>৫০% ছাড়ের অফার</b> চলবে <b>১০ জানুয়ারি</b> পর্যন্ত — শেষ হতে বাকি:</span><span class="lang-en">🔥 <b>50% OFF offer</b> valid until <b>January 10</b> — ends in:</span>
   <span class="cd" id="cd"><span><b id="cdD">–</b><small class="lang-bn">দিন</small><small class="lang-en">days</small></span><span><b id="cdH">–</b><small class="lang-bn">ঘণ্টা</small><small class="lang-en">hrs</small></span><span><b id="cdM">–</b><small class="lang-bn">মিনিট</small><small class="lang-en">min</small></span><span><b id="cdS">–</b><small class="lang-bn">সেকেন্ড</small><small class="lang-en">sec</small></span></span>
@@ -143,19 +220,25 @@
     </div>
   </div>
 </nav>
+</div>
 
 <!-- ================= BENGALI ================= -->
 <div class="lang-bn">
 <header class="hero">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="hero-grid"></div>
   <div class="wrap">
-    <div class="badge">🔴 ADMISSION OPEN — ৫০% ছাড় চলছে</div>
+    <div class="badge"><span class="dot"></span> ADMISSION OPEN — ৫০% ছাড় চলছে</div>
     <h1>CPA Marketing শিখুন<br><span class="hl">Zero থেকে Advanced</span></h1>
     <p class="sub">🔴 <b>লাইভ কোর্স</b> — সরাসরি মেন্টরের কাছ থেকে শিখুন। CPA fundamentals থেকে offer research, landing page, Facebook marketing, tracking, retargeting এবং scaling পর্যন্ত — ধাপে ধাপে, সম্পূর্ণ practical ভাবে।</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="#enroll">🚀 এখনই ভর্তি হোন</a>
+      <a class="btn btn-green" href="https://wa.me/8801842793958" target="_blank">💬 WhatsApp-এ জিজ্ঞেস করুন</a>
+    </div>
     <div class="hero-stats">
-      <div class="stat"><b>২৮+</b><span>Structured Modules</span></div>
-      <div class="stat"><b>🔴 লাইভ</b><span>সরাসরি ক্লাস</span></div>
-      <div class="stat"><b>৪</b><span>Learning Phases</span></div>
-      <div class="stat"><b>১</b><span>Final Live Project</span></div>
+      <div class="stat reveal"><b data-count="28" data-suffix="+">0</b><span>Structured Modules</span></div>
+      <div class="stat reveal"><b>🔴 লাইভ</b><span>সরাসরি ক্লাস</span></div>
+      <div class="stat reveal"><b data-count="4" data-suffix="">0</b><span>Learning Phases</span></div>
+      <div class="stat reveal"><b data-count="1" data-suffix="">0</b><span>Final Live Project</span></div>
     </div>
     <div class="devices">
       <div><span class="dico">📱</span><span>মোবাইল ফোন</span></div>
@@ -163,19 +246,18 @@
       <div><span class="dico">📟</span><span>ট্যাবলেট</span></div>
     </div>
     <p class="dev-note">যেকোনো ডিভাইস থেকে লাইভ ক্লাসে জয়েন করুন</p>
-    <a class="btn btn-gold" href="#enroll">🚀 এখনই ভর্তি হোন</a>
-    <a class="btn btn-green" href="https://wa.me/8801842793958" target="_blank">💬 WhatsApp-এ জিজ্ঞেস করুন</a>
   </div>
 </header>
 
 <section class="results">
   <div class="wrap">
-    <h2 class="sec">📊 বাস্তব <span class="hl">ড্যাশবোর্ড রেজাল্ট</span></h2>
-    <p class="lead">কোর্সে যা শেখানো হয় — সেটাই বাস্তব campaign-এ প্র্যাক্টিস করা</p>
+    <div class="eyebrow reveal">Proof of Work</div>
+    <h2 class="sec reveal">📊 বাস্তব <span class="hl">ড্যাশবোর্ড রেজাল্ট</span></h2>
+    <p class="lead reveal">কোর্সে যা শেখানো হয় — সেটাই বাস্তব campaign-এ প্র্যাক্টিস করা</p>
     <div class="shot-row">
-      <figure class="shot"><img src="images/result-1.png" alt="CPA dashboard revenue screenshot"><figcaption>Revenue <b>$8,076.61</b> · 315 Conversions · 37,922 Clicks</figcaption></figure>
-      <figure class="shot mentor-shot"><img class="mentor-photo" src="images/mentor.png" alt="KHORSHED ALAM"><figcaption><b>KHORSHED ALAM</b><span>Marketing Manager</span></figcaption></figure>
-      <figure class="shot"><img src="images/result-2.png" alt="Analytics dashboard screenshot"><figcaption>Revenue <b>$11,437.93</b> · 459 Conversions · 74,672 Clicks</figcaption></figure>
+      <figure class="shot reveal"><img src="images/result-1.png" alt="CPA dashboard revenue screenshot"><figcaption>Revenue <b>$8,076.61</b> · 315 Conversions · 37,922 Clicks</figcaption></figure>
+      <figure class="shot mentor-shot reveal"><img class="mentor-photo" src="images/mentor.png" alt="KHORSHED ALAM"><figcaption><b>KHORSHED ALAM</b><span>Marketing Manager</span></figcaption></figure>
+      <figure class="shot reveal"><img src="images/result-2.png" alt="Analytics dashboard screenshot"><figcaption>Revenue <b>$11,437.93</b> · 459 Conversions · 74,672 Clicks</figcaption></figure>
     </div>
     <p class="note">* ড্যাশবোর্ড স্ক্রিনশট মেন্টরের নিজের campaign থেকে নেওয়া। ফলাফল সবার জন্য একই হবে না — কোনো income guarantee নেই।</p>
   </div>
@@ -183,60 +265,64 @@
 
 <section>
   <div class="wrap">
-    <h2 class="sec">কেন এই <span class="hl">কোর্স?</span></h2>
-    <p class="lead">শুধু theory নয় — প্রতিটি গুরুত্বপূর্ণ অংশ practical workflow-এর সঙ্গে শেখানো হবে।</p>
+    <div class="eyebrow reveal">What You'll Master</div>
+    <h2 class="sec reveal">কেন এই <span class="hl">কোর্স?</span></h2>
+    <p class="lead reveal">শুধু theory নয় — প্রতিটি গুরুত্বপূর্ণ অংশ practical workflow-এর সঙ্গে শেখানো হবে।</p>
     <div class="grid">
-      <div class="card"><div class="ico">◎</div><h3>CPA Fundamentals</h3><p>CPA ecosystem, network, offer, GEO, traffic ও conversion — একদম গোড়া থেকে।</p></div>
-      <div class="card"><div class="ico">📘</div><h3>Facebook Marketing</h3><p>Ads, audience targeting, creative testing, tracking ও retargeting।</p></div>
-      <div class="card"><div class="ico">🌐</div><h3>Domain ও Hosting</h3><p>Domain, DNS, SSL, hosting setup — নিজের website live করা পর্যন্ত।</p></div>
-      <div class="card"><div class="ico">▣</div><h3>Landing Page</h3><p>Conversion-focused design, mobile UX, copywriting ও CTA।</p></div>
-      <div class="card"><div class="ico">📊</div><h3>Tracking ও Analytics</h3><p>CTR, CPC, CVR, CPA, EPC, ROI — data দেখে সিদ্ধান্ত নেওয়া।</p></div>
-      <div class="card"><div class="ico">🎯</div><h3>Retargeting ও Scaling</h3><p>Visitor-based funnel, data-driven scaling — আয় বাড়ানোর সিস্টেম।</p></div>
+      <div class="card reveal"><div class="ico">◎</div><h3>CPA Fundamentals</h3><p>CPA ecosystem, network, offer, GEO, traffic ও conversion — একদম গোড়া থেকে।</p></div>
+      <div class="card reveal"><div class="ico">📘</div><h3>Facebook Marketing</h3><p>Ads, audience targeting, creative testing, tracking ও retargeting।</p></div>
+      <div class="card reveal"><div class="ico">🌐</div><h3>Domain ও Hosting</h3><p>Domain, DNS, SSL, hosting setup — নিজের website live করা পর্যন্ত।</p></div>
+      <div class="card reveal"><div class="ico">▣</div><h3>Landing Page</h3><p>Conversion-focused design, mobile UX, copywriting ও CTA।</p></div>
+      <div class="card reveal"><div class="ico">📊</div><h3>Tracking ও Analytics</h3><p>CTR, CPC, CVR, CPA, EPC, ROI — data দেখে সিদ্ধান্ত নেওয়া।</p></div>
+      <div class="card reveal"><div class="ico">🎯</div><h3>Retargeting ও Scaling</h3><p>Visitor-based funnel, data-driven scaling — আয় বাড়ানোর সিস্টেম।</p></div>
     </div>
   </div>
 </section>
 
 <section class="alt">
   <div class="wrap">
-    <h2 class="sec">সম্পূর্ণ <span class="hl">কারিকুলাম</span></h2>
-    <p class="lead">Beginner থেকে Advanced — ২৮টি মডিউল, ৪টি ধাপে সাজানো learning journey।</p>
-    <div class="phase"><span class="pnum">PHASE 01 — FOUNDATION</span><h3>ভিত্তি তৈরি করুন</h3>
+    <div class="eyebrow reveal">Step-by-Step Roadmap</div>
+    <h2 class="sec reveal">সম্পূর্ণ <span class="hl">কারিকুলাম</span></h2>
+    <p class="lead reveal">Beginner থেকে Advanced — ২৮টি মডিউল, ৪টি ধাপে সাজানো learning journey।</p>
+    <div class="phase reveal"><span class="pnum">PHASE 01 — FOUNDATION</span><h3>ভিত্তি তৈরি করুন</h3><p class="pdesc">একদম গোড়া থেকে CPA-এর পুরো ecosystem বুঝুন</p>
       <ul><li>Digital Marketing Basics</li><li>CPA Marketing Basics</li><li>Complete CPA Workflow</li><li>CPA Networks</li><li>Offer Selection</li><li>Content Channels</li></ul></div>
-    <div class="phase"><span class="pnum">PHASE 02 — BUILD</span><h3>নিজের সিস্টেম বানান</h3>
+    <div class="phase reveal"><span class="pnum">PHASE 02 — BUILD</span><h3>নিজের সিস্টেম বানান</h3><p class="pdesc">নিজের website, landing page ও content channel তৈরি করুন</p>
       <ul><li>Domain ও Hosting</li><li>Landing Page Creation</li><li>Content ও Copywriting</li><li>SEO</li><li>TikTok Marketing</li><li>YouTube Marketing</li></ul></div>
-    <div class="phase"><span class="pnum">PHASE 03 — OPTIMIZE</span><h3>ট্রাফিক ও অপ্টিমাইজেশন</h3>
+    <div class="phase reveal"><span class="pnum">PHASE 03 — OPTIMIZE</span><h3>ট্রাফিক ও অপ্টিমাইজেশন</h3><p class="pdesc">Paid ও organic traffic চালানো এবং data দিয়ে optimize করা</p>
       <ul><li>Facebook Marketing</li><li>Facebook Ads</li><li>Paid Traffic</li><li>Tracking ও Analytics</li><li>CRO ও A/B Testing</li><li>Retargeting Funnel</li></ul></div>
-    <div class="phase"><span class="pnum">PHASE 04 — SCALE</span><h3>স্কেল করুন ও আয় বাড়ান</h3>
+    <div class="phase reveal"><span class="pnum">PHASE 04 — SCALE</span><h3>স্কেল করুন ও আয় বাড়ান</h3><p class="pdesc">Winner campaign চিনুন, scale করুন, automate করুন</p>
       <ul><li>Scaling</li><li>Advanced Funnel</li><li>Email Marketing</li><li>Campaign Optimization</li><li>Profitability Analysis</li><li>Automation</li><li>Final Live Project</li></ul></div>
   </div>
 </section>
 
 <section class="alt">
   <div class="wrap">
-    <h2 class="sec">🌐 যে সব <span class="hl">CPA Network</span> শিখবেন</h2>
-    <p class="lead">২৮টি মডিউলে এই টপ CPA network ও affiliate platform-গুলো হাতে-কলমে কভার করা হবে</p>
+    <div class="eyebrow reveal">Hands-On Training</div>
+    <h2 class="sec reveal">🌐 যে সব <span class="hl">CPA Network</span> শিখবেন</h2>
+    <p class="lead reveal">২৮টি মডিউলে এই টপ CPA network ও affiliate platform-গুলো হাতে-কলমে কভার করা হবে</p>
     <div class="net-grid">
-      <a class="net-card" href="https://affmine.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/affmine.png" alt="Affmine"><span>Affmine</span></a>
-      <a class="net-card" href="https://trafee.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/trafee.png" alt="Trafee"><span>Trafee</span></a>
-      <a class="net-card" href="https://adbluemedia.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/adbluemedia.png" alt="AdBlueMedia"><span>AdBlueMedia</span></a>
-      <a class="net-card" href="https://www.affpaying.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/affpaying.png" alt="AffPaying"><span>AffPaying</span></a>
-      <a class="net-card" href="https://maxbounty.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/maxbounty.png" alt="MaxBounty"><span>MaxBounty</span></a>
-      <a class="net-card" href="https://www.performcb.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/performcb.png" alt="PerformCB"><span>PerformCB</span></a>
-      <a class="net-card" href="https://clickdealer.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/clickdealer.svg" alt="ClickDealer"><span>ClickDealer</span></a>
-      <a class="net-card" href="https://www.adworkmedia.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/adworkmedia.png" alt="AdWork Media"><span>AdWork Media</span></a>
-      <a class="net-card" href="https://cpalead.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/cpalead.png" alt="CPAlead"><span>CPAlead</span></a>
-      <a class="net-card" href="https://ogads.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/ogads.png" alt="OGAds"><span>OGAds</span></a>
-      <a class="net-card" href="https://advidi.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/advidi.png" alt="Advidi"><span>Advidi</span></a>
-      <a class="net-card" href="https://lospollos.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/lospollos.png" alt="LosPollos"><span>LosPollos</span></a>
+      <a class="net-card reveal" href="https://affmine.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/affmine.png" alt="Affmine"><span>Affmine</span></a>
+      <a class="net-card reveal" href="https://trafee.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/trafee.png" alt="Trafee"><span>Trafee</span></a>
+      <a class="net-card reveal" href="https://adbluemedia.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/adbluemedia.png" alt="AdBlueMedia"><span>AdBlueMedia</span></a>
+      <a class="net-card reveal" href="https://www.affpaying.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/affpaying.png" alt="AffPaying"><span>AffPaying</span></a>
+      <a class="net-card reveal" href="https://maxbounty.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/maxbounty.png" alt="MaxBounty"><span>MaxBounty</span></a>
+      <a class="net-card reveal" href="https://www.performcb.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/performcb.png" alt="PerformCB"><span>PerformCB</span></a>
+      <a class="net-card reveal" href="https://clickdealer.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/clickdealer.svg" alt="ClickDealer"><span>ClickDealer</span></a>
+      <a class="net-card reveal" href="https://www.adworkmedia.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/adworkmedia.png" alt="AdWork Media"><span>AdWork Media</span></a>
+      <a class="net-card reveal" href="https://cpalead.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/cpalead.png" alt="CPAlead"><span>CPAlead</span></a>
+      <a class="net-card reveal" href="https://ogads.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/ogads.png" alt="OGAds"><span>OGAds</span></a>
+      <a class="net-card reveal" href="https://advidi.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/advidi.png" alt="Advidi"><span>Advidi</span></a>
+      <a class="net-card reveal" href="https://lospollos.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/lospollos.png" alt="LosPollos"><span>LosPollos</span></a>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2 class="sec">আপনার <span class="hl">মেন্টর</span></h2>
-    <p class="lead">যার কাছ থেকে সরাসরি লাইভে শিখবেন</p>
-    <div class="mentor">
+    <div class="eyebrow reveal">Meet Your Mentor</div>
+    <h2 class="sec reveal">আপনার <span class="hl">মেন্টর</span></h2>
+    <p class="lead reveal">যার কাছ থেকে সরাসরি লাইভে শিখবেন</p>
+    <div class="mentor reveal">
       <img class="avatar-photo" src="images/mentor.png" alt="KHORSHED ALAM">
       <div><h3>KHORSHED ALAM</h3><div class="role">Marketing Manager</div>
       <p>Digital Marketing, SEO, SEM, Social Media, Content Marketing, Analytics ও Campaign Strategy-তে অভিজ্ঞ। Structured roadmap-এ ধাপে ধাপে শেখান — যাতে beginner-রাও practical কাজ শিখে এগোতে পারে।</p></div>
@@ -246,17 +332,18 @@
 
 <section class="alt" id="enroll">
   <div class="wrap">
-    <h2 class="sec">ভর্তি <span class="hl">হোন</span></h2>
-    <p class="lead">বিকাশে পেমেন্ট করে WhatsApp-এ কনফার্ম করুন।</p>
+    <div class="eyebrow reveal">Limited Time Offer</div>
+    <h2 class="sec reveal">ভর্তি <span class="hl">হোন</span></h2>
+    <p class="lead reveal">বিকাশে পেমেন্ট করে WhatsApp-এ কনফার্ম করুন।</p>
     <div class="price-grid">
-      <div class="price-card hot">
+      <div class="price-card hot reveal">
         <div class="tag">🇧🇩 বাংলাদেশ থেকে — লাইভ কোর্স</div>
         <h3>CPA Advanced Master Course</h3>
         <div class="old">৳৪,৯৯৯</div><div class="now">৳২,৪৯৯</div>
         <div class="per">৫০% ছাড় — এককালীন পেমেন্ট<br>⏰ অফার চলবে <b>১০ জানুয়ারি</b> পর্যন্ত</div>
         <div class="pay-box"><h4>📱 বিকাশে Send Money করুন</h4>
           <div class="pay-num"><span id="bkashNum">8801842793958</span><button onclick="copyBkash()">Copy</button></div>
-          <ul class="pay-steps"><li>উপরের নাম্বারে <b>৳২,৪৯９</b> Send Money করুন</li><li>TrxID টি WhatsApp-এ পাঠিয়ে দিন</li><li>ভর্তি কনফার্ম হয়ে যাবে ✅</li></ul>
+          <ul class="pay-steps"><li>উপরের নাম্বারে <b>৳২,৪৯৯</b> Send Money করুন</li><li>TrxID টি WhatsApp-এ পাঠিয়ে দিন</li><li>ভর্তি কনফার্ম হয়ে যাবে ✅</li></ul>
         </div>
         <a class="btn btn-green" href="https://wa.me/8801842793958?text=আমি%20CPA%20কোর্সে%20ভর্তি%20হতে%20চাই।%20বিকাশে%20পেমেন্ট%20করেছি।" target="_blank">WhatsApp-এ কনফার্ম করুন</a>
       </div>
@@ -266,14 +353,15 @@
 
 <section>
   <div class="wrap">
-    <h2 class="sec">যোগাযোগ <span class="hl">করুন</span></h2>
-    <p class="lead">যেকোনো প্রশ্ন থাকলে সরাসরি মেসেজ করুন</p>
+    <div class="eyebrow reveal">Get In Touch</div>
+    <h2 class="sec reveal">যোগাযোগ <span class="hl">করুন</span></h2>
+    <p class="lead reveal">যেকোনো প্রশ্ন থাকলে সরাসরি মেসেজ করুন</p>
     <div class="contact-row">
-      <a class="soc" href="https://wa.me/8801842793958" target="_blank">
-        <span class="sic" style="background:#25d366;"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span>
+      <a class="soc reveal" href="https://wa.me/8801842793958" target="_blank">
+        <span class="sic" style="background:linear-gradient(135deg,#2fe07a,#1eb85a);"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span>
         <span><b>WhatsApp</b><span>01842793958 — মেসেজ করুন</span></span></a>
-      <a class="soc" href="https://t.me/SonglapMridha" target="_blank">
-        <span class="sic" style="background:#229ed9;"><svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></span>
+      <a class="soc reveal" href="https://t.me/SonglapMridha" target="_blank">
+        <span class="sic" style="background:linear-gradient(135deg,#3fb6f0,#1b7fc4);"><svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></span>
         <span><b>Telegram</b><span>@SonglapMridha — মেসেজ করুন</span></span></a>
     </div>
   </div>
@@ -281,13 +369,14 @@
 
 <section class="alt">
   <div class="wrap">
-    <h2 class="sec">সাধারণ <span class="hl">প্রশ্ন</span></h2>
-    <div style="max-width:760px;margin:0 auto;">
-      <details class="faq"><summary>আমি কি একদম নতুন? কোর্সটা কি আমার জন্য?</summary><p>হ্যাঁ। কারিকুলাম foundation থেকে শুরু করে ধাপে ধাপে advanced topic ও practical project-এর দিকে যায়।</p></details>
-      <details class="faq"><summary>কী কী শিখব?</summary><p>CPA-এর পাশাপাশি domain, hosting, landing page, Facebook, TikTok, YouTube, SEO, paid traffic, tracking, analytics, CRO, retargeting ও scaling।</p></details>
-      <details class="faq"><summary>ক্লাস কীভাবে হবে?</summary><p>সরাসরি লাইভ ক্লাস — মেন্টরের কাছ থেকে সরাসরি শিখবেন, প্রশ্ন করতে পারবেন।</p></details>
-      <details class="faq"><summary>কোর্স করলেই কি আয় হবে?</summary><p>কোনো legitimate course নির্দিষ্ট income guarantee করতে পারে না। ফলাফল আপনার execution, traffic cost, offer, GEO ও platform rules-এর ওপর নির্ভর করে।</p></details>
-      <details class="faq"><summary>পেমেন্ট কীভাবে করব?</summary><p>বিকাশে (8801842793958) ৳২,৪৯৯ Send Money করে WhatsApp-এ TrxID পাঠিয়ে দিন।</p></details>
+    <div class="eyebrow reveal">Have Questions?</div>
+    <h2 class="sec reveal">সাধারণ <span class="hl">প্রশ্ন</span></h2>
+    <div style="max-width:780px;margin:0 auto;">
+      <details class="faq reveal"><summary>আমি কি একদম নতুন? কোর্সটা কি আমার জন্য?</summary><p>হ্যাঁ। কারিকুলাম foundation থেকে শুরু করে ধাপে ধাপে advanced topic ও practical project-এর দিকে যায়।</p></details>
+      <details class="faq reveal"><summary>কী কী শিখব?</summary><p>CPA-এর পাশাপাশি domain, hosting, landing page, Facebook, TikTok, YouTube, SEO, paid traffic, tracking, analytics, CRO, retargeting ও scaling।</p></details>
+      <details class="faq reveal"><summary>ক্লাস কীভাবে হবে?</summary><p>সরাসরি লাইভ ক্লাস — মেন্টরের কাছ থেকে সরাসরি শিখবেন, প্রশ্ন করতে পারবেন।</p></details>
+      <details class="faq reveal"><summary>কোর্স করলেই কি আয় হবে?</summary><p>কোনো legitimate course নির্দিষ্ট income guarantee করতে পারে না। ফলাফল আপনার execution, traffic cost, offer, GEO ও platform rules-এর ওপর নির্ভর করে।</p></details>
+      <details class="faq reveal"><summary>পেমেন্ট কীভাবে করব?</summary><p>বিকাশে (8801842793958) ৳২,৪৯৯ Send Money করে WhatsApp-এ TrxID পাঠিয়ে দিন।</p></details>
     </div>
   </div>
 </section>
@@ -297,15 +386,20 @@
 <!-- ================= ENGLISH ================= -->
 <div class="lang-en">
 <header class="hero">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="hero-grid"></div>
   <div class="wrap">
-    <div class="badge">🔴 ADMISSION OPEN — 50% OFF</div>
+    <div class="badge"><span class="dot"></span> ADMISSION OPEN — 50% OFF</div>
     <h1>Learn CPA Marketing<br><span class="hl">From Zero to Advanced</span></h1>
     <p class="sub">📕 <b>PDF Format</b> — the complete course as an instant-download PDF guide. From CPA fundamentals to offer research, landing pages, Facebook marketing, tracking, retargeting and scaling — step by step, fully practical.</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="#enroll">🚀 Enroll Now</a>
+      <a class="btn btn-green" href="https://wa.me/8801842793958" target="_blank">💬 Ask on WhatsApp</a>
+    </div>
     <div class="hero-stats">
-      <div class="stat"><b>28+</b><span>Structured Modules</span></div>
-      <div class="stat"><b>📕 PDF</b><span>Instant Download</span></div>
-      <div class="stat"><b>4</b><span>Learning Phases</span></div>
-      <div class="stat"><b>1</b><span>Final Project</span></div>
+      <div class="stat reveal"><b data-count="28" data-suffix="+">0</b><span>Structured Modules</span></div>
+      <div class="stat reveal"><b>📕 PDF</b><span>Instant Download</span></div>
+      <div class="stat reveal"><b data-count="4" data-suffix="">0</b><span>Learning Phases</span></div>
+      <div class="stat reveal"><b data-count="1" data-suffix="">0</b><span>Final Project</span></div>
     </div>
     <div class="devices">
       <div><span class="dico">📱</span><span>Mobile Phone</span></div>
@@ -313,19 +407,18 @@
       <div><span class="dico">📟</span><span>Tablet</span></div>
     </div>
     <p class="dev-note">Learn from any device, anywhere</p>
-    <a class="btn btn-gold" href="#enroll">🚀 Enroll Now</a>
-    <a class="btn btn-green" href="https://wa.me/8801842793958" target="_blank">💬 Ask on WhatsApp</a>
   </div>
 </header>
 
 <section class="results">
   <div class="wrap">
-    <h2 class="sec">📊 Real <span class="hl">Dashboard Results</span></h2>
-    <p class="lead">What this course teaches — practiced in real campaigns</p>
+    <div class="eyebrow reveal">Proof of Work</div>
+    <h2 class="sec reveal">📊 Real <span class="hl">Dashboard Results</span></h2>
+    <p class="lead reveal">What this course teaches — practiced in real campaigns</p>
     <div class="shot-row">
-      <figure class="shot"><img src="images/result-1.png" alt="CPA dashboard revenue screenshot"><figcaption>Revenue <b>$8,076.61</b> · 315 Conversions · 37,922 Clicks</figcaption></figure>
-      <figure class="shot mentor-shot"><img class="mentor-photo" src="images/mentor.png" alt="KHORSHED ALAM"><figcaption><b>KHORSHED ALAM</b><span>Marketing Manager</span></figcaption></figure>
-      <figure class="shot"><img src="images/result-2.png" alt="Analytics dashboard screenshot"><figcaption>Revenue <b>$11,437.93</b> · 459 Conversions · 74,672 Clicks</figcaption></figure>
+      <figure class="shot reveal"><img src="images/result-1.png" alt="CPA dashboard revenue screenshot"><figcaption>Revenue <b>$8,076.61</b> · 315 Conversions · 37,922 Clicks</figcaption></figure>
+      <figure class="shot mentor-shot reveal"><img class="mentor-photo" src="images/mentor.png" alt="KHORSHED ALAM"><figcaption><b>KHORSHED ALAM</b><span>Marketing Manager</span></figcaption></figure>
+      <figure class="shot reveal"><img src="images/result-2.png" alt="Analytics dashboard screenshot"><figcaption>Revenue <b>$11,437.93</b> · 459 Conversions · 74,672 Clicks</figcaption></figure>
     </div>
     <p class="note">* Dashboard screenshots are from the mentor's own campaigns. Results vary — no income guarantee.</p>
   </div>
@@ -333,74 +426,79 @@
 
 <section>
   <div class="wrap">
-    <h2 class="sec">📕 What's <span class="hl">Inside</span> the PDF</h2>
-    <p class="lead">Everything the live students learn — packed into one complete, instant-download guide</p>
+    <div class="eyebrow reveal">Inside The Guide</div>
+    <h2 class="sec reveal">📕 What's <span class="hl">Inside</span> the PDF</h2>
+    <p class="lead reveal">Everything the live students learn — packed into one complete, instant-download guide</p>
     <div class="inside">
-      <div class="in"><span class="tick">✅</span><div><b>Complete 28-module course in PDF format</b><p>All 4 phases — Foundation, Build, Optimize, Scale — from CPA basics to offer research, landing pages, tracking and scaling, explained step by step.</p></div></div>
-      <div class="in"><span class="tick">✅</span><div><b>Practical workflows, not just theory</b><p>How to pick offers, set up domain &amp; hosting, build landing pages, run Facebook/TikTok/YouTube campaigns, track with CTR/CPC/CVR/CPA/EPC/ROI, and retarget visitors.</p></div></div>
-      <div class="in"><span class="tick">✅</span><div><b>Top CPA networks covered</b><p>Hands-on guidance for Affmine, Trafee, AdBlueMedia, MaxBounty, ClickDealer, PerformCB and more — how each works and how to choose offers.</p></div></div>
-      <div class="in"><span class="tick">✅</span><div><b>Read on any device, yours to keep</b><p>Phone, tablet or computer — learn at your own pace, anytime, with no expiry.</p></div></div>
-      <div class="in"><span class="tick">✅</span><div><b>Instant delivery after payment</b><p>Pay $20 via PayPal or Payoneer, confirm on WhatsApp, and receive the complete PDF right away.</p></div></div>
+      <div class="in reveal"><span class="tick">✅</span><div><b>Complete 28-module course in PDF format</b><p>All 4 phases — Foundation, Build, Optimize, Scale — from CPA basics to offer research, landing pages, tracking and scaling, explained step by step.</p></div></div>
+      <div class="in reveal"><span class="tick">✅</span><div><b>Practical workflows, not just theory</b><p>How to pick offers, set up domain &amp; hosting, build landing pages, run Facebook/TikTok/YouTube campaigns, track with CTR/CPC/CVR/CPA/EPC/ROI, and retarget visitors.</p></div></div>
+      <div class="in reveal"><span class="tick">✅</span><div><b>Top CPA networks covered</b><p>Hands-on guidance for Affmine, Trafee, AdBlueMedia, MaxBounty, ClickDealer, PerformCB and more — how each works and how to choose offers.</p></div></div>
+      <div class="in reveal"><span class="tick">✅</span><div><b>Read on any device, yours to keep</b><p>Phone, tablet or computer — learn at your own pace, anytime, with no expiry.</p></div></div>
+      <div class="in reveal"><span class="tick">✅</span><div><b>Instant delivery after payment</b><p>Pay $20 via PayPal or Payoneer, confirm on WhatsApp, and receive the complete PDF right away.</p></div></div>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2 class="sec">Why This <span class="hl">Course?</span></h2>
-    <p class="lead">Not just theory — every key topic is taught with a practical workflow.</p>
+    <div class="eyebrow reveal">What You'll Master</div>
+    <h2 class="sec reveal">Why This <span class="hl">Course?</span></h2>
+    <p class="lead reveal">Not just theory — every key topic is taught with a practical workflow.</p>
     <div class="grid">
-      <div class="card"><div class="ico">◎</div><h3>CPA Fundamentals</h3><p>CPA ecosystem, networks, offers, GEOs, traffic &amp; conversion — from the ground up.</p></div>
-      <div class="card"><div class="ico">📘</div><h3>Facebook Marketing</h3><p>Ads, audience targeting, creative testing, tracking &amp; retargeting.</p></div>
-      <div class="card"><div class="ico">🌐</div><h3>Domain &amp; Hosting</h3><p>Domain, DNS, SSL, hosting setup — get your website live.</p></div>
-      <div class="card"><div class="ico">▣</div><h3>Landing Pages</h3><p>Conversion-focused design, mobile UX, copywriting &amp; CTAs.</p></div>
-      <div class="card"><div class="ico">📊</div><h3>Tracking &amp; Analytics</h3><p>CTR, CPC, CVR, CPA, EPC, ROI — make data-driven decisions.</p></div>
-      <div class="card"><div class="ico">🎯</div><h3>Retargeting &amp; Scaling</h3><p>Visitor-based funnels and data-driven scaling systems.</p></div>
+      <div class="card reveal"><div class="ico">◎</div><h3>CPA Fundamentals</h3><p>CPA ecosystem, networks, offers, GEOs, traffic &amp; conversion — from the ground up.</p></div>
+      <div class="card reveal"><div class="ico">📘</div><h3>Facebook Marketing</h3><p>Ads, audience targeting, creative testing, tracking &amp; retargeting.</p></div>
+      <div class="card reveal"><div class="ico">🌐</div><h3>Domain &amp; Hosting</h3><p>Domain, DNS, SSL, hosting setup — get your website live.</p></div>
+      <div class="card reveal"><div class="ico">▣</div><h3>Landing Pages</h3><p>Conversion-focused design, mobile UX, copywriting &amp; CTAs.</p></div>
+      <div class="card reveal"><div class="ico">📊</div><h3>Tracking &amp; Analytics</h3><p>CTR, CPC, CVR, CPA, EPC, ROI — make data-driven decisions.</p></div>
+      <div class="card reveal"><div class="ico">🎯</div><h3>Retargeting &amp; Scaling</h3><p>Visitor-based funnels and data-driven scaling systems.</p></div>
     </div>
   </div>
 </section>
 
 <section class="alt">
   <div class="wrap">
-    <h2 class="sec">Full <span class="hl">Curriculum</span></h2>
-    <p class="lead">28 modules across 4 phases — a structured learning journey from beginner to advanced.</p>
-    <div class="phase"><span class="pnum">PHASE 01 — FOUNDATION</span><h3>Build Your Foundation</h3>
+    <div class="eyebrow reveal">Step-by-Step Roadmap</div>
+    <h2 class="sec reveal">Full <span class="hl">Curriculum</span></h2>
+    <p class="lead reveal">28 modules across 4 phases — a structured learning journey from beginner to advanced.</p>
+    <div class="phase reveal"><span class="pnum">PHASE 01 — FOUNDATION</span><h3>Build Your Foundation</h3><p class="pdesc">Understand the entire CPA ecosystem from the ground up</p>
       <ul><li>Digital Marketing Basics</li><li>CPA Marketing Basics</li><li>Complete CPA Workflow</li><li>CPA Networks</li><li>Offer Selection</li><li>Content Channels</li></ul></div>
-    <div class="phase"><span class="pnum">PHASE 02 — BUILD</span><h3>Build Your System</h3>
+    <div class="phase reveal"><span class="pnum">PHASE 02 — BUILD</span><h3>Build Your System</h3><p class="pdesc">Create your own website, landing pages and content channels</p>
       <ul><li>Domain &amp; Hosting</li><li>Landing Page Creation</li><li>Content &amp; Copywriting</li><li>SEO</li><li>TikTok Marketing</li><li>YouTube Marketing</li></ul></div>
-    <div class="phase"><span class="pnum">PHASE 03 — OPTIMIZE</span><h3>Traffic &amp; Optimization</h3>
+    <div class="phase reveal"><span class="pnum">PHASE 03 — OPTIMIZE</span><h3>Traffic &amp; Optimization</h3><p class="pdesc">Run paid and organic traffic, optimize with real data</p>
       <ul><li>Facebook Marketing</li><li>Facebook Ads</li><li>Paid Traffic</li><li>Tracking &amp; Analytics</li><li>CRO &amp; A/B Testing</li><li>Retargeting Funnel</li></ul></div>
-    <div class="phase"><span class="pnum">PHASE 04 — SCALE</span><h3>Scale &amp; Grow</h3>
+    <div class="phase reveal"><span class="pnum">PHASE 04 — SCALE</span><h3>Scale &amp; Grow</h3><p class="pdesc">Find winners, scale them, and automate your system</p>
       <ul><li>Scaling</li><li>Advanced Funnel</li><li>Email Marketing</li><li>Campaign Optimization</li><li>Profitability Analysis</li><li>Automation</li><li>Final Project (PDF)</li></ul></div>
   </div>
 </section>
 
 <section class="alt">
   <div class="wrap">
-    <h2 class="sec">🌐 CPA <span class="hl">Networks</span> You'll Master</h2>
-    <p class="lead">The 28 modules cover these top CPA networks and affiliate platforms, hands-on</p>
+    <div class="eyebrow reveal">Hands-On Training</div>
+    <h2 class="sec reveal">🌐 CPA <span class="hl">Networks</span> You'll Master</h2>
+    <p class="lead reveal">The 28 modules cover these top CPA networks and affiliate platforms, hands-on</p>
     <div class="net-grid">
-      <a class="net-card" href="https://affmine.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/affmine.png" alt="Affmine"><span>Affmine</span></a>
-      <a class="net-card" href="https://trafee.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/trafee.png" alt="Trafee"><span>Trafee</span></a>
-      <a class="net-card" href="https://adbluemedia.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/adbluemedia.png" alt="AdBlueMedia"><span>AdBlueMedia</span></a>
-      <a class="net-card" href="https://www.affpaying.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/affpaying.png" alt="AffPaying"><span>AffPaying</span></a>
-      <a class="net-card" href="https://maxbounty.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/maxbounty.png" alt="MaxBounty"><span>MaxBounty</span></a>
-      <a class="net-card" href="https://www.performcb.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/performcb.png" alt="PerformCB"><span>PerformCB</span></a>
-      <a class="net-card" href="https://clickdealer.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/clickdealer.svg" alt="ClickDealer"><span>ClickDealer</span></a>
-      <a class="net-card" href="https://www.adworkmedia.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/adworkmedia.png" alt="AdWork Media"><span>AdWork Media</span></a>
-      <a class="net-card" href="https://cpalead.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/cpalead.png" alt="CPAlead"><span>CPAlead</span></a>
-      <a class="net-card" href="https://ogads.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/ogads.png" alt="OGAds"><span>OGAds</span></a>
-      <a class="net-card" href="https://advidi.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/advidi.png" alt="Advidi"><span>Advidi</span></a>
-      <a class="net-card" href="https://lospollos.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/lospollos.png" alt="LosPollos"><span>LosPollos</span></a>
+      <a class="net-card reveal" href="https://affmine.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/affmine.png" alt="Affmine"><span>Affmine</span></a>
+      <a class="net-card reveal" href="https://trafee.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/trafee.png" alt="Trafee"><span>Trafee</span></a>
+      <a class="net-card reveal" href="https://adbluemedia.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/adbluemedia.png" alt="AdBlueMedia"><span>AdBlueMedia</span></a>
+      <a class="net-card reveal" href="https://www.affpaying.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/affpaying.png" alt="AffPaying"><span>AffPaying</span></a>
+      <a class="net-card reveal" href="https://maxbounty.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/maxbounty.png" alt="MaxBounty"><span>MaxBounty</span></a>
+      <a class="net-card reveal" href="https://www.performcb.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/performcb.png" alt="PerformCB"><span>PerformCB</span></a>
+      <a class="net-card reveal" href="https://clickdealer.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/clickdealer.svg" alt="ClickDealer"><span>ClickDealer</span></a>
+      <a class="net-card reveal" href="https://www.adworkmedia.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/adworkmedia.png" alt="AdWork Media"><span>AdWork Media</span></a>
+      <a class="net-card reveal" href="https://cpalead.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/cpalead.png" alt="CPAlead"><span>CPAlead</span></a>
+      <a class="net-card reveal" href="https://ogads.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/ogads.png" alt="OGAds"><span>OGAds</span></a>
+      <a class="net-card reveal" href="https://advidi.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/advidi.png" alt="Advidi"><span>Advidi</span></a>
+      <a class="net-card reveal" href="https://lospollos.com/" target="_blank" rel="nofollow sponsored noopener"><img src="images/networks/lospollos.png" alt="LosPollos"><span>LosPollos</span></a>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2 class="sec">Your <span class="hl">Mentor</span></h2>
-    <p class="lead">Learn from an experienced marketer</p>
-    <div class="mentor">
+    <div class="eyebrow reveal">Meet Your Mentor</div>
+    <h2 class="sec reveal">Your <span class="hl">Mentor</span></h2>
+    <p class="lead reveal">Learn from an experienced marketer</p>
+    <div class="mentor reveal">
       <img class="avatar-photo" src="images/mentor.png" alt="KHORSHED ALAM">
       <div><h3>KHORSHED ALAM</h3><div class="role">Marketing Manager</div>
       <p>Experienced in Digital Marketing, SEO, SEM, Social Media, Content Marketing, Analytics and Campaign Strategy. Teaches step by step through a structured roadmap — so even complete beginners can learn practical skills and move forward.</p></div>
@@ -410,10 +508,11 @@
 
 <section class="alt" id="enroll">
   <div class="wrap">
-    <h2 class="sec"><span class="hl">Enroll</span> Now</h2>
-    <p class="lead">Pay with PayPal or Payoneer and get the complete PDF instantly.</p>
+    <div class="eyebrow reveal">Limited Time Offer</div>
+    <h2 class="sec reveal"><span class="hl">Enroll</span> Now</h2>
+    <p class="lead reveal">Pay with PayPal or Payoneer and get the complete PDF instantly.</p>
     <div class="price-grid">
-      <div class="price-card hot">
+      <div class="price-card hot reveal">
         <div class="tag">🌍 International — PDF Format</div>
         <h3>CPA Advanced Master Course</h3>
         <div class="old">$40</div><div class="now">$20</div>
@@ -433,14 +532,15 @@
 
 <section>
   <div class="wrap">
-    <h2 class="sec">Contact <span class="hl">Us</span></h2>
-    <p class="lead">Message us directly with any questions</p>
+    <div class="eyebrow reveal">Get In Touch</div>
+    <h2 class="sec reveal">Contact <span class="hl">Us</span></h2>
+    <p class="lead reveal">Message us directly with any questions</p>
     <div class="contact-row">
-      <a class="soc" href="https://wa.me/8801842793958" target="_blank">
-        <span class="sic" style="background:#25d366;"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span>
+      <a class="soc reveal" href="https://wa.me/8801842793958" target="_blank">
+        <span class="sic" style="background:linear-gradient(135deg,#2fe07a,#1eb85a);"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span>
         <span><b>WhatsApp</b><span>01842793958 — message us</span></span></a>
-      <a class="soc" href="https://t.me/SonglapMridha" target="_blank">
-        <span class="sic" style="background:#229ed9;"><svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></span>
+      <a class="soc reveal" href="https://t.me/SonglapMridha" target="_blank">
+        <span class="sic" style="background:linear-gradient(135deg,#3fb6f0,#1b7fc4);"><svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></span>
         <span><b>Telegram</b><span>@SonglapMridha — message us</span></span></a>
     </div>
   </div>
@@ -448,13 +548,14 @@
 
 <section class="alt">
   <div class="wrap">
-    <h2 class="sec">Frequently Asked <span class="hl">Questions</span></h2>
-    <div style="max-width:760px;margin:0 auto;">
-      <details class="faq"><summary>I'm a complete beginner. Is this for me?</summary><p>Yes. The curriculum starts from the foundations and moves step by step toward advanced topics and a practical final project.</p></details>
-      <details class="faq"><summary>What will I learn?</summary><p>Alongside CPA: domains, hosting, landing pages, Facebook, TikTok, YouTube, SEO, paid traffic, tracking, analytics, CRO, retargeting and scaling.</p></details>
-      <details class="faq"><summary>How do I receive the course?</summary><p>As a complete PDF guide — sent to you right after payment confirmation. Read it on any phone, tablet or computer.</p></details>
-      <details class="faq"><summary>Will I earn money guaranteed?</summary><p>No legitimate course can guarantee specific income. Your results depend on your execution, traffic costs, offers, GEOs and platform rules.</p></details>
-      <details class="faq"><summary>How do I pay?</summary><p>International students pay $20 via PayPal using the button above, then confirm on WhatsApp.</p></details>
+    <div class="eyebrow reveal">Have Questions?</div>
+    <h2 class="sec reveal">Frequently Asked <span class="hl">Questions</span></h2>
+    <div style="max-width:780px;margin:0 auto;">
+      <details class="faq reveal"><summary>I'm a complete beginner. Is this for me?</summary><p>Yes. The curriculum starts from the foundations and moves step by step toward advanced topics and a practical final project.</p></details>
+      <details class="faq reveal"><summary>What will I learn?</summary><p>Alongside CPA: domains, hosting, landing pages, Facebook, TikTok, YouTube, SEO, paid traffic, tracking, analytics, CRO, retargeting and scaling.</p></details>
+      <details class="faq reveal"><summary>How do I receive the course?</summary><p>As a complete PDF guide — sent to you right after payment confirmation. Read it on any phone, tablet or computer.</p></details>
+      <details class="faq reveal"><summary>Will I earn money guaranteed?</summary><p>No legitimate course can guarantee specific income. Your results depend on your execution, traffic costs, offers, GEOs and platform rules.</p></details>
+      <details class="faq reveal"><summary>How do I pay?</summary><p>International students pay $20 via PayPal using the button above, then confirm on WhatsApp.</p></details>
     </div>
   </div>
 </section>
@@ -471,6 +572,10 @@
   </div>
 </footer>
 
+<div class="sticky-cta">
+  <a href="#enroll"><span class="lang-bn">🚀 ৫০% ছাড়ে ভর্তি হোন</span><span class="lang-en">🚀 Enroll at 50% OFF</span></a>
+</div>
+
 <script>
 function setLang(l){
   var bns = document.querySelectorAll('.lang-bn');
@@ -482,6 +587,7 @@ function setLang(l){
   document.documentElement.lang = l;
   try{ localStorage.setItem('cpaLang', l); }catch(e){}
   window.scrollTo(0,0);
+  requestAnimationFrame(refreshReveals);
 }
 function copyBkash(){
   var t = document.getElementById('bkashNum').innerText;
@@ -525,6 +631,53 @@ function tickOffer(){
   document.getElementById('cdS').textContent = s;
 }
 setInterval(tickOffer, 1000); tickOffer();
+/* Reveal on scroll */
+var revealObs = null;
+function refreshReveals(){
+  var els = document.querySelectorAll('.reveal');
+  for(var i=0;i<els.length;i++){
+    var r = els[i].getBoundingClientRect();
+    if(r.top < window.innerHeight && r.bottom > 0){ els[i].classList.add('visible'); }
+  }
+}
+(function(){
+  if('IntersectionObserver' in window){
+    revealObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ revealObs.observe(el); });
+  }
+  window.addEventListener('scroll', refreshReveals, {passive:true});
+  refreshReveals();
+})();
+/* Animated stat counters */
+(function(){
+  var done = false;
+  function run(){
+    if(done){ return; }
+    var els = document.querySelectorAll('[data-count]');
+    var any = false;
+    els.forEach(function(el){
+      if(el.getAttribute('data-done')){ return; }
+      var r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0){
+        any = true; el.setAttribute('data-done','1');
+        var target = parseInt(el.getAttribute('data-count'),10), suf = el.getAttribute('data-suffix')||'';
+        var t0 = null;
+        function step(ts){
+          if(!t0){ t0 = ts; }
+          var p = Math.min((ts-t0)/1200, 1);
+          el.textContent = Math.round(target * (1-Math.pow(1-p,3))) + suf;
+          if(p < 1){ requestAnimationFrame(step); }
+        }
+        requestAnimationFrame(step);
+      }
+    });
+    if(any && document.querySelectorAll('[data-count]:not([data-done])').length===0){ done = true; }
+  }
+  window.addEventListener('scroll', run, {passive:true});
+  run();
+})();
 </script>
 </body>
 </html>
