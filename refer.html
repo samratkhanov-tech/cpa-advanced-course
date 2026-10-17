@@ -48,6 +48,9 @@
   .paylogo.payoneer{background:#3d3d3d}
   .paylogo.sel{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold)}
   .paylogo img{width:22px;height:22px;object-fit:contain;background:#fff;border-radius:6px;padding:2px}
+  .wa-float{position:fixed;bottom:22px;right:22px;z-index:9999;width:60px;height:60px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,.5);animation:wapulse 2s infinite}
+  @keyframes wapulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+  .wa-tip{position:fixed;bottom:30px;right:92px;z-index:9999;background:#131a3a;border:1px solid #2a3a75;color:#eef1ff;padding:8px 14px;border-radius:20px;font-size:13px;display:none;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -68,8 +71,8 @@
   <div class="box">
     <h2 id="rateTitle">💰 কমিশন রেট</h2>
     <div class="rate">
-      <div><b>৳৫০০</b><span id="rateLive">প্রতি লাইভ কোর্স ভর্তি (৳২,৪৯৯)</span></div>
-      <div><b>$৫</b><span id="ratePdf">প্রতি English PDF বিক্রি ($২০)</span></div>
+      <div><b id="rateLiveAmt">৳৫০০</b><span id="rateLive">প্রতি লাইভ কোর্স ভর্তি (৳২,৪৯৯)</span></div>
+      <div><b id="ratePdfAmt">$৫</b><span id="ratePdf">প্রতি English PDF বিক্রি ($২০)</span></div>
     </div>
     <ol class="steps">
       <li id="step1">নিচে <b>সাইন আপ</b> করো — তোমার <b>আলাদা রেফার লিংক</b> পাবে</li>
@@ -104,6 +107,7 @@
       <button type="button" class="paylogo payoneer" data-m="Payoneer">💼 Payoneer</button>
     </div>
     <input type="text" id="refBkash" placeholder="বিকাশ নম্বর">
+    <div id="payHint" style="font-size:13px;color:var(--gold);margin:-6px 0 12px">✅ <span id="payHintText">bKash</span> <span id="payHintSuffix">সিলেক্টেড — নিচে নম্বর দাও</span></div>
     <label style="font-size:14px;color:var(--muted);margin:4px 0 8px" id="photoLabel">📸 তোমার ছবি (ঐচ্ছিক)</label>
     <input type="file" id="refPhoto" accept="image/*" style="width:100%;padding:10px;border-radius:12px;border:1px dashed var(--line);background:var(--card2);color:var(--muted);font-size:14px;margin-bottom:12px;font-family:inherit">
     <img id="photoPreview" style="display:none;max-width:120px;border-radius:12px;margin-bottom:12px;border:1px solid var(--line)">
@@ -123,6 +127,8 @@
     <p style="font-size:13px" id="saveWarn">⚠️ এই কোডটা সেভ করে রাখো — এটা দিয়েই ড্যাশবোর্ডে ঢুকবে।</p>
   </div>
 </div>
+<a href="https://wa.me/8801842793958?text=%E0%A6%B8%E0%A6%BE%E0%A6%AA%E0%A7%8B%E0%A6%B0%E0%A7%8D%E0%A6%9F%20%E0%A6%A6%E0%A6%B0%E0%A6%95%E0%A6%BE%E0%A6%B0" target="_blank" class="wa-float" id="waFloat" title="WhatsApp Support">💬</a>
+<div class="wa-tip" id="waTip">💬 <span id="waTipText">সাপোর্টের জন্য WhatsApp-এ মেসেজ করো!</span></div>
 <script>
 var API = 'https://aiaffiliatelaunch.unaux.com/cpa-download/api.php';
 var LANG = 'bn';
@@ -131,6 +137,8 @@ var T = {
     back: '← মূল পেজে ফিরে যাও',
     heroSub: 'বন্ধুদের কোর্সে ভর্তি করাও, প্রতি ভর্তিতে কমিশন নাও!',
     rateTitle: '💰 কমিশন রেট',
+    rateLiveAmt: '৳৫০০',
+    ratePdfAmt: '$৫',
     rateLive: 'প্রতি লাইভ কোর্স ভর্তি (৳২,৪৯৯)',
     ratePdf: 'প্রতি English PDF বিক্রি ($২০)',
     step1: 'নিচে <b>সাইন আপ</b> করো — তোমার <b>আলাদা রেফার লিংক</b> পাবে',
@@ -156,6 +164,8 @@ var T = {
     numPh_binance: 'Binance UID / ইমেইল',
     numPh_paypal: 'PayPal ইমেইল',
     numPh_payoneer: 'Payoneer ইমেইল',
+    payHintSuffix: 'সিলেক্টেড — নিচে নম্বর দাও',
+    waTipText: 'সাপোর্টের জন্য WhatsApp-এ মেসেজ করো!',
     signupBtn: '🚀 আমার রেফার লিংক বানাও',
     doneTitle: '🎉 অভিনন্দন!',
     doneCodeLabel: 'তোমার রেফার কোড:',
@@ -180,6 +190,8 @@ var T = {
     back: '← Back to main page',
     heroSub: 'Refer friends to the course and earn commission on every enrollment!',
     rateTitle: '💰 Commission Rates',
+    rateLiveAmt: '৳500',
+    ratePdfAmt: '$5',
     rateLive: 'per live course enrollment (৳2,499)',
     ratePdf: 'per English PDF sale ($20)',
     step1: '<b>Sign up</b> below — get your <b>own referral link</b>',
@@ -205,6 +217,8 @@ var T = {
     numPh_binance: 'Binance UID / email',
     numPh_paypal: 'PayPal email',
     numPh_payoneer: 'Payoneer email',
+    payHintSuffix: 'selected — enter details below',
+    waTipText: 'Message us on WhatsApp for support!',
     signupBtn: '🚀 Create My Referral Link',
     doneTitle: '🎉 Congratulations!',
     doneCodeLabel: 'Your referral code:',
@@ -235,6 +249,8 @@ function setLang(l){
   document.getElementById('backLink').textContent = t.back;
   document.getElementById('heroSub').textContent = t.heroSub;
   document.getElementById('rateTitle').textContent = t.rateTitle;
+  document.getElementById('rateLiveAmt').textContent = t.rateLiveAmt;
+  document.getElementById('ratePdfAmt').textContent = t.ratePdfAmt;
   document.getElementById('rateLive').textContent = t.rateLive;
   document.getElementById('ratePdf').textContent = t.ratePdf;
   document.getElementById('step1').innerHTML = t.step1;
@@ -264,19 +280,28 @@ function setLang(l){
   document.getElementById('dashLink').textContent = t.dashLink;
   document.getElementById('dashHint').textContent = t.dashHint;
   document.getElementById('saveWarn').textContent = t.saveWarn;
+  document.getElementById('waTipText').textContent = t.waTipText;
   try{ localStorage.setItem('cpaRefLang', l); }catch(e){}
 }
+// WhatsApp support float tooltip
+setTimeout(function(){ document.getElementById('waTip').style.display='block'; }, 2500);
+setTimeout(function(){ document.getElementById('waTip').style.display='none'; }, 9000);
+document.getElementById('waFloat').addEventListener('mouseenter', function(){ document.getElementById('waTip').style.display='block'; });
+document.getElementById('waFloat').addEventListener('mouseleave', function(){ document.getElementById('waTip').style.display='none'; });
 try{ var sl = localStorage.getItem('cpaRefLang'); if(sl==='en') setLang('en'); }catch(e){}
 var PAYM = 'bKash';
 function updateNumPh(){
   var t = T[LANG];
-  var ph = t.numPh_bkash;
-  if(PAYM==='Nagad') ph = t.numPh_nagad;
-  if(PAYM==='Rocket') ph = t.numPh_rocket;
-  if(PAYM==='Binance') ph = t.numPh_binance;
-  if(PAYM==='PayPal') ph = t.numPh_paypal;
-  if(PAYM==='Payoneer') ph = t.numPh_payoneer;
+  var ph = t.numPh_bkash; var mname = 'bKash';
+  if(PAYM==='Nagad'){ ph = t.numPh_nagad; mname = 'Nagad'; }
+  if(PAYM==='Rocket'){ ph = t.numPh_rocket; mname = 'Rocket'; }
+  if(PAYM==='Binance'){ ph = t.numPh_binance; mname = 'Binance'; }
+  if(PAYM==='PayPal'){ ph = t.numPh_paypal; mname = 'PayPal'; }
+  if(PAYM==='Payoneer'){ ph = t.numPh_payoneer; mname = 'Payoneer'; }
   document.getElementById('refBkash').placeholder = ph;
+  document.getElementById('refBkash').value = '';
+  document.getElementById('payHintText').textContent = mname;
+  document.getElementById('payHintSuffix').textContent = t.payHintSuffix;
 }
 document.querySelectorAll('.paylogo').forEach(function(b){
   b.addEventListener('click', function(){
