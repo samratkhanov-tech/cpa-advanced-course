@@ -210,6 +210,38 @@
     header.hero h1{font-size:32px} h2.sec{font-size:27px} .price-card .now{font-size:46px}
     section{padding:56px 0} .btn{padding:15px 34px; font-size:16px}
   }
+  /* ---------- PDF unlock + customer reviews ---------- */
+  .unlock-box { max-width:760px; margin:26px auto 0; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:28px; }
+  .unlock-steps { list-style:none; padding:0; margin:0 0 22px; display:grid; gap:14px; }
+  .unlock-steps li { display:flex; gap:14px; align-items:flex-start; background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+  .unlock-steps .n { flex:0 0 34px; height:34px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#141414; font-weight:800; display:flex; align-items:center; justify-content:center; }
+  .unlock-mail { width:100%; max-width:420px; padding:14px 18px; border-radius:12px; border:1px solid var(--line); background:#0a1030; color:var(--text); font-size:16px; margin:6px 0 14px; font-family:inherit; box-sizing:border-box; }
+  .schedule-box { max-width:760px; margin:0 auto; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:28px; }
+  .schedule-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; }
+  .sched-phase { background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:16px; text-align:center; }
+  .sched-phase b { display:block; color:var(--gold); margin-bottom:6px; }
+  .sched-phase span { color:var(--muted); font-size:14px; }
+  .rev-summary { text-align:center; margin:8px 0 24px; }
+  .rev-big { font-size:56px; font-weight:800; background:linear-gradient(135deg,#ffd166,var(--gold2)); -webkit-background-clip:text; background-clip:text; color:transparent; line-height:1.1; }
+  .rev-stars { color:var(--gold); font-size:26px; letter-spacing:4px; }
+  .rev-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; max-width:960px; margin:0 auto 30px; }
+  .rev-card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; }
+  .rev-card .who { font-weight:700; margin-bottom:4px; }
+  .rev-card .stars { color:var(--gold); letter-spacing:2px; margin-bottom:8px; }
+  .rev-card p { color:var(--muted); font-size:15px; margin:0; }
+  .rev-empty { text-align:center; color:var(--muted); padding:26px; border:1px dashed var(--line); border-radius:14px; max-width:640px; margin:0 auto 26px; }
+  .rev-form { max-width:640px; margin:0 auto; background:var(--card2); border:1px solid var(--line); border-radius:16px; padding:24px; text-align:center; }
+  .rev-form input, .rev-form textarea { width:100%; box-sizing:border-box; padding:13px 16px; border-radius:12px; border:1px solid var(--line); background:#0a1030; color:var(--text); font-size:15px; margin-bottom:12px; font-family:inherit; }
+  .rev-form textarea { min-height:110px; resize:vertical; }
+  .star-pick { font-size:34px; cursor:pointer; color:#3a4670; letter-spacing:6px; margin:4px 0 14px; user-select:none; }
+  .star-pick .on { color:var(--gold); }
+  .rev-note { text-align:center; color:var(--muted); font-size:13px; margin-top:12px; }
+  /* ---------- locked PDF hero card ---------- */
+  html { scroll-behavior:smooth; }
+  .stat-link { display:block; text-decoration:none; color:inherit; }
+  .pdf-lock { position:relative; display:inline-block; }
+  .pdf-lock i { position:absolute; right:-12px; bottom:-2px; font-size:15px; font-style:normal; background:#0c1230; border-radius:50%; padding:3px; line-height:1; box-shadow:0 2px 8px rgba(0,0,0,.5); animation:lockPulse 2s ease-in-out infinite; }
+  @keyframes lockPulse { 0%,100%{ transform:scale(1);} 50%{ transform:scale(1.18);} }
 </style>
 </head>
 <body>
@@ -368,8 +400,78 @@
           <div class="pay-num"><span id="bkashNum">8801842793958</span><button onclick="copyBkash()">Copy</button></div>
           <ul class="pay-steps"><li>উপরের নাম্বারে <b>৳২,৪৯৯</b> Send Money করুন</li><li>TrxID টি WhatsApp-এ পাঠিয়ে দিন</li><li>ভর্তি কনফার্ম হয়ে যাবে ✅</li></ul>
         </div>
-        <a class="btn btn-green" href="https://wa.me/8801842793958?text=আমি%20CPA%20কোর্সে%20ভর্তি%20হতে%20চাই।%20বিকাশে%20পেমেন্ট%20করেছি।" target="_blank">WhatsApp-এ কনফার্ম করুন</a>
+        <a class="btn btn-green" id="enrWaBtn" href="https://wa.me/8801842793958?text=আমি%20CPA%20কোর্সে%20ভর্তি%20হতে%20চাই।%20বিকাশে%20পেমেন্ট%20করেছি।" target="_blank">WhatsApp-এ কনফার্ম করুন</a>
+        <div class="enroll-form" style="margin-top:14px">
+          <input class="unlock-mail" id="enrName" type="text" placeholder="তোমার নাম" style="margin-bottom:10px">
+          <input class="unlock-mail" id="enrPhone" type="text" placeholder="মোবাইল নম্বর" style="margin-bottom:10px">
+          <input class="unlock-mail" id="enrRef" type="text" placeholder="রেফার কোড (যদি থাকে)" style="margin-bottom:6px;text-transform:uppercase">
+          <p class="rev-note" id="enrMsg" style="display:none"></p>
+        </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="text-align:center;padding:6px 0 34px">
+    <a class="btn btn-blue" href="./students.html" style="font-size:17px">🎓 আমি ভর্তি হয়েছি — ক্লাসে ঢুকো</a>
+    <p class="rev-note">ভর্তির পর WhatsApp-এ পাওয়া স্টুডেন্ট কোড দিয়ে লাইভ ক্লাসে ঢুকো</p>
+    <p class="rev-note" style="margin-top:10px">🤝 বন্ধুদের রেফার করে আয় করো: <a href="./refer.html" style="color:var(--gold)">Refer &amp; Earn →</a></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow reveal">Video Unlock</div>
+    <h2 class="sec reveal">ভিডিও <span class="hl">আনলক</span> করো</h2>
+    <p class="lead reveal">মাত্র ৩ ধাপে ২৮টি লাইভ ক্লাসের এক্সেস নাও — একটার পর একটা</p>
+    <div class="unlock-box reveal">
+      <ul class="unlock-steps">
+        <li><span class="n">১</span><span>নিচে তোমার <b>Gmail</b> লেখো, তারপর <b>WhatsApp</b> বা <b>Gmail</b> বাটনে চাপ দাও — মেসেজ তৈরি হয়ে যাবে।</span></li>
+        <li><span class="n">২</span><span>পেমেন্ট কনফার্ম হলে আমি তোমাকে <b>ভিডিও এক্সেস পারমিশন</b> দেবো — স্টুডেন্ট কোড পাবে।</span></li>
+        <li><span class="n">৩</span><span>স্টুডেন্ট কোড দিয়ে <b>২৮টি ক্লাস</b> একটার পর একটা আনলক করে দেখো। নিচে সম্পূর্ণ শিডিউল দেওয়া আছে।</span></li>
+      </ul>
+      <div style="text-align:center">
+        <input class="unlock-mail" id="unlockMailBn" type="email" placeholder="তোমার Gmail লেখো (যেমন: name@gmail.com)">
+        <div class="cta-row">
+          <a class="btn btn-green" id="unlockWaBn" href="https://wa.me/8801842793958" target="_blank">💬 WhatsApp-এ মেসেজ করো</a>
+          <a class="btn btn-blue" id="unlockGmailBtnBn" href="mailto:samratkhanov@gmail.com">✉️ Gmail-এ মেসেজ করো</a>
+        </div>
+      </div>
+    </div>
+    <div class="schedule-box reveal" style="margin-top:24px">
+      <h3 style="text-align:center;margin-bottom:16px">📅 ২৮টি ক্লাসের শিডিউল</h3>
+      <div class="schedule-grid">
+        <div class="sched-phase"><b>ফেজ ১: ফাউন্ডেশন</b><span>ক্লাস ১–৭</span></div>
+        <div class="sched-phase"><b>ফেজ ২: বিল্ড</b><span>ক্লাস ৮–১৪</span></div>
+        <div class="sched-phase"><b>ফেজ ৩: অপটিমাইজ</b><span>ক্লাস ১৫–২১</span></div>
+        <div class="sched-phase"><b>ফেজ ৪: স্কেল</b><span>ক্লাস ২২–২৮</span></div>
+      </div>
+      <p style="text-align:center;color:var(--muted);font-size:14px;margin-top:12px">✅ একটার পর একটা ক্লাস হবে — আগের ক্লাস শেষ না করে পরেরটা খুলবে না</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="eyebrow reveal">Customer Reviews</div>
+    <h2 class="sec reveal">কাস্টমার <span class="hl">রিভিউ</span></h2>
+    <p class="lead reveal">যারা কোর্সটা কিনেছেন, তাদের মতামত</p>
+    <div class="rev-summary reveal">
+      <div class="rev-big" id="revAvgBn">–</div>
+      <div class="rev-stars" id="revStarsBn">☆☆☆☆☆</div>
+      <div style="color:var(--muted)" id="revCountBn"></div>
+    </div>
+    <div class="rev-cards" id="revCardsBn"></div>
+    <div class="rev-form reveal">
+      <h3 style="margin-top:0">⭐ তোমার রিভিউ দাও</h3>
+      <input id="revNameBn" placeholder="তোমার নাম">
+      <div class="star-pick" id="starPickBn"><span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span></div>
+      <textarea id="revTextBn" placeholder="কোর্সটা কেমন লেগেছে? সংক্ষেপে লেখো..."></textarea>
+      <input id="revCodeBn" placeholder="পারচেজ কোড (ডাউনলোড লিংকের ?t= এর পরের কোড)">
+      <a class="btn btn-green" id="revSendBn" href="https://wa.me/8801842793958" target="_blank">⭐ রিভিউ পোস্ট করো</a>
+      <p class="rev-note">শুধু যারা English PDF কিনেছো বা কোর্স শেষ করেছো তারা রিভিউ দিতে পারো।<br>English PDF ক্রেতারা ডাউনলোড লিংকের <b>?t=</b> এর পরের কোডটা দাও; লাইভ কোর্সের শিক্ষার্থীরা মেন্টরের পাঠানো রিভিউ কোড দাও।<br>⭐ পোস্ট করলেই তোমার রিভিউ নিচে সবার জন্য প্রকাশ হবে।</p>
+      <p class="rev-note" id="revMsgBn" style="display:none"></p>
     </div>
   </div>
 </section>
@@ -420,7 +522,7 @@
     </div>
     <div class="hero-stats">
       <div class="stat reveal"><b data-count="28" data-suffix="+">0</b><span>Structured Modules</span></div>
-      <div class="stat reveal"><b>📕 PDF</b><span>Instant Download</span></div>
+      <a href="#unlock" title="Click to unlock the PDF" class="stat reveal stat-link"><b><span class="pdf-lock">📕<i>🔒</i></span> PDF</b><span>Instant Download</span></a>
       <div class="stat reveal"><b data-count="4" data-suffix="">0</b><span>Learning Phases</span></div>
       <div class="stat reveal"><b data-count="1" data-suffix="">0</b><span>Final Project</span></div>
     </div>
@@ -549,6 +651,62 @@
         </div>
         <a class="btn btn-green" href="https://wa.me/8801842793958?text=I%20want%20to%20pay%20%2420%20via%20Payoneer%20for%20the%20CPA%20Advanced%20Master%20Course%20PDF" target="_blank">Pay with Payoneer — $20</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="unlock">
+  <div class="wrap">
+    <div class="eyebrow reveal">Video Unlock</div>
+    <h2 class="sec reveal"><span class="hl">Unlock</span> Your Videos</h2>
+    <p class="lead reveal">Get access to all 28 live classes in 3 steps — one after another</p>
+    <div class="unlock-box reveal">
+      <ul class="unlock-steps">
+        <li><span class="n">1</span><span>Type your <b>Gmail</b> below, then tap <b>WhatsApp</b> or <b>Gmail</b> — your message will be ready to send.</span></li>
+        <li><span class="n">2</span><span>After payment confirmation I'll give you <b>video access permission</b> — you'll receive a student code.</span></li>
+        <li><span class="n">3</span><span>Use your student code to unlock <b>28 classes</b> one by one. Full schedule below.</span></li>
+      </ul>
+      <div style="text-align:center">
+        <input class="unlock-mail" id="unlockMailEn" type="email" placeholder="Your Gmail (e.g. name@gmail.com)">
+        <div class="cta-row">
+          <a class="btn btn-green" id="unlockWaEn" href="https://wa.me/8801842793958" target="_blank">💬 Message on WhatsApp</a>
+          <a class="btn btn-blue" id="unlockGmailBtnEn" href="mailto:samratkhanov@gmail.com">✉️ Message via Gmail</a>
+        </div>
+      </div>
+    </div>
+    <div class="schedule-box reveal" style="margin-top:24px">
+      <h3 style="text-align:center;margin-bottom:16px">📅 28-Class Schedule</h3>
+      <div class="schedule-grid">
+        <div class="sched-phase"><b>Phase 1: Foundation</b><span>Class 1–7</span></div>
+        <div class="sched-phase"><b>Phase 2: Build</b><span>Class 8–14</span></div>
+        <div class="sched-phase"><b>Phase 3: Optimize</b><span>Class 15–21</span></div>
+        <div class="sched-phase"><b>Phase 4: Scale</b><span>Class 22–28</span></div>
+      </div>
+      <p style="text-align:center;color:var(--muted);font-size:14px;margin-top:12px">✅ Classes unlock one after another — finish one to open the next</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="eyebrow reveal">Customer Reviews</div>
+    <h2 class="sec reveal">Customer <span class="hl">Reviews</span></h2>
+    <p class="lead reveal">What our buyers say about the course</p>
+    <div class="rev-summary reveal">
+      <div class="rev-big" id="revAvgEn">–</div>
+      <div class="rev-stars" id="revStarsEn">☆☆☆☆☆</div>
+      <div style="color:var(--muted)" id="revCountEn"></div>
+    </div>
+    <div class="rev-cards" id="revCardsEn"></div>
+    <div class="rev-form reveal">
+      <h3 style="margin-top:0">⭐ Leave your review</h3>
+      <input id="revNameEn" placeholder="Your name">
+      <div class="star-pick" id="starPickEn"><span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span></div>
+      <textarea id="revTextEn" placeholder="How did you like the course? Write briefly..."></textarea>
+      <input id="revCodeEn" placeholder="Purchase code (the code after ?t= in your download link)">
+      <a class="btn btn-green" id="revSendEn" href="https://wa.me/8801842793958" target="_blank">⭐ Post review</a>
+      <p class="rev-note">Only English PDF buyers and course completers can review.<br>PDF buyers: enter the code after <b>?t=</b> in your one-time download link; course students: use the review code your mentor sent you.<br>⭐ Your review goes live below instantly for everyone.</p>
+      <p class="rev-note" id="revMsgEn" style="display:none"></p>
     </div>
   </div>
 </section>
@@ -701,139 +859,20 @@ function refreshReveals(){
   window.addEventListener('scroll', run, {passive:true});
   run();
 })();
-
-/* ===== Appended 2026-10-17: PDF unlock flow + customer reviews (BN+EN) ===== */
-/* Bootstrap (Edits 2-4): inject BN/EN unlock+reviews sections and the locked PDF hero card */
-(function(){
-try{
-var BN_HTML = `<section>
-  <div class="wrap">
-    <div class="eyebrow reveal">PDF Unlock</div>
-    <h2 class="sec reveal">PDF <span class="hl">আনলক</span> করো</h2>
-    <p class="lead reveal">মাত্র ৩ ধাপে তোমার নিজের পাসওয়ার্ডে সম্পূর্ণ PDF পাও</p>
-    <div class="unlock-box reveal">
-      <ul class="unlock-steps">
-        <li><span class="n">১</span><span>নিচে তোমার <b>Gmail</b> লেখো, তারপর <b>WhatsApp</b> বা <b>Gmail</b> বাটনে চাপ দাও — মেসেজ তৈরি হয়ে যাবে।</span></li>
-        <li><span class="n">২</span><span>পেমেন্ট কনফার্ম হলে আমি তোমাকে <b>one-time ডাউনলোড লিংক</b> + <b>তোমার নিজের পাসওয়ার্ড</b> পাঠিয়ে দেবো।</span></li>
-        <li><span class="n">৩</span><span>একবার ডাউনলোড করে তোমার পাসওয়ার্ড দিয়ে PDF খোলো। লিংক একবারই কাজ করবে।</span></li>
-      </ul>
-      <div style="text-align:center">
-        <input class="unlock-mail" id="unlockMailBn" type="email" placeholder="তোমার Gmail লেখো (যেমন: name@gmail.com)">
-        <div class="cta-row">
-          <a class="btn btn-green" id="unlockWaBn" href="https://wa.me/8801842793958" target="_blank">💬 WhatsApp-এ মেসেজ করো</a>
-          <a class="btn btn-blue" id="unlockGmailBtnBn" href="mailto:samratkhanov@gmail.com">✉️ Gmail-এ মেসেজ করো</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="alt">
-  <div class="wrap">
-    <div class="eyebrow reveal">Customer Reviews</div>
-    <h2 class="sec reveal">কাস্টমার <span class="hl">রিভিউ</span></h2>
-    <p class="lead reveal">যারা কোর্সটা কিনেছেন, তাদের মতামত</p>
-    <div class="rev-summary reveal">
-      <div class="rev-big" id="revAvgBn">–</div>
-      <div class="rev-stars" id="revStarsBn">☆☆☆☆☆</div>
-      <div style="color:var(--muted)" id="revCountBn"></div>
-    </div>
-    <div class="rev-cards" id="revCardsBn"></div>
-    <div class="rev-form reveal">
-      <h3 style="margin-top:0">⭐ তোমার রিভিউ দাও</h3>
-      <input id="revNameBn" placeholder="তোমার নাম">
-      <div class="star-pick" id="starPickBn"><span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span></div>
-      <textarea id="revTextBn" placeholder="কোর্সটা কেমন লেগেছে? সংক্ষেপে লেখো..."></textarea>
-      <input id="revCodeBn" placeholder="পারচেজ কোড (ডাউনলোড লিংকের ?t= এর পরের কোড)">
-      <a class="btn btn-green" id="revSendBn" href="https://wa.me/8801842793958" target="_blank">⭐ রিভিউ পোস্ট করো</a>
-      <p class="rev-note">শুধু যারা English PDF কিনেছো বা কোর্স শেষ করেছো তারা রিভিউ দিতে পারো।<br>English PDF ক্রেতারা ডাউনলোড লিংকের <b>?t=</b> এর পরের কোডটা দাও; লাইভ কোর্সের শিক্ষার্থীরা মেন্টরের পাঠানো রিভিউ কোড দাও।<br>⭐ পোস্ট করলেই তোমার রিভিউ নিচে সবার জন্য প্রকাশ হবে।</p>
-      <p class="rev-note" id="revMsgBn" style="display:none"></p>
-    </div>
-  </div>
-</section>`;
-var EN_HTML = `<section id="unlock">
-  <div class="wrap">
-    <div class="eyebrow reveal">PDF Unlock</div>
-    <h2 class="sec reveal"><span class="hl">Unlock</span> Your PDF</h2>
-    <p class="lead reveal">Get the complete PDF with your own personal password in 3 steps</p>
-    <div class="unlock-box reveal">
-      <ul class="unlock-steps">
-        <li><span class="n">1</span><span>Type your <b>Gmail</b> below, then tap <b>WhatsApp</b> or <b>Gmail</b> — your message will be ready to send.</span></li>
-        <li><span class="n">2</span><span>After payment confirmation I'll send you a <b>one-time download link</b> + <b>your own password</b>.</span></li>
-        <li><span class="n">3</span><span>Download once and open the PDF with your password. The link works only once.</span></li>
-      </ul>
-      <div style="text-align:center">
-        <input class="unlock-mail" id="unlockMailEn" type="email" placeholder="Your Gmail (e.g. name@gmail.com)">
-        <div class="cta-row">
-          <a class="btn btn-green" id="unlockWaEn" href="https://wa.me/8801842793958" target="_blank">💬 Message on WhatsApp</a>
-          <a class="btn btn-blue" id="unlockGmailBtnEn" href="mailto:samratkhanov@gmail.com">✉️ Message via Gmail</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="alt">
-  <div class="wrap">
-    <div class="eyebrow reveal">Customer Reviews</div>
-    <h2 class="sec reveal">Customer <span class="hl">Reviews</span></h2>
-    <p class="lead reveal">What our buyers say about the course</p>
-    <div class="rev-summary reveal">
-      <div class="rev-big" id="revAvgEn">–</div>
-      <div class="rev-stars" id="revStarsEn">☆☆☆☆☆</div>
-      <div style="color:var(--muted)" id="revCountEn"></div>
-    </div>
-    <div class="rev-cards" id="revCardsEn"></div>
-    <div class="rev-form reveal">
-      <h3 style="margin-top:0">⭐ Leave your review</h3>
-      <input id="revNameEn" placeholder="Your name">
-      <div class="star-pick" id="starPickEn"><span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span></div>
-      <textarea id="revTextEn" placeholder="How did you like the course? Write briefly..."></textarea>
-      <input id="revCodeEn" placeholder="Purchase code (the code after ?t= in your download link)">
-      <a class="btn btn-green" id="revSendEn" href="https://wa.me/8801842793958" target="_blank">⭐ Post review</a>
-      <p class="rev-note">Only English PDF buyers and course completers can review.<br>PDF buyers: enter the code after <b>?t=</b> in your one-time download link; course students: use the review code your mentor sent you.<br>⭐ Your review goes live below instantly for everyone.</p>
-      <p class="rev-note" id="revMsgEn" style="display:none"></p>
-    </div>
-  </div>
-</section>`;
-var links = document.querySelectorAll('a');
-var i, a, sec;
-for (i = 0; i < links.length; i++) {
-  a = links[i];
-  if (a.textContent.indexOf('WhatsApp-এ কনফার্ম করুন') !== -1) {
-    sec = a.closest('section');
-    if (sec) sec.insertAdjacentHTML('afterend', BN_HTML);
-  }
-  if (a.textContent.indexOf('Payoneer') !== -1) {
-    sec = a.closest('section');
-    if (sec) sec.insertAdjacentHTML('afterend', EN_HTML);
-  }
-}
-var stats = document.querySelectorAll('div.stat');
-for (i = 0; i < stats.length; i++) {
-  if (stats[i].textContent.indexOf('Instant Download') !== -1) {
-    stats[i].outerHTML = '<a href="#unlock" title="Click to unlock the PDF" class="stat reveal stat-link"><b><span class="pdf-lock">📕<i>🔒</i></span> PDF</b><span>Instant Download</span></a>';
-    break;
-  }
-}
-if (typeof refreshReveals === 'function') { refreshReveals(); }
-} catch (e) { if (window.console) console.warn('section inject failed', e); }
-})();
-
-/* ---------- PDF unlock: prefill buyer Gmail into WhatsApp / Gmail message ---------- */
+/* ---------- Video unlock: prefill buyer Gmail into WhatsApp / Gmail message ---------- */
 function wireUnlock(mailId, waId, gmId, lang){
   var mail = document.getElementById(mailId), wa = document.getElementById(waId), gm = document.getElementById(gmId);
   if(!mail || !wa || !gm){ return; }
   function upd(){
     var g = mail.value.trim();
     var wtxt = lang==='bn'
-      ? 'আমি CPA Advanced Master Course PDF আনলক করতে চাই। আমার Gmail: ' + (g || '(লিখিনি)')
-      : 'I want to unlock the CPA Advanced Master Course PDF. My Gmail: ' + (g || '(not provided)');
+      ? 'আমি CPA Advanced Master Course ভিডিও আনলক করতে চাই। আমার Gmail: ' + (g || '(লিখিনি)')
+      : 'I want to unlock the CPA Advanced Master Course videos. My Gmail: ' + (g || '(not provided)');
     wa.href = 'https://wa.me/8801842793958?text=' + encodeURIComponent(wtxt);
     var body = lang==='bn'
-      ? 'আমি CPA Advanced Master Course PDF আনলক করতে চাই।\nআমার Gmail: ' + (g || '(লিখিনি)')
-      : 'I want to unlock the CPA Advanced Master Course PDF.\nMy Gmail: ' + (g || '(not provided)');
-    gm.href = 'mailto:samratkhanov@gmail.com?subject=' + encodeURIComponent('CPA Course PDF Unlock') + '&body=' + encodeURIComponent(body);
+      ? 'আমি CPA Advanced Master Course ভিডিও আনলক করতে চাই।\nআমার Gmail: ' + (g || '(লিখিনি)')
+      : 'I want to unlock the CPA Advanced Master Course videos.\nMy Gmail: ' + (g || '(not provided)');
+    gm.href = 'mailto:samratkhanov@gmail.com?subject=' + encodeURIComponent('CPA Course Video Unlock') + '&body=' + encodeURIComponent(body);
   }
   mail.addEventListener('input', upd); upd();
 }
@@ -841,9 +880,12 @@ wireUnlock('unlockMailBn','unlockWaBn','unlockGmailBtnBn','bn');
 wireUnlock('unlockMailEn','unlockWaEn','unlockGmailBtnEn','en');
 /* ---------- Customer reviews ---------- */
 var REVIEWS = [
+  /* নতুন রিভিউ এখানে যোগ করো — উদাহরণ: {name:'Rahim', stars:5, text:'খুব ভালো কোর্স!'} */
 ];
 function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 function starRow(n){ var s=''; for(var i=1;i<=5;i++){ s += i<=n ? '★' : '☆'; } return s; }
+/* Reviews visitors post appear instantly for them (saved in their browser) and are
+   also sent to the seller on WhatsApp for verification + permanent publishing. */
 function getLocalReviews(){
   try{ return JSON.parse(localStorage.getItem('cpaReviews') || '[]'); }catch(e){ return []; }
 }
@@ -851,7 +893,6 @@ function saveLocalReview(r){
   var arr = getLocalReviews(); arr.push(r);
   try{ localStorage.setItem('cpaReviews', JSON.stringify(arr)); }catch(e){}
 }
-var REVIEWS_API = 'https://aiaffiliatelaunch.unaux.com/cpa-download/api.php';
 function renderReviews(){
   fetch(REVIEWS_API + '?action=reviews', {cache:'no-store'})
     .then(function(r){ return r.json(); })
@@ -883,6 +924,7 @@ function paintReviews(base){
       : (S==='Bn' ? 'রিভিউ আসছে...' : 'Reviews coming soon...');
   });
 }
+var REVIEWS_API = 'https://aiaffiliatelaunch.unaux.com/cpa-download/api.php';
 function wireReview(L){
   var pick = document.getElementById('starPick' + L);
   if(!pick){ return; }
@@ -945,45 +987,62 @@ function wireReview(L){
 }
 wireReview('Bn'); wireReview('En');
 renderReviews();
-
-
 </script>
-<style>
-/* ---------- PDF unlock + customer reviews ---------- */
-.unlock-sec{max-width:900px;margin:36px auto;padding:26px 22px;background:#0e1a2b;border:1px solid #1f3554;border-radius:16px}
-.unlock-sec h2{font-size:1.5rem;margin-bottom:6px}
-.unlock-sec .unlock-sub{color:#9fb3c8;margin:0 0 18px}
-.unlock-box{display:flex;flex-direction:column;gap:12px;max-width:520px}
-.unlock-box label{font-weight:600}
-.unlock-box input[type=email]{padding:12px 14px;border-radius:10px;border:1px solid #2c4a6e;background:#0a1422;color:#fff;font-size:1rem;width:100%}
-.unlock-btns{display:flex;gap:10px;flex-wrap:wrap}
-.btn-wa,.btn-gmail{display:inline-block;padding:12px 18px;border-radius:10px;font-weight:700;text-decoration:none;color:#fff}
-.btn-wa{background:#25d366}
-.btn-gmail{background:#d44638}
-.reviews-sec{max-width:1000px;margin:36px auto;padding:0 18px}
-.reviews-sec h2{font-size:1.6rem;text-align:center;margin-bottom:4px}
-.rev-avg{text-align:center;color:#f5b301;font-size:1.1rem;margin-bottom:18px}
-.rev-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-bottom:26px}
-.rev-card{background:#0e1a2b;border:1px solid #1f3554;border-radius:14px;padding:16px}
-.rev-card .who{font-weight:700;margin-bottom:6px}
-.rev-card .stars{color:#f5b301;font-size:1.2rem;letter-spacing:2px}
-.rev-card p{color:#c9d6e3;margin:8px 0 0}
-.rev-empty{text-align:center;color:#9fb3c8;padding:22px;border:1px dashed #2c4a6e;border-radius:12px}
-.rev-form{max-width:560px;margin:0 auto;background:#0e1a2b;border:1px solid #1f3554;border-radius:14px;padding:20px}
-.rev-form h3{margin-top:0}
-.rev-form .fld{margin-bottom:12px}
-.rev-form label{display:block;font-weight:600;margin-bottom:6px}
-.rev-form input[type=text],.rev-form textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid #2c4a6e;background:#0a1422;color:#fff;font-size:1rem}
-.rev-form textarea{min-height:90px;resize:vertical}
-.star-pick{font-size:2rem;cursor:pointer;letter-spacing:4px;user-select:none}
-.star-pick span{color:#3a4a5e;transition:color .15s}
-.star-pick span.on{color:#f5b301}
-.rev-submit{background:#f5b301;color:#111;border:none;padding:12px 22px;border-radius:10px;font-weight:800;font-size:1rem;cursor:pointer}
-.rev-msg{display:none;margin-top:10px;font-weight:600}
-.stat-link{text-decoration:none;color:inherit;display:block}
-.pdf-lock{position:relative;display:inline-block}
-.pdf-lock i{position:absolute;right:-6px;bottom:-4px;font-style:normal;font-size:.85em}
-</style>
-<script src="./refer.js"></script>
+<script>
+/* ---------- Referral system ---------- */
+var REF_API = 'https://aiaffiliatelaunch.unaux.com/cpa-download/api.php';
+function refGet(){ try{ return localStorage.getItem('cpaRef') || ''; }catch(e){ return ''; } }
+function refSet(r){ try{ localStorage.setItem('cpaRef', r); }catch(e){} }
+function refPostEnroll(name, contact, ref, type){
+  var fd = new FormData();
+  fd.append('action','enroll'); fd.append('name', name);
+  fd.append('contact', contact || ''); fd.append('ref', ref || ''); fd.append('type', type);
+  fetch(REF_API, {method:'POST', body:fd}).catch(function(){});
+}
+function refSay(t, ok){
+  var m = document.getElementById('enrMsg');
+  if(!m) return;
+  m.style.display = 'block'; m.style.color = ok ? '#25d366' : '#ff7b7b'; m.textContent = t;
+}
+(function(){
+  var m = /[?&]ref=([A-Za-z0-9]{4,12})/.exec(location.search);
+  if(m){
+    var code = m[1].toUpperCase();
+    refSet(code);
+    var fd = new FormData(); fd.append('action','refclick'); fd.append('code', code);
+    fetch(REF_API, {method:'POST', body:fd}).catch(function(){});
+  }
+  var saved = refGet();
+  var ri = document.getElementById('enrRef');
+  if(saved && ri && !ri.value) ri.value = saved;
+  var btn = document.getElementById('enrWaBtn');
+  if(btn){
+    btn.addEventListener('click', function(ev){
+      var nameEl = document.getElementById('enrName');
+      var phoneEl = document.getElementById('enrPhone');
+      var refEl = document.getElementById('enrRef');
+      var name = nameEl ? nameEl.value.trim() : '';
+      var phone = phoneEl ? phoneEl.value.trim() : '';
+      var ref = refEl ? refEl.value.trim().toUpperCase() : '';
+      if(!name){ ev.preventDefault(); refSay('⚠️ তোমার নাম লেখো', false); return; }
+      if(ref && !/^[A-Z0-9]{4,12}$/.test(ref)){ ev.preventDefault(); refSay('⚠️ রেফার কোডটি সঠিক নয়', false); return; }
+      if(ref) refSet(ref);
+      refPostEnroll(name, phone, ref, 'live');
+      var txt = 'আমি CPA Advanced Master Course-এ ভর্তি হতে চাই। নাম: ' + name + (phone ? ', মোবাইল: ' + phone : '') + '। বিকাশে পেমেন্ট করেছি।' + (ref ? ' রেফার কোড: ' + ref : '');
+      btn.href = 'https://wa.me/8801842793958?text=' + encodeURIComponent(txt);
+    });
+  }
+  var uw = document.getElementById('unlockWaEn');
+  if(uw){
+    uw.addEventListener('click', function(){
+      var r = refGet(); if(!r) return;
+      var mail = document.getElementById('unlockMailEn');
+      var g = mail ? mail.value.trim() : '';
+      refPostEnroll(g || 'PDF buyer', g || '', r, 'pdf');
+      if(uw.href.indexOf('Ref') === -1){ uw.href += encodeURIComponent('\nRef code: ' + r); }
+    });
+  }
+})();
+</script>
 </body>
 </html>
