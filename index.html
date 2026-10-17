@@ -701,6 +701,288 @@ function refreshReveals(){
   window.addEventListener('scroll', run, {passive:true});
   run();
 })();
+
+/* ===== Appended 2026-10-17: PDF unlock flow + customer reviews (BN+EN) ===== */
+/* Bootstrap (Edits 2-4): inject BN/EN unlock+reviews sections and the locked PDF hero card */
+(function(){
+try{
+var BN_HTML = `<section>
+  <div class="wrap">
+    <div class="eyebrow reveal">PDF Unlock</div>
+    <h2 class="sec reveal">PDF <span class="hl">আনলক</span> করো</h2>
+    <p class="lead reveal">মাত্র ৩ ধাপে তোমার নিজের পাসওয়ার্ডে সম্পূর্ণ PDF পাও</p>
+    <div class="unlock-box reveal">
+      <ul class="unlock-steps">
+        <li><span class="n">১</span><span>নিচে তোমার <b>Gmail</b> লেখো, তারপর <b>WhatsApp</b> বা <b>Gmail</b> বাটনে চাপ দাও — মেসেজ তৈরি হয়ে যাবে।</span></li>
+        <li><span class="n">২</span><span>পেমেন্ট কনফার্ম হলে আমি তোমাকে <b>one-time ডাউনলোড লিংক</b> + <b>তোমার নিজের পাসওয়ার্ড</b> পাঠিয়ে দেবো।</span></li>
+        <li><span class="n">৩</span><span>একবার ডাউনলোড করে তোমার পাসওয়ার্ড দিয়ে PDF খোলো। লিংক একবারই কাজ করবে।</span></li>
+      </ul>
+      <div style="text-align:center">
+        <input class="unlock-mail" id="unlockMailBn" type="email" placeholder="তোমার Gmail লেখো (যেমন: name@gmail.com)">
+        <div class="cta-row">
+          <a class="btn btn-green" id="unlockWaBn" href="https://wa.me/8801842793958" target="_blank">💬 WhatsApp-এ মেসেজ করো</a>
+          <a class="btn btn-blue" id="unlockGmailBtnBn" href="mailto:samratkhanov@gmail.com">✉️ Gmail-এ মেসেজ করো</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="eyebrow reveal">Customer Reviews</div>
+    <h2 class="sec reveal">কাস্টমার <span class="hl">রিভিউ</span></h2>
+    <p class="lead reveal">যারা কোর্সটা কিনেছেন, তাদের মতামত</p>
+    <div class="rev-summary reveal">
+      <div class="rev-big" id="revAvgBn">–</div>
+      <div class="rev-stars" id="revStarsBn">☆☆☆☆☆</div>
+      <div style="color:var(--muted)" id="revCountBn"></div>
+    </div>
+    <div class="rev-cards" id="revCardsBn"></div>
+    <div class="rev-form reveal">
+      <h3 style="margin-top:0">⭐ তোমার রিভিউ দাও</h3>
+      <input id="revNameBn" placeholder="তোমার নাম">
+      <div class="star-pick" id="starPickBn"><span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span></div>
+      <textarea id="revTextBn" placeholder="কোর্সটা কেমন লেগেছে? সংক্ষেপে লেখো..."></textarea>
+      <input id="revCodeBn" placeholder="পারচেজ কোড (ডাউনলোড লিংকের ?t= এর পরের কোড)">
+      <a class="btn btn-green" id="revSendBn" href="https://wa.me/8801842793958" target="_blank">⭐ রিভিউ পোস্ট করো</a>
+      <p class="rev-note">শুধু যারা English PDF কিনেছো বা কোর্স শেষ করেছো তারা রিভিউ দিতে পারো।<br>English PDF ক্রেতারা ডাউনলোড লিংকের <b>?t=</b> এর পরের কোডটা দাও; লাইভ কোর্সের শিক্ষার্থীরা মেন্টরের পাঠানো রিভিউ কোড দাও।<br>⭐ পোস্ট করলেই তোমার রিভিউ নিচে সবার জন্য প্রকাশ হবে।</p>
+      <p class="rev-note" id="revMsgBn" style="display:none"></p>
+    </div>
+  </div>
+</section>`;
+var EN_HTML = `<section id="unlock">
+  <div class="wrap">
+    <div class="eyebrow reveal">PDF Unlock</div>
+    <h2 class="sec reveal"><span class="hl">Unlock</span> Your PDF</h2>
+    <p class="lead reveal">Get the complete PDF with your own personal password in 3 steps</p>
+    <div class="unlock-box reveal">
+      <ul class="unlock-steps">
+        <li><span class="n">1</span><span>Type your <b>Gmail</b> below, then tap <b>WhatsApp</b> or <b>Gmail</b> — your message will be ready to send.</span></li>
+        <li><span class="n">2</span><span>After payment confirmation I'll send you a <b>one-time download link</b> + <b>your own password</b>.</span></li>
+        <li><span class="n">3</span><span>Download once and open the PDF with your password. The link works only once.</span></li>
+      </ul>
+      <div style="text-align:center">
+        <input class="unlock-mail" id="unlockMailEn" type="email" placeholder="Your Gmail (e.g. name@gmail.com)">
+        <div class="cta-row">
+          <a class="btn btn-green" id="unlockWaEn" href="https://wa.me/8801842793958" target="_blank">💬 Message on WhatsApp</a>
+          <a class="btn btn-blue" id="unlockGmailBtnEn" href="mailto:samratkhanov@gmail.com">✉️ Message via Gmail</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="eyebrow reveal">Customer Reviews</div>
+    <h2 class="sec reveal">Customer <span class="hl">Reviews</span></h2>
+    <p class="lead reveal">What our buyers say about the course</p>
+    <div class="rev-summary reveal">
+      <div class="rev-big" id="revAvgEn">–</div>
+      <div class="rev-stars" id="revStarsEn">☆☆☆☆☆</div>
+      <div style="color:var(--muted)" id="revCountEn"></div>
+    </div>
+    <div class="rev-cards" id="revCardsEn"></div>
+    <div class="rev-form reveal">
+      <h3 style="margin-top:0">⭐ Leave your review</h3>
+      <input id="revNameEn" placeholder="Your name">
+      <div class="star-pick" id="starPickEn"><span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span></div>
+      <textarea id="revTextEn" placeholder="How did you like the course? Write briefly..."></textarea>
+      <input id="revCodeEn" placeholder="Purchase code (the code after ?t= in your download link)">
+      <a class="btn btn-green" id="revSendEn" href="https://wa.me/8801842793958" target="_blank">⭐ Post review</a>
+      <p class="rev-note">Only English PDF buyers and course completers can review.<br>PDF buyers: enter the code after <b>?t=</b> in your one-time download link; course students: use the review code your mentor sent you.<br>⭐ Your review goes live below instantly for everyone.</p>
+      <p class="rev-note" id="revMsgEn" style="display:none"></p>
+    </div>
+  </div>
+</section>`;
+var links = document.querySelectorAll('a');
+var i, a, sec;
+for (i = 0; i < links.length; i++) {
+  a = links[i];
+  if (a.textContent.indexOf('WhatsApp-এ কনফার্ম করুন') !== -1) {
+    sec = a.closest('section');
+    if (sec) sec.insertAdjacentHTML('afterend', BN_HTML);
+  }
+  if (a.textContent.indexOf('Payoneer') !== -1) {
+    sec = a.closest('section');
+    if (sec) sec.insertAdjacentHTML('afterend', EN_HTML);
+  }
+}
+var stats = document.querySelectorAll('div.stat');
+for (i = 0; i < stats.length; i++) {
+  if (stats[i].textContent.indexOf('Instant Download') !== -1) {
+    stats[i].outerHTML = '<a href="#unlock" title="Click to unlock the PDF" class="stat reveal stat-link"><b><span class="pdf-lock">📕<i>🔒</i></span> PDF</b><span>Instant Download</span></a>';
+    break;
+  }
+}
+if (typeof refreshReveals === 'function') { refreshReveals(); }
+} catch (e) { if (window.console) console.warn('section inject failed', e); }
+})();
+
+/* ---------- PDF unlock: prefill buyer Gmail into WhatsApp / Gmail message ---------- */
+function wireUnlock(mailId, waId, gmId, lang){
+  var mail = document.getElementById(mailId), wa = document.getElementById(waId), gm = document.getElementById(gmId);
+  if(!mail || !wa || !gm){ return; }
+  function upd(){
+    var g = mail.value.trim();
+    var wtxt = lang==='bn'
+      ? 'আমি CPA Advanced Master Course PDF আনলক করতে চাই। আমার Gmail: ' + (g || '(লিখিনি)')
+      : 'I want to unlock the CPA Advanced Master Course PDF. My Gmail: ' + (g || '(not provided)');
+    wa.href = 'https://wa.me/8801842793958?text=' + encodeURIComponent(wtxt);
+    var body = lang==='bn'
+      ? 'আমি CPA Advanced Master Course PDF আনলক করতে চাই।\nআমার Gmail: ' + (g || '(লিখিনি)')
+      : 'I want to unlock the CPA Advanced Master Course PDF.\nMy Gmail: ' + (g || '(not provided)');
+    gm.href = 'mailto:samratkhanov@gmail.com?subject=' + encodeURIComponent('CPA Course PDF Unlock') + '&body=' + encodeURIComponent(body);
+  }
+  mail.addEventListener('input', upd); upd();
+}
+wireUnlock('unlockMailBn','unlockWaBn','unlockGmailBtnBn','bn');
+wireUnlock('unlockMailEn','unlockWaEn','unlockGmailBtnEn','en');
+/* ---------- Customer reviews ---------- */
+var REVIEWS = [
+];
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function starRow(n){ var s=''; for(var i=1;i<=5;i++){ s += i<=n ? '★' : '☆'; } return s; }
+function getLocalReviews(){
+  try{ return JSON.parse(localStorage.getItem('cpaReviews') || '[]'); }catch(e){ return []; }
+}
+function saveLocalReview(r){
+  var arr = getLocalReviews(); arr.push(r);
+  try{ localStorage.setItem('cpaReviews', JSON.stringify(arr)); }catch(e){}
+}
+var REVIEWS_API = 'https://aiaffiliatelaunch.unaux.com/cpa-download/api.php';
+function renderReviews(){
+  fetch(REVIEWS_API + '?action=reviews', {cache:'no-store'})
+    .then(function(r){ return r.json(); })
+    .then(function(j){ paintReviews(j && j.ok && j.reviews ? j.reviews : REVIEWS); })
+    .catch(function(){ paintReviews(REVIEWS); });
+}
+function paintReviews(base){
+  var local = getLocalReviews();
+  var all = base.concat(local.filter(function(r){
+    for(var i=0;i<base.length;i++){ if(base[i].name===r.name && base[i].text===r.text){ return false; } }
+    return true;
+  }));
+  var n = all.length;
+  var avg = n ? (all.reduce(function(a,r){ return a + r.stars; }, 0) / n) : 0;
+  ['Bn','En'].forEach(function(S){
+    var cards = document.getElementById('revCards' + S);
+    if(!cards){ return; }
+    if(!n){
+      cards.innerHTML = '<div class="rev-empty">' + (S==='Bn' ? 'এখনো কোনো রিভিউ নেই — প্রথম রিভিউদাতা হও! 🎉' : 'No reviews yet — be the first to review! 🎉') + '</div>';
+    } else {
+      cards.innerHTML = all.map(function(r){
+        return '<div class="rev-card"><div class="who">' + escapeHtml(r.name) + '</div><div class="stars">' + starRow(r.stars) + '</div><p>' + escapeHtml(r.text) + '</p></div>';
+      }).join('');
+    }
+    document.getElementById('revAvg' + S).textContent = n ? avg.toFixed(1) : '–';
+    document.getElementById('revStars' + S).textContent = starRow(Math.round(avg));
+    document.getElementById('revCount' + S).textContent = n
+      ? (S==='Bn' ? n + 'টি রিভিউ' : n + ' reviews')
+      : (S==='Bn' ? 'রিভিউ আসছে...' : 'Reviews coming soon...');
+  });
+}
+function wireReview(L){
+  var pick = document.getElementById('starPick' + L);
+  if(!pick){ return; }
+  var stars = pick.querySelectorAll('span');
+  var val = 0;
+  function paint(){ for(var i=0;i<stars.length;i++){ stars[i].classList.toggle('on', +(stars[i].getAttribute('data-v')) <= val); } }
+  for(var i=0;i<stars.length;i++){
+    (function(sp){ sp.addEventListener('click', function(){ val = +(sp.getAttribute('data-v')); paint(); }); })(stars[i]);
+  }
+  paint();
+  var btn = document.getElementById('revSend' + L);
+  var msgEl = document.getElementById('revMsg' + L);
+  function say(t, ok){
+    if(!msgEl){ return; }
+    msgEl.style.display = 'block';
+    msgEl.style.color = ok ? '#25d366' : '#ff7b7b';
+    msgEl.textContent = t;
+  }
+  btn.addEventListener('click', function(ev){
+    ev.preventDefault();
+    var nameEl = document.getElementById('revName' + L);
+    var textEl = document.getElementById('revText' + L);
+    var codeEl = document.getElementById('revCode' + L);
+    var name = nameEl.value.trim();
+    var text = textEl.value.trim();
+    var code = codeEl.value.trim();
+    if(val === 0){ say(L==='Bn' ? '⚠️ স্টার রেটিং দাও (১-৫)' : '⚠️ Please pick a star rating (1-5)', false); return; }
+    if(!name){ say(L==='Bn' ? '⚠️ তোমার নাম লেখো' : '⚠️ Please enter your name', false); return; }
+    if(!text){ say(L==='Bn' ? '⚠️ মতামত লেখো' : '⚠️ Please write your review', false); return; }
+    if(!code){ say(L==='Bn' ? '⚠️ পারচেজ কোড দাও' : '⚠️ Please enter your purchase code', false); return; }
+    var postedStars = val;
+    btn.style.opacity = '.6'; btn.style.pointerEvents = 'none';
+    say(L==='Bn' ? '⏳ পাঠানো হচ্ছে...' : '⏳ Sending...', true);
+    var fd = new FormData();
+    fd.append('action', 'submit');
+    fd.append('code', code); fd.append('name', name);
+    fd.append('stars', postedStars); fd.append('text', text);
+    fetch(REVIEWS_API, {method:'POST', body:fd})
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        btn.style.opacity = ''; btn.style.pointerEvents = '';
+        if(j && j.ok){
+          saveLocalReview({name:name, stars:postedStars, text:text});
+          renderReviews();
+          nameEl.value=''; textEl.value=''; codeEl.value=''; val=0; paint();
+          say(L==='Bn' ? '✅ ধন্যবাদ! তোমার রিভিউ প্রকাশ হয়েছে।' : '✅ Thank you! Your review is now live.', true);
+          var cards = document.getElementById('revCards' + L);
+          if(cards){ setTimeout(function(){ cards.scrollIntoView({behavior:'smooth', block:'center'}); }, 60); }
+        } else if(j && j.error === 'invalid_code'){
+          say(L==='Bn' ? '⚠️ কোডটি সঠিক নয় বা ইতিমধ্যে ব্যবহার হয়েছে। ডাউনলোড লিংকের ?t= এর পরের কোডটা দাও।' : '⚠️ Invalid or already-used code. Enter the code after ?t= in your download link.', false);
+        } else {
+          say(L==='Bn' ? '⚠️ পাঠানো যায়নি, আবার চেষ্টা করো।' : '⚠️ Could not send, please try again.', false);
+        }
+      })
+      .catch(function(){
+        btn.style.opacity = ''; btn.style.pointerEvents = '';
+        say(L==='Bn' ? '⚠️ পাঠানো যায়নি, আবার চেষ্টা করো।' : '⚠️ Could not send, please try again.', false);
+      });
+  });
+}
+wireReview('Bn'); wireReview('En');
+renderReviews();
+
+
 </script>
+<style>
+/* ---------- PDF unlock + customer reviews ---------- */
+.unlock-sec{max-width:900px;margin:36px auto;padding:26px 22px;background:#0e1a2b;border:1px solid #1f3554;border-radius:16px}
+.unlock-sec h2{font-size:1.5rem;margin-bottom:6px}
+.unlock-sec .unlock-sub{color:#9fb3c8;margin:0 0 18px}
+.unlock-box{display:flex;flex-direction:column;gap:12px;max-width:520px}
+.unlock-box label{font-weight:600}
+.unlock-box input[type=email]{padding:12px 14px;border-radius:10px;border:1px solid #2c4a6e;background:#0a1422;color:#fff;font-size:1rem;width:100%}
+.unlock-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-wa,.btn-gmail{display:inline-block;padding:12px 18px;border-radius:10px;font-weight:700;text-decoration:none;color:#fff}
+.btn-wa{background:#25d366}
+.btn-gmail{background:#d44638}
+.reviews-sec{max-width:1000px;margin:36px auto;padding:0 18px}
+.reviews-sec h2{font-size:1.6rem;text-align:center;margin-bottom:4px}
+.rev-avg{text-align:center;color:#f5b301;font-size:1.1rem;margin-bottom:18px}
+.rev-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-bottom:26px}
+.rev-card{background:#0e1a2b;border:1px solid #1f3554;border-radius:14px;padding:16px}
+.rev-card .who{font-weight:700;margin-bottom:6px}
+.rev-card .stars{color:#f5b301;font-size:1.2rem;letter-spacing:2px}
+.rev-card p{color:#c9d6e3;margin:8px 0 0}
+.rev-empty{text-align:center;color:#9fb3c8;padding:22px;border:1px dashed #2c4a6e;border-radius:12px}
+.rev-form{max-width:560px;margin:0 auto;background:#0e1a2b;border:1px solid #1f3554;border-radius:14px;padding:20px}
+.rev-form h3{margin-top:0}
+.rev-form .fld{margin-bottom:12px}
+.rev-form label{display:block;font-weight:600;margin-bottom:6px}
+.rev-form input[type=text],.rev-form textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid #2c4a6e;background:#0a1422;color:#fff;font-size:1rem}
+.rev-form textarea{min-height:90px;resize:vertical}
+.star-pick{font-size:2rem;cursor:pointer;letter-spacing:4px;user-select:none}
+.star-pick span{color:#3a4a5e;transition:color .15s}
+.star-pick span.on{color:#f5b301}
+.rev-submit{background:#f5b301;color:#111;border:none;padding:12px 22px;border-radius:10px;font-weight:800;font-size:1rem;cursor:pointer}
+.rev-msg{display:none;margin-top:10px;font-weight:600}
+.stat-link{text-decoration:none;color:inherit;display:block}
+.pdf-lock{position:relative;display:inline-block}
+.pdf-lock i{position:absolute;right:-6px;bottom:-4px;font-style:normal;font-size:.85em}
+</style>
 </body>
 </html>
