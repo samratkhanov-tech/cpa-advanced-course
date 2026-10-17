@@ -76,6 +76,9 @@
   .devices .dico { font-size:42px; filter:drop-shadow(0 6px 14px rgba(0,0,0,.5)); }
   .devices>div span:last-child { font-size:14px; color:#dbe2ff; font-weight:600; }
   .dev-note { text-align:center; color:var(--muted); font-size:14px; margin:2px 0 26px; }
+  .video-sec { padding:34px 0 8px; }
+  .video-frame { position:relative; max-width:820px; margin:22px auto 0; border-radius:18px; overflow:hidden; border:1px solid #2a3a75; box-shadow:0 20px 60px rgba(0,0,0,.5); aspect-ratio:16/9; background:#000; }
+  .video-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
   .cta-row { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
 
   .btn { position:relative; display:inline-block; padding:17px 46px; border-radius:14px; font-size:18px; font-weight:700; text-decoration:none; margin:8px; transition:transform .15s, box-shadow .2s; overflow:hidden; }
@@ -257,6 +260,17 @@
     <p class="dev-note">যেকোনো ডিভাইস থেকে লাইভ ক্লাসে জয়েন করুন</p>
   </div>
 </header>
+
+<section class="video-sec">
+  <div class="wrap">
+    <div class="eyebrow reveal">ভিডিওতে দেখুন</div>
+    <h2 class="sec reveal">কোর্স সম্পর্কে <span class="hl">ভিডিও</span></h2>
+    <p class="lead reveal">ভর্তির আগে ভিডিওটি দেখে নিন — এই কোর্সে কী কী শিখবেন</p>
+    <div class="video-frame reveal">
+      <iframe src="https://www.youtube.com/embed/h0vwFvQo8mY" title="CPA Advanced Master Course — বাংলা লাইভ কোর্স" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
 
 <section class="results">
   <div class="wrap">
