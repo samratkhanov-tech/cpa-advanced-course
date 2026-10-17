@@ -129,7 +129,10 @@
     <p style="font-size:13px" id="saveWarn">⚠️ এই কোডটা সেভ করে রাখো — এটা দিয়েই ড্যাশবোর্ডে ঢুকবে।</p>
   </div>
 </div>
-<a href="https://wa.me/8801842793958?text=%E0%A6%B8%E0%A6%BE%E0%A6%AA%E0%A7%8B%E0%A6%B0%E0%A7%8D%E0%A6%9F%20%E0%A6%A6%E0%A6%B0%E0%A6%95%E0%A6%BE%E0%A6%B0" target="_blank" class="wa-float" id="waFloat" title="WhatsApp Support">💬</a>
+<div class="wa-float-wrap" style="position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;flex-direction:column;align-items:center;gap:6px">
+  <div id="waFloatLabel" style="background:#131a3a;border:1px solid var(--gold);color:var(--gold);font-weight:700;font-size:12px;padding:5px 14px;border-radius:20px;white-space:nowrap">🎧 সাপোর্ট টিম</div>
+  <a href="https://wa.me/8801842793958?text=%E0%A6%B8%E0%A6%BE%E0%A6%AA%E0%A7%8B%E0%A6%B0%E0%A7%8D%E0%A6%9F%20%E0%A6%A6%E0%A6%B0%E0%A6%95%E0%A6%BE%E0%A6%B0" target="_blank" class="wa-float" id="waFloat" title="WhatsApp Support" style="position:static">💬</a>
+</div>
 <div class="wa-tip" id="waTip">💬 <span id="waTipText">সাপোর্টের জন্য WhatsApp-এ মেসেজ করো!</span></div>
 <script>
 var API = 'https://script.google.com/macros/s/AKfycbwJMKOJN_TW6hT8pGudK_2tCfrO53mJ3kL71FGS1SR9NTk1bac8qOi-rcaSMdfWbDE__w/exec';
@@ -296,6 +299,7 @@ function setLang(l){
   document.getElementById('dashHint').textContent = t.dashHint;
   document.getElementById('saveWarn').textContent = t.saveWarn;
   document.getElementById('waTipText').textContent = t.waTipText;
+  document.getElementById('waFloatLabel').textContent = (l==='bn' ? '🎧 সাপোর্ট টিম' : '🎧 Support Team');
   try{ localStorage.setItem('cpaRefLang', l); }catch(e){}
 }
 // WhatsApp support float tooltip

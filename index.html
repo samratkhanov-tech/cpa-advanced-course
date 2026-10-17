@@ -242,6 +242,12 @@
   .pdf-lock { position:relative; display:inline-block; }
   .pdf-lock i { position:absolute; right:-12px; bottom:-2px; font-size:15px; font-style:normal; background:#0c1230; border-radius:50%; padding:3px; line-height:1; box-shadow:0 2px 8px rgba(0,0,0,.5); animation:lockPulse 2s ease-in-out infinite; }
   @keyframes lockPulse { 0%,100%{ transform:scale(1);} 50%{ transform:scale(1.18);} }
+  /* ---------- floating support widget ---------- */
+  .sup-wrap{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .sup-label{background:#131a3a;border:1px solid var(--gold);color:var(--gold);font-weight:700;font-size:12px;padding:5px 14px;border-radius:20px;white-space:nowrap;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+  .sup-btn{width:60px;height:60px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,.5);animation:suppulse 2s infinite}
+  @keyframes suppulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+  .sup-tip{position:fixed;bottom:96px;right:22px;z-index:9999;background:#131a3a;border:1px solid #2a3a75;color:#eef1ff;padding:8px 14px;border-radius:14px;font-size:13px;display:none;max-width:230px;text-align:center}
 </style>
 </head>
 <body>
@@ -1045,5 +1051,37 @@ function refSay(t, ok){
 })();
 </script>
 <script src="./refer.js"></script>
+<!-- floating support widget: direct to WhatsApp -->
+<div class="sup-wrap">
+  <div class="sup-label" id="supLabel">🎧 সাপোর্ট টিম</div>
+  <a class="sup-btn" id="supBtn" href="https://wa.me/8801842793958?text=%E0%A6%B8%E0%A6%BE%E0%A6%AA%E0%A7%8B%E0%A6%B0%E0%A7%8D%E0%A6%9F%20%E0%A6%A6%E0%A6%B0%E0%A6%95%E0%A6%BE%E0%A6%B0" target="_blank" title="Support">💬</a>
+</div>
+<div class="sup-tip" id="supTip">💬 সাপোর্টের জন্য WhatsApp-এ মেসেজ করো!</div>
+<script>
+(function(){
+  var label = document.getElementById('supLabel'),
+      btn = document.getElementById('supBtn'),
+      tip = document.getElementById('supTip');
+  var T = {
+    bn: { label: '🎧 সাপোর্ট টিম', tip: '💬 সাপোর্টের জন্য WhatsApp-এ মেসেজ করো!', wa: 'https://wa.me/8801842793958?text=' + encodeURIComponent('সাপোর্ট দরকার') },
+    en: { label: '🎧 Support Team', tip: '💬 Message us on WhatsApp for support!', wa: 'https://wa.me/8801842793958?text=' + encodeURIComponent('I need support') }
+  };
+  function upd(){
+    var l = 'bn';
+    try{ l = localStorage.getItem('cpaLang') || document.documentElement.lang || 'bn'; }catch(e){}
+    if(l !== 'en') l = 'bn';
+    label.textContent = T[l].label;
+    tip.textContent = T[l].tip;
+    btn.href = T[l].wa;
+  }
+  // hover shows tip
+  btn.addEventListener('mouseenter', function(){ tip.style.display='block'; upd(); });
+  btn.addEventListener('mouseleave', function(){ tip.style.display='none'; });
+  // update on language toggle
+  var _s = window.setLang;
+  if(typeof _s === 'function'){ window.setLang = function(l){ _s(l); setTimeout(upd, 50); }; }
+  upd();
+})();
+</script>
 </body>
 </html>
