@@ -94,11 +94,13 @@
     <input type="text" id="refName" placeholder="তোমার নাম">
     <input type="email" id="refGmail" placeholder="Gmail (যেমন: name@gmail.com)">
     <input type="text" id="refContact" placeholder="WhatsApp নম্বর">
+    <div id="bdPaySection">
     <label style="font-size:14px;color:var(--muted);margin:4px 0 8px" id="payMethodLabel">💳 পেমেন্ট মেথড বেছে নাও</label>
     <div class="paylogos">
       <button type="button" class="paylogo bkash sel" data-m="bKash">🕊️ bKash</button>
       <button type="button" class="paylogo nagad" data-m="Nagad">🔥 Nagad</button>
       <button type="button" class="paylogo rocket" data-m="Rocket">🚀 Rocket</button>
+    </div>
     </div>
     <label style="font-size:14px;color:var(--muted);margin:4px 0 8px" id="payMethodLabel2">💵 PDF রেফার ($৫) — পেমেন্ট মেথড</label>
     <div class="paylogos">
@@ -197,7 +199,7 @@ var T = {
     step1: '<b>Sign up</b> below — get your <b>own referral link</b>',
     step2: '<b>Share</b> the link with <b>friends / groups</b>',
     step3: 'Earn commission when someone <b>enrolls</b> through your link',
-    step4: 'Get paid via <b>bKash / Nagad / Rocket</b> (live course) or <b>Binance / PayPal / Payoneer</b> (PDF)',
+    step4: 'Get paid via <b>Binance / PayPal / Payoneer</b>',
     payNoteText: 'To receive your payment, first contact us on WhatsApp and talk to us:',
     waTitle: '💬 Contact Us on WhatsApp',
     waText: 'Message us on WhatsApp for signup, payment, or any questions — you will get a quick reply!',
@@ -270,6 +272,19 @@ function setLang(l){
   document.getElementById('refPay').placeholder = t.payPh;
   document.getElementById('payMethodLabel').textContent = t.payMethodLabel;
   document.getElementById('payMethodLabel2').textContent = t.payMethodLabel2;
+  // English mode: only Binance/PayPal/Payoneer (no bKash/Nagad/Rocket)
+  var bdSec = document.getElementById('bdPaySection');
+  if(l==='en'){
+    bdSec.style.display='none';
+    // default to Binance in English mode
+    if(PAYM==='bKash'||PAYM==='Nagad'||PAYM==='Rocket'){
+      PAYM='Binance';
+      document.querySelectorAll('.paylogo').forEach(function(x){ x.classList.remove('sel'); });
+      document.querySelector('.paylogo.binance').classList.add('sel');
+    }
+  } else {
+    bdSec.style.display='block';
+  }
   updateNumPh();
   document.getElementById('signupBtn').textContent = t.signupBtn;
   document.getElementById('doneTitle').textContent = t.doneTitle;
